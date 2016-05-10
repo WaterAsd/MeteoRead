@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
-#include "GameScene.h"
+#include "KBT/UILayer.h"
+//#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -60,10 +61,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = GameScene::createScene();
+    //auto scene = GameScene::createScene();
 
     // run
-    director->runWithScene(scene);
+    //director->runWithScene(scene);
 
     return true;
 }
