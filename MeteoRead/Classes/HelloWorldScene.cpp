@@ -4,24 +4,23 @@ USING_NS_CC;
 
 Scene* HelloWorld::createScene()
 {
-    // 'scene' is an autorelease object
+    // シーンを作成する
     auto scene = Scene::create();
     
-    // 'layer' is an autorelease object
+    // レイヤーを作成する
     auto layer = HelloWorld::create();
 
-    // add layer as a child to scene
+    // レイヤーをシーンに追加する
     scene->addChild(layer);
 
-    // return the scene
+    // 作成したシーンのポインターを返す
     return scene;
 }
 
-// on "init" you need to initialize your instance
+// 初期化メソッド
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
+    // 親であるLayerクラスの初期化
     if ( !Layer::init() )
     {
         return false;
@@ -30,11 +29,7 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
 
-    // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
@@ -43,33 +38,25 @@ bool HelloWorld::init()
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
 
-    // create menu, it's an autorelease object
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
     
     auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
     
-    // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
 
-    // add the label as a child to this layer
     this->addChild(label, 1);
 
-    // add "HelloWorld" splash screen"
+	//画像を表示
     auto sprite = Sprite::create("HelloWorld.png");
 
-    // position the sprite on the center of the screen
+	//表示位置
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-    // add the sprite as a child to this layer
+	//レイヤーに追加
     this->addChild(sprite, 0);
     
     return true;
