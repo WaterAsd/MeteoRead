@@ -30,14 +30,12 @@ bool SelectScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    //”wŒi‰æ‘œ
+    auto Back = Sprite::create("BackSample.png");
+    //”wŒiÀ•W
+    Back->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    this->addChild(Back, 0);
     
     return true;
 }
