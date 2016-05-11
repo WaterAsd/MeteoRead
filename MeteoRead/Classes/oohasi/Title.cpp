@@ -1,26 +1,21 @@
-#include "HelloWorldScene.h"
+#include "Title.h"
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* Title::createScene()
 {
-    // シーンを作成する
     auto scene = Scene::create();
     
-    // レイヤーを作成する
-    auto layer = HelloWorld::create();
+    auto layer = Title::create();
 
-    // レイヤーをシーンに追加する
     scene->addChild(layer);
 
-    // 作成したシーンのポインターを返す
     return scene;
 }
 
-// 初期化メソッド
-bool HelloWorld::init()
+bool Title::init()
 {
-    // 親であるLayerクラスの初期化
+
     if ( !Layer::init() )
     {
         return false;
@@ -29,11 +24,12 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-
+	
+	//スタートボタンを設置
     auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           "CloseNormal.png",    // 通常状態の画像
+                                           "CloseSelected.png",  // 押下状態の画像
+                                           CC_CALLBACK_1(Title::menuCloseCallback, this));  // 押下時のアクション
     
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -41,7 +37,6 @@ bool HelloWorld::init()
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-
     
     auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
     
@@ -50,20 +45,18 @@ bool HelloWorld::init()
 
     this->addChild(label, 1);
 
-	//画像を表示
     auto sprite = Sprite::create("HelloWorld.png");
 
-	//表示位置
     sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-	//レイヤーに追加
     this->addChild(sprite, 0);
-    
+
+
     return true;
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void Title::menuCloseCallback(Ref* pSender)
 {
     Director::getInstance()->end();
 

@@ -17,7 +17,7 @@ bool Earth::init(){
 	//‚‚Ì‰æ–Ê
 	for (int y = 0; y <= 1; y++){
 		//‰¡‚Ì‰æ–Ê
-		for (int x = 0; x < Frame_Count - y;++x)
+		for (int x = 0; x < Frame_Count - y; ++x);
 
 	}
 

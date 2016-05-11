@@ -2,6 +2,8 @@
 
 USING_NS_CC;
 
+UILayer *GameScene::uiLayer;
+
 Scene* GameScene::createScene()
 {
 	auto scene = Scene::create();
@@ -17,6 +19,9 @@ bool GameScene::init(){
 	if (!Layer::init()){
 		return false;
 	}
+
+	uiLayer = UILayer::create();
+	this->addChild(uiLayer);
 
 	return true;
 }
