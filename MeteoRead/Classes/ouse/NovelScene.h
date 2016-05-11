@@ -16,7 +16,7 @@ public:
 	void menuCloseCallback(cocos2d::Ref* pSender);
 
 	//CREATE_FUNCマクロを使用して、staticなcreateメソッドを実装する
-	CREATE_FUNC(HelloWorld);
+	CREATE_FUNC(NovelScene);
 };
 
 #endif // _NOVEL_SCENE_H_
