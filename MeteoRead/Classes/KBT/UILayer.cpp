@@ -33,4 +33,14 @@ void UILayer::CreateSprite()
 	Sprite* button = Sprite::create("button.png");
 	button->setPosition(Vec2(150, 90));
 	this->addChild(button);
+
+	Sprite* meter=Sprite::create("button02.png");
+	meter->setPosition(Vec2(190, 91));
+	this->addChild(meter);
+
+	Sprite* box = Sprite::create();
+	box->setTextureRect(Rect(0, 0, 100, 100));
+	box->setColor(Color3B::WHITE);
+	box->setPosition(Vec2(800, 100));
+	this->addChild(box);
 }
