@@ -13,6 +13,10 @@ bool UILayer::init()
 		return false;
 	}
 
+	//int初期化
+	up = 0;
+	upCount = 0;
+
 	// スプライト作成クラス呼び出し
 	CreateSprite();
 
@@ -25,7 +29,18 @@ bool UILayer::init()
 
 void UILayer::update(float delta)
 {
+	meterMove();
+}
 
+void UILayer::meterMove()
+{
+	upCount++;
+	if (upCount % 5 == 0)
+	{
+		up++;
+		if (up >5)up=0;
+	}
+	meter->setTextureRect(Rect(120 * up, 0, 120, 160));
 }
 
 void UILayer::CreateSprite()
@@ -34,13 +49,7 @@ void UILayer::CreateSprite()
 	button->setPosition(Vec2(150, 90));
 	this->addChild(button);
 
-	Sprite* meter=Sprite::create("button02.png");
+	meter=Sprite::create("meter.png");
 	meter->setPosition(Vec2(190, 91));
 	this->addChild(meter);
-
-	Sprite* box = Sprite::create();
-	box->setTextureRect(Rect(0, 0, 100, 100));
-	box->setColor(Color3B::WHITE);
-	box->setPosition(Vec2(800, 100));
-	this->addChild(box);
 }

@@ -13,7 +13,12 @@ class UILayer : public cocos2d::Layer
 protected:
 	Size winSize;				// 画面サイズ
 
-	Sprite *button;
+	//Sprite
+	Sprite* meter;              //メーターの画像
+
+	//int
+	int up;                     //メーター動かすための変数
+	int upCount;
 
 	void CreateSprite();	// 画像作成クラス
 
@@ -23,6 +28,7 @@ public:
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);
+	void meterMove();
 	CREATE_FUNC(UILayer);
 };
 
