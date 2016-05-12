@@ -30,14 +30,30 @@ bool GameScene::init(){
 	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(Space);
 
+
 	//星を出現させる
-	auto earth = Earth::create();
-	earth->setPosition(visibleSize.width/2, visibleSize.height/2);
-	this->addChild(earth);
+	StarSet(visibleSize/2);
+	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2));
+	StarSet(Vec2(visibleSize.width / 2 - 100, visibleSize.height / 2));
 
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
 	this->addChild(uiLayer);
 
 	return true;
+}
+
+//マイフレーム更新関数
+void GameScene::update(float delta){
+
+
+}
+
+//星を出現させる
+void GameScene::StarSet(Vec2 Pos){
+	auto earth = Earth::create();
+	earth->setPosition(Pos);
+	this->addChild(earth);
+	starCount++;//星の数増やす。
+	stars.pushBack(earth);//星の情報を保存する。
 }
