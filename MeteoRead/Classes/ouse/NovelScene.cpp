@@ -4,6 +4,18 @@
 
 USING_NS_CC;
 
+Scene* NovelScene::createScene()
+{
+	// scene 自動生成オブジェクト
+	auto scene = Scene::create();
+	// layer 自動生成オブジェクト
+	auto layer = NovelScene::create();
+	// layer sceneの子として追加
+	scene->addChild(layer);
+	// scene の値を返す
+	return scene;
+}
+
 // 初期化メソッド
 bool NovelScene::init()
 {
