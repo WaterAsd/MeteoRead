@@ -4,6 +4,7 @@ USING_NS_CC;
 
 //UiLayer
 UILayer *GameScene::uiLayer;
+Earth *GameScene::earth;
 
 //Scene‚ğg‚¦‚é‚æ‚¤‚É‚·‚é
 Scene* GameScene::createScene()
@@ -28,6 +29,11 @@ bool GameScene::init(){
 	auto Space = Sprite::create("Space.jpg");
 	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(Space);
+
+	//¯‚ğoŒ»‚³‚¹‚é
+	auto earth = Earth::create();
+	earth->setPosition(visibleSize.width/2, visibleSize.height/2);
+	this->addChild(earth);
 
 	//UiLayer‚ğéŒ¾‚·‚éB
 	uiLayer = UILayer::create();
