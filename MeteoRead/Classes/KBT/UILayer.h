@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Math.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
@@ -17,8 +18,13 @@ protected:
 	Sprite* meter;              //メーターの画像
 
 	//int
-	int up;                     //メーター動かすための変数
-	int upCount;
+	int up;                     //メーターの量　0～5
+	int upCount;//upのカウント
+
+	Point touchPoint;				// タッチされた場所
+
+	virtual bool onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
+	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
 
 	void CreateSprite();	// 画像作成クラス
 
@@ -28,7 +34,9 @@ public:
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);
-	void meterMove();
+	void meterMove();//メーターの関数
+	int getmeterReturn();
+
 	CREATE_FUNC(UILayer);
 };
 
