@@ -12,6 +12,13 @@ public:
 	//初期化メソッド
 	virtual bool init();
 
+	Sprite *background;
+
+	int mojiframe;
+	int mojicnt;
+	int mojicnt2;
+	bool mojinext;
+
 	//コールバックメソッド
 	void menuCloseCallback(cocos2d::Ref* pSender);
 
