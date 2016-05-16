@@ -9,7 +9,7 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-   
+	Sprite* ButtonSp[4];
     void menuCloseCallback(cocos2d::Ref* pSender);
     CREATE_FUNC(SelectScene);
 };

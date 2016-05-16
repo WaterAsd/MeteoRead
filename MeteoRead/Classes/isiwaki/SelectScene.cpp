@@ -29,12 +29,24 @@ bool SelectScene::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	for (int i = 0; i < 4; i++)
+	{
+		ButtonSp[i] = Sprite::create("botan01.png");
+		ButtonSp[i]->setPosition(Vec2(visibleSize.width / 5 + origin.x, visibleSize.height / i + origin.y));
+		this->addChild(ButtonSp[i], 1);
 
-
+	}
+	//ボタン画像
+	auto Button0 = Sprite::create("botan01.png");
+	//ボタン座標
+	Button0->setPosition(Vec2(visibleSize.width / 5+origin.x, visibleSize.height/1.5f +origin.y));
+	//奥行き
+	this->addChild(Button0, 1);
     //背景画像
     auto Back = Sprite::create("BackSample.png");
     //背景座標
     Back->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	//お前が一番下だ！ポルナレフッ!!!
     this->addChild(Back, 0);
     
     return true;
