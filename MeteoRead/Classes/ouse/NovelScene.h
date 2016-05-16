@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 
-class NovelScene : private cocos2d::Layer
+class NovelScene : public cocos2d::Layer
 {
 public:
 	//シーンを作成する
@@ -19,11 +19,13 @@ public:
 	int mojicnt2;
 	bool mojinext;
 
-	//コールバックメソッド
-	void menuCloseCallback(cocos2d::Ref* pSender);
-
 	//CREATE_FUNCマクロを使用して、staticなcreateメソッドを実装する
 	CREATE_FUNC(NovelScene);
+
+	//コールバックメソッド
+private:
+	virtual void menuCloseCallback(cocos2d::Ref* pSender);
+
 };
 
 #endif // _NOVEL_SCENE_H_
