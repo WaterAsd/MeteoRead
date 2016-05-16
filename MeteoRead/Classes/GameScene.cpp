@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "asada/Rocket.h"
 
 USING_NS_CC;
 
@@ -35,6 +36,11 @@ bool GameScene::init(){
 	StarSet(visibleSize/2);
 	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2));
 	StarSet(Vec2(visibleSize.width / 2 - 100, visibleSize.height / 2));
+
+	//ロケットを出現させる
+	auto rocket = Rocket::create();
+	rocket->setPosition(visibleSize.width/2,visibleSize.height/2);
+	this->addChild(rocket);
 
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
