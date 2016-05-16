@@ -1,4 +1,4 @@
-#include "NovelScene.h"
+#include "ouse/NovelScene.h"
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
