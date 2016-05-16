@@ -8,6 +8,7 @@ Booster::~Booster(){
 
 }
 bool Booster::init(){
+
 	if (!Sprite::initWithFile("Booster.png")){
 		return false;
 	}
@@ -18,14 +19,12 @@ bool Booster::init(){
 	this->setTextureRect(Rect(0, 0, framesize.width, framesize.height));
 
 	//１コマずつアニメーションを設定する
-	for (int y = 0; y <= 1; y++){
 		for (int x = 0; x < Frame_Count; ++x){
 			auto frame = SpriteFrame::create("Booster.png", Rect(framesize.width*x,
-				framesize.height*y,
+				0,
 				framesize.width,
 				framesize.height));
 			_boost.pushBack(frame);
-		}
 	}
 
 	//アニメーションを実行させる

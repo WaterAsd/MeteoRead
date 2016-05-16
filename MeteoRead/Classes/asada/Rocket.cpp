@@ -1,36 +1,44 @@
-#include "asada\Rocket.h"
+ï»¿#include "asada\Rocket.h"
 #include "asada\booster.h"
 
 USING_NS_CC;
 
-//–‡”‚Ç‚Ì‚­‚ç‚¢‚©H
-const int FRAME_COUNT = 4;
-//Ÿ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Éi‚Ş‚½‚ß‚ÌŠÔ‘¬“x
-const float ANIMATION = 5;
+float ROCKETSPEED = 0.5f;
+float ROCKETMOVEX = 0.0f;
+float ROCKETMOVEY = 0.0f;
 
-//‰Šú‰»ŠÖ”
+//åˆæœŸåŒ–é–¢æ•°
 bool Rocket::init(){
 	if (!Node::init()){
 		return false;
 	}
-	//ƒƒPƒbƒg‚ÌÀ•W‚ğ“ü‚ê‚é
+	//ãƒ­ã‚±ãƒƒãƒˆã‚’å…¥ã‚Œã‚‹
 	auto rocket = Sprite::create("Rocket.png");
 	this->addChild(rocket);
+	_Rocket = rocket;
 
-	//ƒu[ƒXƒ^[‚ÌÀ–@‚ğ“ü‚ê‚é
+	//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚’å…¥ã‚Œã‚‹
 	auto booster = Booster::create();
 	rocket->addChild(booster);
+	booster->setPosition(20, -21);
+	_booster = booster;
+
+	this->setContentSize(Size(100.0f,40.0f));
 
 	return true;
 }
 
-//ƒƒPƒbƒg‚ÌÀ•W‚ğ‘—‚é
-Vec2 Rocket::getRocketPos(){ return RocketPos; }
-//ƒƒPƒbƒg‚ÌRect‚ğ—^‚¦‚é
-Rect Rocket::getRocketRect(){ return RocketRect; }
-//ƒƒPƒbƒg‚ÌƒXƒs[ƒh‚ğİ’è‚·‚é
-int Rocket::setPower(int pw){ Power = pw;}
-//ƒƒPƒbƒg‚ÌƒXƒs[ƒh‚ğİ’è‚·‚é
+//ãƒ­ã‚±ãƒƒãƒˆã®åº§æ¨™ã‚’é€ã‚‹
+Vec2 Rocket::getRocketPos(){ 
+	return RocketPos;
+}
+//ãƒ­ã‚±ãƒƒãƒˆã®Rectã‚’ä¸ãˆã‚‹
+Rect Rocket::getRocketRect(){
+	return RocketRect;
+}
+//ãƒ­ã‚±ãƒƒãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
+void Rocket::setPower(int pw){ Power = pw;}
+//ãƒ­ã‚±ãƒƒãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 void Rocket::RocketSpeed(int Pw){
 
 }

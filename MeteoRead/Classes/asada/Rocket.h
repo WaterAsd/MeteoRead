@@ -2,22 +2,23 @@
 #define __METEOROAD__ROCKET__
 
 #include "cocos2d.h"
+#include "asada/booster.h"
+using namespace cocos2d;
 
 class Rocket : public cocos2d::Node{
 private:
+	Sprite* _Rocket;//ロケット扱える様にする為のポインター
+	Booster* _booster;//ブースターを扱える様にするためのポインター
 
 	Vec2 RocketPos;//ロケットの座標
-	Rect RocketRect;//ロケットの座標
-	int Power;//ロケットのパワー力
-
+	Rect RocketRect;//ロケットの矩形
+	int  Power;//ロケットのパワー(力)
 	void RocketSpeed(int Pw);//ロケットのスピードを設定する
 
-	void boosterCreate();
 public:
-
-	Vec2 getRocketPos();
-	Rect getRocketRect();
-	int  setPower(int pw);
+	Vec2 getRocketPos();//ロケットの座標を送る
+	Rect getRocketRect();//ロケットの矩形を送る
+	void setPower(int pw);//ロケットの速さを変える
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame*>, _but, But);

@@ -9,7 +9,7 @@ protected:
 	virtual ~Booster();
 	virtual bool init();
 	const int Frame_Count = 4;//‰¡‚ÉŒü‚©‚Á‚Ä‰æ‘œ‚ª‚¢‚­‚Â‚ ‚é‚©
-	float ANIMETION = 0.5f;//Ÿ‚Ì‰æ‘œ‚Éi‚Ş‚Ü‚Å‚ÌŠÔ
+	float ANIMETION = 0.1f;//Ÿ‚Ì‰æ‘œ‚Éi‚Ş‚Ü‚Å‚ÌŠÔ
 public:
 	void SetPower(int power);
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame *>, _boost, Boost);//•à‚«‚Ì‰æ‘œ‚ÌVector
