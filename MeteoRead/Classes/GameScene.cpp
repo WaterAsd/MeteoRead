@@ -41,17 +41,21 @@ bool GameScene::init(){
 	auto rocket = Rocket::create();
 	rocket->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(rocket);
+	_rocket = rocket;
 
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
 	this->addChild(uiLayer);
+
+	//マイフレーム更新作業を実行させる
+	this->scheduleUpdate();
 
 	return true;
 }
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-
+	//float angle = ccpToAngle(ccpSub(_rocket->getPosition(),_))
 
 }
 

@@ -12,6 +12,7 @@ bool Rocket::init(){
 	if (!Node::init()){
 		return false;
 	}
+
 	//ロケットを入れる
 	auto rocket = Sprite::create("Rocket.png");
 	this->addChild(rocket);
@@ -20,10 +21,8 @@ bool Rocket::init(){
 	//ブースターを入れる
 	auto booster = Booster::create();
 	rocket->addChild(booster);
-	booster->setPosition(20, -21);
+	booster->setPosition(20, -20);
 	_booster = booster;
-
-	this->setContentSize(Size(100.0f,40.0f));
 
 	return true;
 }

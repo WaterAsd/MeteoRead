@@ -4,10 +4,13 @@
 #include "cocos2d.h"
 #include "KBT/UILayer.h"
 #include "asada/Earth.h"
+#include "asada/Rocket.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
+	Rocket* _rocket;//ロケットのポインター
+
 	int starCount;//星の数を覚えておく
 	Vector<Earth*> stars;//星の座標一覧を取得する。
 	void StarSet(Vec2 Pos);//画面に星を入れる。
