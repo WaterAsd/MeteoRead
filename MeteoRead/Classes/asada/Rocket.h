@@ -15,9 +15,16 @@ private:
 	int  Power;//ロケットのパワー(力)
 	void RocketSpeed(int Pw);//ロケットのスピードを設定する
 
+	void update(float dt);
+
 public:
-	Vec2 getRocketPos();//ロケットの座標を送る
-	Rect getRocketRect();//ロケットの矩形を送る
+
+	//画像の最大サイズ
+	const int MAXSPRITEX = 40;
+	const int MAXSPRITEY = 60;
+
+	void setRocketPos(Vec2 pos);//ロケットの座標を送る
+	void setRocketRect(Rect re);//ロケットの矩形を送る
 	void setPower(int pw);//ロケットの速さを変える
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物

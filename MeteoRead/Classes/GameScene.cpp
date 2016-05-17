@@ -43,6 +43,11 @@ bool GameScene::init(){
 	this->addChild(rocket);
 	_rocket = rocket;
 
+	//ロケットのサイズを調べる為にNodeに画像を張る
+	auto lc = LayerColor::create(Color4B(255, 0, 0, 255),rocket->getContentSize().width,rocket->getContentSize().height);
+	lc->setPosition(Vec2(rocket->getContentSize().width / 2, rocket->getContentSize().height / 2));
+	rocket->addChild(lc);
+
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
 	this->addChild(uiLayer);
@@ -56,6 +61,9 @@ bool GameScene::init(){
 //マイフレーム更新関数
 void GameScene::update(float delta){
 	//float angle = ccpToAngle(ccpSub(_rocket->getPosition(),_))
+
+	_rocket->setRocketPos(Vec2(_rocket->getPosition().x,_rocket->getPosition().y));
+	//_rocket->setRocketRect(Rect(_rocket->getContentSize()));
 
 }
 
