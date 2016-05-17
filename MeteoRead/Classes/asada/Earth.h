@@ -9,8 +9,8 @@ protected:
 	virtual ~Earth();
 	virtual bool init();
 	const int UP_PIC = 2;//ã‰º‚É‰½–‡‚Ì‰æ‘œ‚ª‚ ‚é‚©H
-	const int Frame_Count = 8;//ˆê–‡‚Ì’†‚É‚ ‚¤‰æ‘œ‚Ì‘‡”
-	const float Anemation = 0.11;//Ÿ‚Ì‰æ‘œ‚Éi‚Ş‚Ü‚Å‚ÌŠÔ
+	const int Frame_Count = 4;//‰¡‚ÉŒü‚©‚Á‚Ä‰æ‘œ‚ª‚¢‚­‚Â‚ ‚é‚©
+	const float ANIMETION= 0.5f;//Ÿ‚Ì‰æ‘œ‚Éi‚Ş‚Ü‚Å‚ÌŠÔ
 public:
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame *>, _earth,earth);//•à‚«‚Ì‰æ‘œ‚ÌVector
 	CREATE_FUNC(Earth);
