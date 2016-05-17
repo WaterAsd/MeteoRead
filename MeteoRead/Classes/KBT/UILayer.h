@@ -16,15 +16,21 @@ protected:
 
 	//Sprite
 	Sprite* meter;              //メーターの画像
+	Sprite* button;
 
 	//int
 	int up;                     //メーターの量　0～5
 	int upCount;//upのカウント
 
+	//Point
 	Point touchPoint;				// タッチされた場所
 
+	//Rect
+	Rect buttonRect;
+
 	virtual bool onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
-	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
+	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチ中の時の準備
+	virtual void onTouchEnded(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチを離した時の準備
 
 	void CreateSprite();	// 画像作成クラス
 
