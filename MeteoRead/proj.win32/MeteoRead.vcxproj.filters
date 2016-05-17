@@ -21,7 +21,11 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="NovelScene.cpp">
+    <ClCompile Include="..\Classes\asada\Earth.cpp" />
+    <ClCompile Include="..\Classes\asada\Space.cpp" />
+    <ClCompile Include="..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
+    <ClCompile Include="..\Classes\ouse\NovelScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +39,11 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="NovelScene.h">
+    <ClInclude Include="..\Classes\asada\Earth.h" />
+    <ClInclude Include="..\Classes\asada\Space.h" />
+    <ClInclude Include="..\Classes\GameScene.h" />
+    <ClInclude Include="..\Classes\KBT\UILayer.h" />
+    <ClInclude Include="..\Classes\ouse\NovelScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
