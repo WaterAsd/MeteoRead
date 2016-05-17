@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game用の">
+      <UniqueIdentifier>{ca3ea760-cb5c-47c1-bbc6-8b3379f0d609}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,12 +24,20 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\asada\Earth.cpp" />
-    <ClCompile Include="..\Classes\asada\Space.cpp" />
-    <ClCompile Include="..\Classes\GameScene.cpp" />
-    <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
-    <ClCompile Include="..\Classes\ouse\NovelScene.cpp">
+    <ClCompile Include="..\Classes\oohasi\Title.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Earth.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Space.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\KBT\UILayer.cpp">
+      <Filter>src\Game用の</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -39,12 +50,20 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\asada\Earth.h" />
-    <ClInclude Include="..\Classes\asada\Space.h" />
-    <ClInclude Include="..\Classes\GameScene.h" />
-    <ClInclude Include="..\Classes\KBT\UILayer.h" />
-    <ClInclude Include="..\Classes\ouse\NovelScene.h">
+    <ClInclude Include="..\Classes\oohasi\Title.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Earth.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Space.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KBT\UILayer.h">
+      <Filter>src\Game用の</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
