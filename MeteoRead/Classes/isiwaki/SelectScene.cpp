@@ -1,4 +1,5 @@
 #include "SelectScene.h"
+#include "GameScene.h"
 
 
 USING_NS_CC;
@@ -37,6 +38,7 @@ bool SelectScene::init()
 	button->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent, this));
 	this->addChild(button,1);
 
+
 	//”wŒi‰æ‘œ
 	auto Back = Sprite::create("BackSample.png");
 	//”wŒiÀ•W
@@ -55,7 +57,8 @@ void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type)
 	switch (type)
 	{
 	case ui::Widget::TouchEventType::BEGAN:
-		log("Button");
+		log(0123);
+		Director::getInstance()->replaceScene(TransitionFade::create(2.0f, SelectScene::createScene() ,ccc3(0,0,0)));
 		break;
 	case ui::Widget::TouchEventType::ENDED:
 		break;
