@@ -13,6 +13,12 @@
     <Filter Include="src\Game用の">
       <UniqueIdentifier>{ca3ea760-cb5c-47c1-bbc6-8b3379f0d609}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game用の\ロケット">
+      <UniqueIdentifier>{2cb2e604-e8e3-4d65-bc2e-7dc05a5b5e9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\oohasi">
+      <UniqueIdentifier>{04ec0a54-7f99-4118-94b6-987cf60b4c8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -22,9 +28,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\oohasi\Title.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\asada\Earth.cpp">
@@ -39,6 +42,15 @@
     <ClCompile Include="..\Classes\KBT\UILayer.cpp">
       <Filter>src\Game用の</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\asada\Rocket.cpp">
+      <Filter>src\Game用の\ロケット</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\booster.cpp">
+      <Filter>src\Game用の\ロケット</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\oohasi\Title.cpp">
+      <Filter>src\oohasi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -48,9 +60,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\oohasi\Title.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\asada\Earth.h">
@@ -64,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\KBT\UILayer.h">
       <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Rocket.h">
+      <Filter>src\Game用の\ロケット</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\booster.h">
+      <Filter>src\Game用の\ロケット</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\oohasi\Title.h">
+      <Filter>src\oohasi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
