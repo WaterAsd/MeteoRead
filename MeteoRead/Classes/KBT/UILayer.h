@@ -16,17 +16,21 @@ protected:
 
 	//Sprite
 	Sprite* meter;              //メーターの画像
-	Sprite* button;
+	Sprite* button;             //ボタンの画像
+	Sprite* map;                //マップ画像
 
 	//int
 	int up;                     //メーターの量　0～5
-	int upCount;//upのカウント
+	int upCount;                //upのカウント
 
 	//Point
 	Point touchPoint;				// タッチされた場所
 
 	//Rect
-	Rect buttonRect;
+	Rect buttonRect;             //ボタンのレクト
+
+	//Color3B
+	Color3B buttonColor;//ボタンの色
 
 	virtual bool onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
 	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチ中の時の準備

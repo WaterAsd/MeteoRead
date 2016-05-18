@@ -39,6 +39,12 @@
     <ClCompile Include="..\Classes\KBT\UILayer.cpp">
       <Filter>src\Game用の</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\asada\Rocket.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\booster.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -64,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\KBT\UILayer.h">
       <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Rocket.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\booster.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

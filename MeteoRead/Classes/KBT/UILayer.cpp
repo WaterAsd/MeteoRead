@@ -13,9 +13,11 @@ bool UILayer::init()
 		return false;
 	}
 
-	//int初期化
+	//初期化
 	up = 0;
 	upCount = 1;
+
+	buttonColor = Color3B(255, 255, 255);
 
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
@@ -62,8 +64,15 @@ void UILayer::CreateSprite()
 	buttonRect = button->boundingBox();
 
 	meter=Sprite::create("meter.png");
-	meter->setPosition(Vec2(190, 91));
+	meter->setPosition(Vec2(220, 91));
 	this->addChild(meter);
+
+	map = Sprite::create();
+	map->setTextureRect(Rect(0, 0, 240, 135));
+	map->setColor(Color3B::WHITE);
+	map->setPosition(Vec2(800,500));
+	this->addChild(map);
+	map->setOpacity(100);
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
@@ -74,11 +83,14 @@ bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 void UILayer::onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 {
 	touchPoint = ptouch->getLocation();
-	//ボタンにタッチされている間、カウントを上げていく
+	//ボタンにタッチされている間
 	if (buttonRect.containsPoint(touchPoint))
 	{
-		button->setColor(Color3B::BLACK);
+		//カウントを上げる
 		upCount++;
+		//色の変更
+		buttonColor = Color3B(255, 0, 0);
+		button->setColor(buttonColor);
 	}
 }
 
@@ -87,6 +99,9 @@ void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 	//ボタンが離されたら数値を元に戻す
 	up = 0;
 	upCount = 1;
+	//色を元に戻す
+	buttonColor = Color3B(255, 255, 255);
+	button->setColor(buttonColor);
 }
 
 int UILayer::getmeterReturn()
