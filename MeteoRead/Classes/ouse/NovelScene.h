@@ -12,8 +12,6 @@ public:
 	//‰Šú‰»ƒƒ\ƒbƒh
 	virtual bool init();
 
-	Sprite *background;
-
 	int mojiframe;
 	int mojicnt;
 	int mojicnt2;
