@@ -10,5 +10,6 @@ MeteoRead/proj.win32/MeteoRead.opensdf
 MeteoRead/proj.win32/MeteoRead.sdf
 MeteoRead/proj.win32/
 MeteoRead/proj.wp8-xaml/
-MeteoRead/proj.win32/MeteoRead.vcxproj.fillters
-MeteoRead/proj.win32/MeteoRead.vcxproj
+MeteoRead/proj.win32/MeteoRead.vcxproj.fillters/
+MeteoRead/proj.win32/MeteoRead.vcxproj/
+
