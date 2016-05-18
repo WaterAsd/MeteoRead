@@ -33,12 +33,12 @@ bool NovelScene::init()
 
 	//画像を表示
 	auto sprite = Sprite::create("HelloWorld.png");
-	background = Sprite::create("window2.png");
+	auto sprite = Sprite::create("window2.png");
 	////中央に表示されるように座標を設定
-	background->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 6 + origin.y));
-	background->setScale(0.75);
+	sprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 6 + origin.y));
+	sprite->setScale(0.75);
 	////画像を追加　第2引数は表示する順番（背景だから一番下つまり0）
-	this->addChild(background, 3);
+	this->addChild(sprite, 3);
 
 	//表示位置
 	sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
