@@ -43,9 +43,15 @@ bool GameScene::init(){
 	this->addChild(rocket);
 	_rocket = rocket;
 
+	//ロケットのサイズを調べる為にNodeに画像を張る
+	auto lc = LayerColor::create(Color4B(255, 0, 0, 255),rocket->getContentSize().width,rocket->getContentSize().height);
+	lc->setPosition(Vec2(rocket->getContentSize().width / 2, rocket->getContentSize().height / 2));
+	rocket->addChild(lc);
+
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
 	this->addChild(uiLayer);
+	_UILayer = uiLayer;
 
 	//マイフレーム更新作業を実行させる
 	this->scheduleUpdate();
@@ -55,8 +61,16 @@ bool GameScene::init(){
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-	//float angle = ccpToAngle(ccpSub(_rocket->getPosition(),_))
+	//ＵＩのパワーをロケットに与えてスピード変更している。
+	Vec2 RoPos = _rocket->getPosition();
+	_rocket->setPower(_UILayer->getmeterReturn());
+	RoPos = Vec2(RoPos.x, RoPos.y + _rocket->getPower());
+	_rocket->setPosition(RoPos);
 
+	//ポジションの位置が画面越したら
+	if (_rocket->getPositionY() > 600){
+		_rocket->setPosition(Vec2(_rocket->getPositionX(),0));
+	}
 }
 
 //星を出現させる

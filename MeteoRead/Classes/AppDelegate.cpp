@@ -1,5 +1,7 @@
 #include "AppDelegate.h"
 #include "GameScene.h"
+#include "isiwaki/SelectScene.h"
+#include "oohasi/Title.h"
 
 USING_NS_CC;
 

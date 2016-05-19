@@ -10,6 +10,7 @@ class GameScene : public cocos2d::Layer
 {
 private:
 	Rocket* _rocket;//ロケットのポインター
+	UILayer* _UILayer;//UIのポインター
 
 	int starCount;//星の数を覚えておく
 	Vector<Earth*> stars;//星の座標一覧を取得する。
