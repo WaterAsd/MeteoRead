@@ -18,6 +18,7 @@ protected:
 	Sprite* meter;              //メーターの画像
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
+	Sprite* myIcon;             //ロケットのアイコン
 
 	//int
 	int up;                     //メーターの量　0～5
@@ -36,6 +37,9 @@ protected:
 	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチ中の時の準備
 	virtual void onTouchEnded(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチを離した時の準備
 
+	void MeterMove();//メーターのクラス
+	void Map();//マップのクラス
+
 	void CreateSprite();	// 画像作成クラス
 
 private:
@@ -44,7 +48,7 @@ public:
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);
-	void meterMove();//メーターの関数
+
 	int getmeterReturn();
 
 	CREATE_FUNC(UILayer);

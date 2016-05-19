@@ -13,6 +13,9 @@ bool UILayer::init()
 		return false;
 	}
 
+	// 画面サイズ初期化
+	winSize = Director::sharedDirector()->getWinSize();
+
 	//初期化
 	up = 0;
 	upCount = 1;
@@ -41,10 +44,11 @@ bool UILayer::init()
 
 void UILayer::update(float delta)
 {
-	meterMove();
+	MeterMove();
+	Map();
 }
 
-void UILayer::meterMove()
+void UILayer::MeterMove()
 {
 	if (upCount % 5 == 0)
 	{
@@ -56,23 +60,36 @@ void UILayer::meterMove()
 	meter->setTextureRect(Rect(120 * up, 0, 120, 160));
 }
 
+void UILayer::Map()
+{
+
+}
+
 void UILayer::CreateSprite()
 {
+	//ボタン
 	button = Sprite::create("button.png");
 	button->setPosition(Vec2(150, 90));
 	this->addChild(button);
 	buttonRect = button->boundingBox();
 
+	//メーター
 	meter=Sprite::create("meter.png");
 	meter->setPosition(Vec2(220, 91));
 	this->addChild(meter);
 
+	//マップ
 	map = Sprite::create();
-	map->setTextureRect(Rect(0, 0, 240, 135));
+	map->setAnchorPoint(Vec2::ZERO);
+	map->setTextureRect(Rect(0, 0, 360, 202.5));
 	map->setColor(Color3B::WHITE);
-	map->setPosition(Vec2(800,500));
+	map->setPosition(Vec2(winSize.width - 360, winSize.height - 202.5));
 	this->addChild(map);
 	map->setOpacity(100);
+
+	//ロケットのアイコン
+	myIcon = Sprite::create("icon01.png");
+	this->addChild(myIcon);
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
