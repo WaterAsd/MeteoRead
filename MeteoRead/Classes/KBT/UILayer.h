@@ -24,6 +24,12 @@ protected:
 	int up;                     //メーターの量　0～5
 	int upCount;                //upのカウント
 
+	//float
+	float power;//ロケットの移動量
+
+	//bool
+	bool touch;
+
 	//Point
 	Point touchPoint;				// タッチされた場所
 
@@ -37,6 +43,7 @@ protected:
 	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチ中の時の準備
 	virtual void onTouchEnded(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチを離した時の準備
 
+	void Button();
 	void MeterMove();//メーターのクラス
 	void Map();//マップのクラス
 
