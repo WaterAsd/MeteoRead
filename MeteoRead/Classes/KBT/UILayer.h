@@ -19,7 +19,7 @@ protected:
 
 	//int
 	int up;                     //メーターの量　0～5
-	int upCount;//upのカウント
+	int upCount;				//upのカウント
 
 	Point touchPoint;				// タッチされた場所
 

@@ -21,14 +21,11 @@ bool Rocket::init(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Power = 1;
-
-	auto sprite = Sprite::create("kari.png");
-	sprite->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(sprite);
+	//パワーの初期設定
+	_power = Power::ONE;
 
 	//ロケットを入れる
-	auto rocket = Sprite::create("Rocket.png");
+	auto rocket = Sprite::create("Rocket2.png");
 	this->addChild(rocket);
 	_Rocket = rocket;
 
@@ -52,14 +49,21 @@ void Rocket::update(float dt){
 void Rocket::setRocketPos(Vec2 pos){ 
 	RocketPos = pos;
 }
+Vec2 Rocket::getRocketPos(){
+	return RocketPos;
+}
+
 //ロケットのRectを与える
 void Rocket::setRocketRect(Rect rc){
 	RocketRect = rc;
 }
-//ロケットのスピードを設定する
-void Rocket::setPower(int pw){ Power = pw;}
-//ロケットのスピードを設定する
-void Rocket::RocketSpeed(int Pw){
-
+Rect Rocket::getRocketRect(){
+	return _Rocket->getTextureRect();
 }
+
+//ロケットのスピードを設定する
+void Rocket::setPower(int Pw){
+	_power = (Power)Pw;
+}
+int Rocket::getPower(){ return (int)_power; }
 
