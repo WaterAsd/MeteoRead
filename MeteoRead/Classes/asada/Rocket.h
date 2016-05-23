@@ -41,7 +41,7 @@ public:
 
 	//ロケットの速さにまつわる変数
 	void setPower(int pw);
-	float getPower();
+	int  getPower();
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame*>, _but, But);
