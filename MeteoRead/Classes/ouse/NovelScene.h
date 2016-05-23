@@ -19,11 +19,6 @@ public:
 
 	//CREATE_FUNCマクロを使用して、staticなcreateメソッドを実装する
 	CREATE_FUNC(NovelScene);
-
-	//コールバックメソッド
-private:
-	virtual void menuCloseCallback(cocos2d::Ref* pSender);
-
 };
 
 #endif // _NOVEL_SCENE_H_
