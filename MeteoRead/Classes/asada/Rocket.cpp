@@ -65,5 +65,5 @@ Rect Rocket::getRocketRect(){
 void Rocket::setPower(int Pw){
 	_power = (Power)Pw;
 }
-int Rocket::getPower(){ return (int)_power; }
+float Rocket::getPower(){ return (int)_power; }
 
