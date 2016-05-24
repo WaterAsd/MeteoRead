@@ -12,6 +12,10 @@ public:
 	//初期化メソッド
 	virtual bool init();
 
+	int autoflg;
+	int autoframe;
+	int autocnt;
+	int autospeed;
 	int mojiframe;
 	int mojicnt;
 	int mojicnt2;
@@ -19,6 +23,12 @@ public:
 
 	//CREATE_FUNCマクロを使用して、staticなcreateメソッドを実装する
 	CREATE_FUNC(NovelScene);
+
+private:
+
+	void autospeedup();
+	void autospeeddown();
+	
 };
 
 #endif // _NOVEL_SCENE_H_
