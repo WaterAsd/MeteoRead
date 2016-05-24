@@ -3,6 +3,9 @@
 
 USING_NS_CC;
 
+//Playerの移動スピード
+float PLAYERSPEED = 1.0f;
+
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
@@ -39,7 +42,7 @@ bool GameScene::init(){
 
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
-	rocket->setPosition(visibleSize.width/2,visibleSize.height/2);
+	rocket->setPosition(visibleSize.width,visibleSize.height/2);
 	this->addChild(rocket);
 	_rocket = rocket;
 
@@ -61,6 +64,34 @@ bool GameScene::init(){
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
+	//星の角度を取得する
+	auto VecHosi = stars.at(0);
+	float angle = ccpToAngle(ccpSub(VecHosi->getPosition(),_rocket->getPosition()));
+	PlayerMoveX = PLAYERSPEED * cosf(angle);
+	PlayerMoveY = PLAYERSPEED * sinf(angle);
+	float Distans = ccpDistance(VecHosi->getPosition(), _rocket->getPosition());
+
+	//距離が近かったら実行しない
+	if (Distans >= 1.0f){
+		float newPlayerPosX = _rocket->getPosition().x + PlayerMoveX;
+		float newPlayerPosY = _rocket->getPosition().y + PlayerMoveY;
+		_rocket->setPosition(Vec2(newPlayerPosX, newPlayerPosY));
+	}
+
+
+}
+
+//星を出現させる
+void GameScene::StarSet(Vec2 Pos){
+	auto earth = Earth::create();
+	earth->setPosition(Pos);
+	this->addChild(earth);
+	starCount++;//星の数増やす。
+	stars.pushBack(earth);//星の情報を保存する。
+}
+
+//使わないでください
+void GameScene::move(){
 	//ＵＩのパワーをロケットに与えてスピード変更している。
 	Vec2 RoPos = _rocket->getPosition();
 	_rocket->setPower(_UILayer->getmeterReturn());
@@ -71,13 +102,4 @@ void GameScene::update(float delta){
 	if (_rocket->getPositionY() > 600){
 		_rocket->setPosition(Vec2(_rocket->getPositionX(),0));
 	}
-}
-
-//星を出現させる
-void GameScene::StarSet(Vec2 Pos){
-	auto earth = Earth::create();
-	earth->setPosition(Pos);
-	this->addChild(earth);
-	starCount++;//星の数増やす。
-	stars.pushBack(earth);//星の情報を保存する。
 }

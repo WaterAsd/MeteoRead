@@ -11,10 +11,14 @@ class GameScene : public cocos2d::Layer
 private:
 	Rocket* _rocket;//ロケットのポインター
 	UILayer* _UILayer;//UIのポインター
+	float PlayerMoveX;
+	float PlayerMoveY;
 
 	int starCount;//星の数を覚えておく
 	Vector<Earth*> stars;//星の座標一覧を取得する。
 	void StarSet(Vec2 Pos);//画面に星を入れる。
+
+	void move();//仮で作ったので使わないでください。
 
 public:
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
