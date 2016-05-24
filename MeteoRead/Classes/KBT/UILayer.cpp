@@ -20,7 +20,7 @@ bool UILayer::init()
 	//初期化
 	up = 0;
 	upCount = 1;
-	power = 0;
+	power = 0.0f;
 	touch = false;
 
 	buttonColor = Color3B(255, 255, 255);
@@ -75,10 +75,12 @@ void UILayer::Button()
 
 void UILayer::MeterMove()
 {
+	//カウントが50あがるたび、移動量が1増える
 	if (upCount %50 ==0)
 	{
 		power++;
 	}
+	//速さが4段階上がるたび、メーターの量が1増える
 	if (upCount % 200 == 0)
 	{
 		up++;
@@ -92,8 +94,8 @@ void UILayer::Map()
 	//ワールド座標に変換
 	Vec2 worldPosition = GameScene::RoPos;
 
-	//アイコンを自キャラに追従させる
-	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 350)));
+	//アイコンをロケットに追従させる
+	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
 }
 
