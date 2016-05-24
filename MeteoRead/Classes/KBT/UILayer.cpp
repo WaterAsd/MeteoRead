@@ -1,4 +1,5 @@
 #include "UILayer.h"
+#include "GameScene.h"
 
 USING_NS_CC;
 
@@ -19,7 +20,7 @@ bool UILayer::init()
 	//初期化
 	up = 0;
 	upCount = 1;
-	power = 0.0;
+	power = 0;
 	touch = false;
 
 	buttonColor = Color3B(255, 255, 255);
@@ -28,7 +29,6 @@ bool UILayer::init()
 	auto listener = EventListenerTouchOneByOne::create();
 
 	listener->onTouchBegan = CC_CALLBACK_2(UILayer::onTouchBegan, this);		// タッチした時をイベントリスナーに登録
-	listener->onTouchMoved = CC_CALLBACK_2(UILayer::onTouchMoved, this);		// タッチしている時をイベントリスナーに登録
 	listener->onTouchEnded = CC_CALLBACK_2(UILayer::onTouchEnded, this);		// タッチを離した時をイベントリスナーに登録
 
 	////イベントリスナーを登録
@@ -75,16 +75,13 @@ void UILayer::Button()
 
 void UILayer::MeterMove()
 {
-	if (upCount % 5 == 0)
+	if (upCount %50 ==0)
 	{
-		//1段階上げる
+		power++;
+	}
+	if (upCount % 200 == 0)
+	{
 		up++;
-		//5より上になったら0に戻す 移動量プラス
-		if (up > 5)
-		{
-			//power++;
-			up = 0;
-		}
 	}
 
 	meter->setTextureRect(Rect(120 * up, 0, 120, 160));
@@ -92,7 +89,12 @@ void UILayer::MeterMove()
 
 void UILayer::Map()
 {
+	//ワールド座標に変換
+	Vec2 worldPosition = GameScene::RoPos;
 
+	//アイコンを自キャラに追従させる
+	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 350)));
+	this->myIcon->setPosition(localPosition);
 }
 
 void UILayer::CreateSprite()
@@ -132,11 +134,6 @@ bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 	return true;
 }
 
-void UILayer::onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
-{
-
-}
-
 void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 {
 	touch = false;
@@ -144,5 +141,5 @@ void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 
 int UILayer::getmeterReturn()
 {
-	return upCount;
+	return power;
 }

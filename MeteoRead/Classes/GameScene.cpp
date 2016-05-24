@@ -7,6 +7,9 @@ USING_NS_CC;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 
+
+Vec2 GameScene::RoPos;
+
 //Sceneを使えるようにする
 Scene* GameScene::createScene()
 {
@@ -62,7 +65,7 @@ bool GameScene::init(){
 //マイフレーム更新関数
 void GameScene::update(float delta){
 	//ＵＩのパワーをロケットに与えてスピード変更している。
-	Vec2 RoPos = _rocket->getPosition();
+	RoPos = _rocket->getPosition();
 	_rocket->setPower(_UILayer->getmeterReturn());
 	RoPos = Vec2(RoPos.x, RoPos.y + _rocket->getPower());
 	_rocket->setPosition(RoPos);

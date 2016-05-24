@@ -17,6 +17,7 @@ private:
 	void StarSet(Vec2 Pos);//画面に星を入れる。
 
 public:
+	static Vec2 RoPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

@@ -21,8 +21,8 @@ protected:
 	Sprite* myIcon;             //ロケットのアイコン
 
 	//int
-	int up;                     //メーターの量　0～5
-	int upCount;                //upのカウント
+	int up;                     //メーターの表示用の変数　0～5
+	int upCount;                //カウント
 
 	//float
 	float power;//ロケットの移動量
@@ -40,7 +40,6 @@ protected:
 	Color3B buttonColor;//ボタンの色
 
 	virtual bool onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチした時の準備
-	virtual void onTouchMoved(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチ中の時の準備
 	virtual void onTouchEnded(cocos2d::Touch* ptouch, cocos2d::Event* pEvent);		// タッチを離した時の準備
 
 	void Button();
