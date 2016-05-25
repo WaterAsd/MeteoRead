@@ -20,9 +20,14 @@ bool UILayer::init()
 	//初期化
 	up = 0;
 	upCount = 1;
+	for (int i = 1; i < 3; i++)
+	{
+		timer[0] = 2;
+		timer[i] = 60;
+	}
 	power = 0.0f;
 	touch = false;
-
+	j = 0;
 	buttonColor = Color3B(255, 255, 255);
 
 	// イベントリスナー準備
@@ -49,7 +54,7 @@ void UILayer::update(float delta)
 	Button();
 	MeterMove();
 	Map();
-	log("%s", power);
+	Timer();
 }
 
 void UILayer::Button()
@@ -99,6 +104,40 @@ void UILayer::Map()
 	this->myIcon->setPosition(localPosition);
 }
 
+void UILayer::Timer()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		if (timer[i] > 9)
+		{
+			clock[i]->setString(StringUtils::toString(timer[i]));
+		}
+		else
+		{
+			clock[i]->setString("0" + StringUtils::toString(timer[i]));
+		}
+	}
+
+	timer[2] -= 1;
+	if (timer[2] == 0)
+	{
+		timer[1]--;
+		timer[2] = 60;
+	}
+	if (timer[1] == 00)
+	{
+		timer[0]--;
+		timer[1] = 60;
+	}
+	
+	if (upCount % 50 == 0)
+	{
+		j++;
+	}
+
+	number->setTextureRect(Rect(62 * j, 0, 62, 110));
+}
+
 void UILayer::CreateSprite()
 {
 	//ボタン
@@ -124,6 +163,23 @@ void UILayer::CreateSprite()
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
+
+	//時間
+	for (int i = 0; i < 3; i++)
+	{
+		clock[i] = cocos2d::Label::createWithSystemFont("0" + cocos2d::StringUtils::toString(timer[i]), "arial", 100.0f);
+		clock[i]->setAnchorPoint(Vec2::ZERO);
+		clock[i]->setPosition(Vec2(150 * i, winSize.height*0.85f));
+		clock[i]->setColor(Color3B::RED);
+		this->addChild(clock[i]);
+	}
+
+	//数字
+	number = Sprite::create("Number.png");
+	number->setAnchorPoint(Vec2::ZERO);
+	number->setPosition(100, 100);
+	this->addChild(number);
+
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
