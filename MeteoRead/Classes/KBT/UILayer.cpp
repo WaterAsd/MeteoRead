@@ -25,9 +25,13 @@ bool UILayer::init()
 		timer[0] = 2;
 		timer[i] = 60;
 	}
+	for (int i = 0; i < 6; i++)
+	{
+		keta[i] = 0;
+		keta[1] = 3;
+	}
 	power = 0.0f;
 	touch = false;
-	j = 0;
 	buttonColor = Color3B(255, 255, 255);
 
 	// イベントリスナー準備
@@ -129,13 +133,52 @@ void UILayer::Timer()
 		timer[0]--;
 		timer[1] = 60;
 	}
-	
-	if (upCount % 50 == 0)
-	{
-		j++;
-	}
+	//keta[5]--;
+	//if (keta[5] < 0)
+	//{
+	//	keta[5] = 9;
+	//	keta[4]--;
+	//}
+	//if (keta[4] < 0)
+	//{
+	//	keta[4] = 5;
+	//	keta[3]--;
+	//}
+	//if (keta[3] < 0)
+	//{
+	//	keta[3] = 9;
+	//	keta[2]--;
+	//}
+	//if (keta[2]<0)
+	//{
+	//	keta[2] = 5;
+	//	keta[1]--;
+	//}
 
-	number->setTextureRect(Rect(62 * j, 0, 62, 110));
+	for (int a = 5; a > -1; a--)
+	{
+		keta[a]--;
+		if (keta[a] < 0)
+		{
+			if (a % 2 == 0)
+			{
+				keta[a] = 9;
+				keta[a - 1]--;
+			}
+			else
+			{
+				keta[a] = 5;
+				keta[a - 1]--;
+			}
+		}
+	}
+	
+
+
+	for (int i = 0; i < 6; i++)
+	{
+		number[i]->setTextureRect(Rect(62 * keta[i], 0, 62, 110));
+	}
 }
 
 void UILayer::CreateSprite()
@@ -175,10 +218,13 @@ void UILayer::CreateSprite()
 	}
 
 	//数字
-	number = Sprite::create("Number.png");
-	number->setAnchorPoint(Vec2::ZERO);
-	number->setPosition(100, 100);
-	this->addChild(number);
+	for (int i = 0; i < 6; i++)
+	{
+		number[i] = Sprite::create("Number.png");
+		number[i]->setAnchorPoint(Vec2::ZERO);
+		number[i]->setPosition(100+(i*100), 100);
+		this->addChild(number[i]);
+	}
 
 }
 
