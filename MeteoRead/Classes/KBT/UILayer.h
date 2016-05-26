@@ -19,13 +19,13 @@ protected:
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
-	Sprite* number;             //数字
+	Sprite* number[6];             //数字
 
 	//int
 	int up;                     //メーターの表示用の変数　0～5
 	int upCount;                //カウント
 	int timer[3];	//0=分　1=秒　2=コンマ
-	int j;
+	int keta[6];
 
 	//float
 	float power;//ロケットの移動量
