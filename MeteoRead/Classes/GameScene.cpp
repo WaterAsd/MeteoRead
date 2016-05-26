@@ -43,7 +43,7 @@ bool GameScene::init(){
 
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
-	rocket->setPosition(100,100);
+	rocket->setPosition(300,300);
 	this->addChild(rocket);
 	_rocket = rocket;
 
