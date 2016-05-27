@@ -12,6 +12,15 @@ public:
 	//‰Šú‰»ƒƒ\ƒbƒh
 	virtual bool init();
 
+	cocos2d::Label *label;
+	//cocos2d::String str[1024];
+	std::string str[1024];
+	std::string str2[1024];
+	std::string str3[1024];
+	std::string str4[1024];
+	std::string str5[1024];
+	std::string str6[1024];
+
 	int autoflg;
 	int autoframe;
 	int autocnt;
