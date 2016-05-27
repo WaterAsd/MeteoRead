@@ -50,5 +50,48 @@ bool NovelScene::init()
 	////画像を追加　第2引数は表示する順番（背景だから一番下つまり0）
 	this->addChild(sprite, 3);
 
+	// txtファイルから読み込み
+	auto split = [](const std::string& input, char delimiter)
+	{
+		std::istringstream stream(input);
+		std::string field;
+		std::vector<std::string> result;
+		while (std::getline(stream, field, delimiter))
+		{
+			result.push_back(field);
+		}
+		return result;
+	};
+
+	int i = 0;
+	int x = 0;
+	int y = 0;
+
+	auto fileText = FileUtils::getInstance()->getStringFromFile("title.csv");
+	auto lines = split(fileText, '\n');
+
+	for (const auto& line : lines)
+	{
+		auto ls = split(line, ',');
+
+		str[i] = StringUtils::format("%s", ls[5].c_str());  //本編
+		str2[i] = StringUtils::format("%s", ls[0].c_str());  //命令
+		str3[i] = StringUtils::format("%s", ls[1].c_str());  //命令
+		str4[i] = StringUtils::format("%s", ls[2].c_str());  //命令
+		str5[i] = StringUtils::format("%s", ls[3].c_str());  //命令
+		str6[i] = StringUtils::format("%s", ls[4].c_str());  //命令
+		i++;
+	}
+
+	label = Label::createWithSystemFont("", "fonts/HGRPP1.TTC", 25);
+	label->setWidth(650);
+	label->setOpacity(255);
+	label->setColor(Color3B::WHITE);
+	//label->setHorizontalAlignment(TextHAlignment::LEFT);
+
+	//座標を指定
+	label->setPosition(525, 135);
+	//作った文字列をLabelに設定
+
 	return true;
 }
