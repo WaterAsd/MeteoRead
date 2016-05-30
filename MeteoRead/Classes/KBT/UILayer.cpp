@@ -20,19 +20,15 @@ bool UILayer::init()
 	//初期化
 	up = 0;
 	upCount = 1;
-	for (int i = 1; i < 3; i++)
-	{
-		timer[0] = 2;
-		timer[i] = 60;
-	}
-	for (int i = 0; i < 6; i++)
-	{
-		keta[i] = 0;
-		keta[1] = 3;
-	}
 	power = 0.0f;
 	touch = false;
 	buttonColor = Color3B(255, 255, 255);
+	//時間の初期化　スタート3分
+	for (int i = 0; i < 6; i++)
+	{
+		timer[i] = 0;
+		timer[1] = 3;
+	}
 
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
@@ -110,75 +106,33 @@ void UILayer::Map()
 
 void UILayer::Timer()
 {
-	for (int i = 0; i < 3; i++)
+	timer[5]--;
+	if (timer[5] < 0)
 	{
-		if (timer[i] > 9)
-		{
-			clock[i]->setString(StringUtils::toString(timer[i]));
-		}
-		else
-		{
-			clock[i]->setString("0" + StringUtils::toString(timer[i]));
-		}
+		timer[5] = 9;
+		timer[4]--;
 	}
-
-	timer[2] -= 1;
-	if (timer[2] == 0)
+	if (timer[4] < 0)
 	{
+		timer[4] = 5;
+		timer[3]--;
+	}
+	if (timer[3] < 0)
+	{
+		timer[3] = 9;
+		timer[2]--;
+	}
+	if (timer[2]<0)
+	{
+		timer[2] = 5;
 		timer[1]--;
-		timer[2] = 60;
 	}
-	if (timer[1] == 00)
-	{
-		timer[0]--;
-		timer[1] = 60;
-	}
-	//keta[5]--;
-	//if (keta[5] < 0)
-	//{
-	//	keta[5] = 9;
-	//	keta[4]--;
-	//}
-	//if (keta[4] < 0)
-	//{
-	//	keta[4] = 5;
-	//	keta[3]--;
-	//}
-	//if (keta[3] < 0)
-	//{
-	//	keta[3] = 9;
-	//	keta[2]--;
-	//}
-	//if (keta[2]<0)
-	//{
-	//	keta[2] = 5;
-	//	keta[1]--;
-	//}
-
-	for (int a = 5; a > -1; a--)
-	{
-		keta[a]--;
-		if (keta[a] < 0)
-		{
-			if (a % 2 == 0)
-			{
-				keta[a] = 9;
-				keta[a - 1]--;
-			}
-			else
-			{
-				keta[a] = 5;
-				keta[a - 1]--;
-			}
-		}
-	}
-	
-
 
 	for (int i = 0; i < 6; i++)
 	{
-		number[i]->setTextureRect(Rect(62 * keta[i], 0, 62, 110));
+		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
 	}
+	
 }
 
 void UILayer::CreateSprite()
@@ -207,22 +161,13 @@ void UILayer::CreateSprite()
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
 
-	//時間
-	for (int i = 0; i < 3; i++)
-	{
-		clock[i] = cocos2d::Label::createWithSystemFont("0" + cocos2d::StringUtils::toString(timer[i]), "arial", 100.0f);
-		clock[i]->setAnchorPoint(Vec2::ZERO);
-		clock[i]->setPosition(Vec2(150 * i, winSize.height*0.85f));
-		clock[i]->setColor(Color3B::RED);
-		this->addChild(clock[i]);
-	}
-
 	//数字
 	for (int i = 0; i < 6; i++)
 	{
-		number[i] = Sprite::create("Number.png");
+		number[i] = Sprite::create("no2.png");
 		number[i]->setAnchorPoint(Vec2::ZERO);
-		number[i]->setPosition(100+(i*100), 100);
+		number[i]->setPosition(100+(i*80), 450);
+		number[i]->setScale(0.6);
 		this->addChild(number[i]);
 	}
 

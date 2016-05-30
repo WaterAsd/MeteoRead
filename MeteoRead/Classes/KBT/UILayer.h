@@ -24,8 +24,7 @@ protected:
 	//int
 	int up;                     //メーターの表示用の変数　0～5
 	int upCount;                //カウント
-	int timer[3];	//0=分　1=秒　2=コンマ
-	int keta[6];
+	int timer[6];	//0,1=分　2,3=秒　4,5=コンマ
 
 	//float
 	float power;//ロケットの移動量
