@@ -69,19 +69,22 @@ bool NovelScene::init()
 
 	auto fileText = FileUtils::getInstance()->getStringFromFile("title.csv");
 	auto lines = split(fileText, '\n');
+	auto char1 = lines[0][1];
 
-	for (const auto& line : lines)
-	{
-		auto ls = split(line, ',');
 
-		str[i] = StringUtils::format("%s", ls[5].c_str());  //–{•Ò
-		str2[i] = StringUtils::format("%s", ls[0].c_str());  //–½—ß
-		str3[i] = StringUtils::format("%s", ls[1].c_str());  //–½—ß
-		str4[i] = StringUtils::format("%s", ls[2].c_str());  //–½—ß
-		str5[i] = StringUtils::format("%s", ls[3].c_str());  //–½—ß
-		str6[i] = StringUtils::format("%s", ls[4].c_str());  //–½—ß
-		i++;
-	}
+
+	//for (const auto& line : lines)
+	//{
+	//	auto ls = split(line, ',');
+
+	//	str[i] = StringUtils::format("%s", ls[5].c_str());  //–{•Ò
+	//	str2[i] = StringUtils::format("%s", ls[0].c_str());  //–½—ß
+	//	str3[i] = StringUtils::format("%s", ls[1].c_str());  //–½—ß
+	//	str4[i] = StringUtils::format("%s", ls[2].c_str());  //–½—ß
+	//	str5[i] = StringUtils::format("%s", ls[3].c_str());  //–½—ß
+	//	str6[i] = StringUtils::format("%s", ls[4].c_str());  //–½—ß
+	//	i++;
+	//}
 
 	label = Label::createWithSystemFont("", "fonts/HGRPP1.TTC", 25);
 	label->setWidth(650);
