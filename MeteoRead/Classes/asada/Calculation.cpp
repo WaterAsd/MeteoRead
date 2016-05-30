@@ -56,45 +56,10 @@ void Calculation::angle(const Earth* hosi,Rocket*rocket,const int power){
 	if(AB.length()>0)AB.normalize();
 	if(AC.length()>0)AC.normalize();
 
-	//s = acosf((float)dot_product(misdir, AB));
-	////if ((imgDirVec.X * AB.Y - imgDirVec.Y * AB.X) < 0.0f) s = -s;
-	//if ((misdir.x*AB.y - misdir.y*AB.x) < 0.0f)s = -s;
-	//auto deg = CC_RADIANS_TO_DEGREES(s);
-	//deg *= 1;
-
 	float Angle = ccpToAngle(ccpSub(A,B));
 	Angle = CC_RADIANS_TO_DEGREES(Angle);
 	Angle *= -1;
 	rocket->setRotation(Angle);
 	//座標を更新する
 	rocket->setPosition(C.x, C.y);
-
-
-	////とりあえず使用する素材を使いやすくする
-	//float RocketX = rocket->getPosition().x;
-	//float RocketY = rocket->getPosition().y;
-	//float HosiX = hosi->getPosition().x;
-	//float HosiY = hosi->getPosition().y;
-
-	////星の周りを回転するためにsin ,cosを使用した計算をする
-	//rot = power*0.01f;
-	//if (rot >= 2.0f*PI)rot -= 2.0f*PI;
-	//float PlayerNewX = (RocketX-HosiX)*cos(rot)-
-	//						(RocketY - HosiY)*sin(rot) + HosiX;
-
-	//float PlayerNewY = (RocketX - HosiX)*sin(rot) +
-	//						(RocketY - HosiY)*cos(rot) + HosiY;
-	//Vec2 aite = Vec2(PlayerNewX, PlayerNewY);
-	//Vec2 vec = Vec2(RocketX,RocketY)-aite;
-
-	////元と向きたい場所を計算する
-	//if (power != 0.0f){
-	//	s = acos(dot_product(misdir,vec));
-	//	auto deg = CC_RADIANS_TO_DEGREES(s);
-	//	rocket->setRotation(s);
-	//}
-	//
-	////最後に位置を更新する。
-	//rocket->setPosition(Vec2(PlayerNewX, PlayerNewY));
-
 }
