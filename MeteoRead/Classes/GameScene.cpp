@@ -64,7 +64,7 @@ bool GameScene::init(){
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-	auto vec2hosi = stars.at(1);
+	auto vec2hosi = stars.at(0);
 	_Cal->angle(vec2hosi, _rocket, _UILayer->getmeterReturn());
 }
 

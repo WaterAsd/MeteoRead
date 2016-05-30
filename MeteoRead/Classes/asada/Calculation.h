@@ -8,7 +8,8 @@
 class Calculation : public cocos2d::Ref{
 public:
 	virtual bool init();
-	void angle(Earth* hosi,Rocket* rocket,int power);
+	void angle(const Earth* hosi,Rocket* rocket,const int power);
+	double dot_product(Vec2 moto, Vec2 aite);
 	CREATE_FUNC(Calculation);
 };
 
