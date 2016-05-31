@@ -26,6 +26,7 @@ bool Rocket::init(){
 
 	//ロケットを入れる
 	auto rocket = Sprite::create("Rocket2.png");
+	rocket->setScale(0.5f);
 	this->addChild(rocket);
 	_Rocket = rocket;
 

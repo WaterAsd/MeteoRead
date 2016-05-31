@@ -66,7 +66,7 @@ bool GameScene::init(){
 void GameScene::update(float delta){
 	auto vec2hosi = stars.at(0);
 	_Cal->angle(vec2hosi, _rocket, _UILayer->getmeterReturn());
-	_Cal->move(_rocket, _UILayer->getmeterReturn());
+	//_Cal->move(_rocket, _UILayer->getmeterReturn());
 }
 
 //¯‚ğoŒ»‚³‚¹‚é
