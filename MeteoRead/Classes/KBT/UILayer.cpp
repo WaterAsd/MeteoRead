@@ -132,7 +132,6 @@ void UILayer::Timer()
 	{
 		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
 	}
-	
 }
 
 void UILayer::CreateSprite()
