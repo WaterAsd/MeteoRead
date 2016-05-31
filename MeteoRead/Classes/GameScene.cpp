@@ -59,31 +59,39 @@ bool GameScene::init(){
 	//マイフレーム更新作業を実行させる
 	this->scheduleUpdate();
 
+	//回転する星をリセットする
+	axishosi = 0;
+
 	return true;
 }
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-	//必要な素材を獲得する
-	Earth *hosis = 0;
-	float smoleLength=NULL;
+	
+
+	//必要な素材を作成する
+	float smoleLength = NULL;
+	float power = _rocket->getSpeed() + _UILayer->getmeterReturn();
 
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
-	for (auto hosi : stars){
-		float length = ccpDistance(hosi->getPosition(),_rocket->getPosition());
-		if (length <= 100.0f&&(length < smoleLength||smoleLength==NULL)){
-			hosis = hosi;
-			smoleLength = length;
+	if (_rocket->getRevolutionflg() == false){
+		for (auto hosis : stars){
+			float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
+			if (length <= 100.0f && (length < smoleLength || smoleLength == NULL)){
+				axishosi = hosis;
+				smoleLength = length;
+				_rocket->setRevolutionflg(true);
+			}
 		}
 	}
 
-	//もし近い星が存在するならば公転をさせて遠いならば、
-	//向いてる方向に移動させる。
-	if (hosis != 0)
-		_Cal->angle(hosis, _rocket, _UILayer->getmeterReturn());//公転させる
+	//もし公転フラグがtrueならば公転させて、
+	//falseならば、向いてる方向に移動させる。
+	if (_rocket->getRevolutionflg() == true)
+		_Cal->angle(axishosi, _rocket,power);//公転させる
 	else
-		_Cal->move(_rocket, _UILayer->getmeterReturn());//直進運動させる
+		_Cal->move(_rocket,power);//直進運動させる
 }
 
 //星を出現させる
@@ -93,4 +101,24 @@ void GameScene::StarSet(Vec2 Pos){
 	this->addChild(earth);
 	starCount++;//星の数増やす。
 	stars.pushBack(earth);//星の情報を保存する。
+}
+
+//現在近い星があるかどうかを検出する
+/*
+@*hosi:もし存在するなら使用するので保存する
+*/
+void GameScene::selectSter(Earth*hosi){
+	float smoleLength = NULL;
+	Earth*karihosi = 0;
+	//配列に入っている星の数までfor分で処理する
+	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
+	for (auto hosis : stars){
+		float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
+		if (length <= 100.0f && (length < smoleLength || smoleLength == NULL)){
+			karihosi = hosis;
+			smoleLength = length;
+			_rocket->setRevolutionflg(true);
+		}
+	}
+	hosi = karihosi;
 }

@@ -22,7 +22,7 @@ bool Rocket::init(){
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//パワーの初期設定
-	_power = Power::ONE;
+	_speed = Speed::ONE;
 
 	//ロケットを入れる
 	auto rocket = Sprite::create("Rocket2.png");
@@ -37,6 +37,9 @@ bool Rocket::init(){
 	_booster = booster;
 
 	this->scheduleUpdate();
+
+	//公転フラグをfalseにさせておく
+	revolutionflg = false;
 
 	return true;
 }
@@ -63,8 +66,9 @@ Rect Rocket::getRocketRect(){
 }
 
 //ロケットのスピードを設定する
-void Rocket::setPower(int Pw){
-	_power = (Power)Pw;
-}
-float Rocket::getPower(){ return (int)_power; }
+float Rocket::getSpeed(){ return (int)_speed; }
+
+//ロケットの公転フラグを設定する
+void Rocket::setRevolutionflg(bool flg){ revolutionflg = flg; }
+bool Rocket::getRevolutionflg(){ return revolutionflg; }
 

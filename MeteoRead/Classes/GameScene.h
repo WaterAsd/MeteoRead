@@ -20,6 +20,8 @@ private:
 	int starCount;//星の数を覚えておく
 	Vector<Earth*> stars;//星の座標一覧を取得する。
 	void StarSet(Vec2 Pos);//画面に星を入れる。
+	void selectSter(Earth* hosi);//公転するほしが近くにあるかどうか
+	Earth *axishosi;//軸となる公転の星
 
 public:
 	static Vec2 RoPos;
