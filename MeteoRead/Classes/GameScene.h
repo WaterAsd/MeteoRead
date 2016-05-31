@@ -21,9 +21,6 @@ private:
 	Vector<Earth*> stars;//星の座標一覧を取得する。
 	void StarSet(Vec2 Pos);//画面に星を入れる。
 
-	void move();//仮で作ったので使わないでください。
-	void move2();//仮で作ったので使わないでください。
-
 public:
 	static Vec2 RoPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成

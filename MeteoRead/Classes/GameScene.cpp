@@ -35,7 +35,6 @@ bool GameScene::init(){
 	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(Space);
 
-
 	//星を出現させる
 	StarSet(visibleSize/2);
 	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2));
@@ -43,7 +42,8 @@ bool GameScene::init(){
 
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
-	rocket->setPosition(300,300);
+	rocket->setPosition(100,100);
+	rocket->setRotation(30);
 	this->addChild(rocket);
 	_rocket = rocket;
 
@@ -64,9 +64,26 @@ bool GameScene::init(){
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-	auto vec2hosi = stars.at(0);
-	_Cal->angle(vec2hosi, _rocket, _UILayer->getmeterReturn());
-	//_Cal->move(_rocket, _UILayer->getmeterReturn());
+	//必要な素材を獲得する
+	Earth *hosis = 0;
+	float smoleLength=NULL;
+
+	//配列に入っている星の数までfor分で処理する
+	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
+	for (auto hosi : stars){
+		float length = ccpDistance(hosi->getPosition(),_rocket->getPosition());
+		if (length <= 100.0f&&(length < smoleLength||smoleLength==NULL)){
+			hosis = hosi;
+			smoleLength = length;
+		}
+	}
+
+	//もし近い星が存在するならば公転をさせて遠いならば、
+	//向いてる方向に移動させる。
+	if (hosis != 0)
+		_Cal->angle(hosis, _rocket, _UILayer->getmeterReturn());//公転させる
+	else
+		_Cal->move(_rocket, _UILayer->getmeterReturn());//直進運動させる
 }
 
 //星を出現させる
@@ -76,36 +93,4 @@ void GameScene::StarSet(Vec2 Pos){
 	this->addChild(earth);
 	starCount++;//星の数増やす。
 	stars.pushBack(earth);//星の情報を保存する。
-}
-
-void GameScene::move(){
-	//ＵＩのパワーをロケットに与えてスピード変更している。
-	RoPos = _rocket->getPosition();
-	_rocket->setPower(_UILayer->getmeterReturn());
-	RoPos = Vec2(RoPos.x, RoPos.y + _rocket->getPower());
-	_rocket->setPosition(RoPos);
-
-	//ポジションの位置が画面越したら
-	if (_rocket->getPositionY() > 600){
-		_rocket->setPosition(Vec2(_rocket->getPositionX(), 0));
-	}
-}
-
-void GameScene::move2(){
-	//ロケットと目的の星を検出する。
-	auto vec2hosi = stars.at(1);
-
-	//角度を求める
-	float angle = ccpToAngle(ccpSub(_rocket->getPosition(),vec2hosi->getPosition()));
-
-	//移動量を決める
-	float PlayerMoveX = _UILayer->getmeterReturn()*cos(angle);
-	float PlayerMoveY = _UILayer->getmeterReturn()*sin(angle);
-
-	//条件が成立しているなら実際に移動させる
-	if (ccpDistance(_rocket->getPosition(), vec2hosi->getPosition()) > 1.0f){
-		float PlayerNewX = _rocket->getPosition().x - PlayerMoveX;
-		float PlayerNewY = _rocket->getPosition().y - PlayerMoveY;
-		_rocket->setPosition(Vec2(PlayerNewX, PlayerNewY));
-	}
 }
