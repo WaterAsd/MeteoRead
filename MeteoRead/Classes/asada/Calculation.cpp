@@ -60,5 +60,14 @@ void Calculation::angle(const Earth* hosi,Rocket*rocket,const int power){
 
 //ロケットを向いてる方向に動かす。
 void Calculation::move(Rocket*rocket, const int power){
+	auto del = rocket->getRotation();
+	del *= -1;
+	del = CC_DEGREES_TO_RADIANS(del);
 
+	Vec2 c;
+	c.x = power * sin(del);
+	c.y = power * cos(del);
+	Vec2 a = rocket->getPosition();
+	Vec2 AC = a + c;
+	rocket->setPosition(AC.x, AC.y);
 }
