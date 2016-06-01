@@ -23,6 +23,10 @@ private:
 	void selectSter(Earth* hosi);//公転するほしが近くにあるかどうか
 	Earth *axishosi;//軸となる公転の星
 
+	bool touchOK;	//公転時に発射の準備を設ける。
+					//true:発射準備中
+					//false:発射もしくは直進中
+
 public:
 	static Vec2 RoPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成

@@ -43,7 +43,7 @@ bool GameScene::init(){
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
 	rocket->setPosition(100,100);
-	rocket->setRotation(30);
+	rocket->setRotation(60);
 	this->addChild(rocket);
 	_rocket = rocket;
 
@@ -62,6 +62,9 @@ bool GameScene::init(){
 	//回転する星をリセットする
 	axishosi = 0;
 
+	//押したか胴かを判定するための処理を記入する
+	touchOK = false;
+
 	return true;
 }
 
@@ -70,12 +73,12 @@ void GameScene::update(float delta){
 	
 
 	//必要な素材を作成する
-	float smoleLength = NULL;
 	float power = _rocket->getSpeed() + _UILayer->getmeterReturn();
 
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
 	if (_rocket->getRevolutionflg() == false){
+		float smoleLength = NULL;
 		for (auto hosis : stars){
 			float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
 			if (length <= 100.0f && (length < smoleLength || smoleLength == NULL)){
@@ -86,10 +89,26 @@ void GameScene::update(float delta){
 		}
 	}
 
+	/*公転フラグがtrueでUiLayerのtouchがtrueなら
+		touchOKをfalseにして発射する*/
+	if (_rocket->getRevolutionflg() == true &&
+			_UILayer->touch == false&&
+				touchOK==true){
+		touchOK = true;
+		_rocket->setRevolutionflg(false);
+	}
+
+	/*公転フラグがtrueで、UiLayerのtouchがfalseなら
+		touchOKをtrueにして発射の準備をする*/
+	if (_rocket->getRevolutionflg() == true &&
+								_UILayer->touch == true){
+		touchOK = true;
+	}
+
 	//もし公転フラグがtrueならば公転させて、
 	//falseならば、向いてる方向に移動させる。
 	if (_rocket->getRevolutionflg() == true)
-		_Cal->angle(axishosi, _rocket,power);//公転させる
+		_Cal->angle(axishosi, _rocket, power);//公転させる
 	else
 		_Cal->move(_rocket,power);//直進運動させる
 }
