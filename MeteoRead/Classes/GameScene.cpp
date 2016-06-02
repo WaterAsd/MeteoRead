@@ -11,6 +11,9 @@ Vec2 GameScene::RoPos;
 //移動量
 const float PlayerSpeed = 0.1f;
 
+//公転する星との距離
+const float Hosikoutenn = 80.0f;
+
 //Sceneを使えるようにする
 Scene* GameScene::createScene()
 {
@@ -36,14 +39,15 @@ bool GameScene::init(){
 	this->addChild(Space);
 
 	//星を出現させる
-	StarSet(visibleSize/2);
-	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2));
-	StarSet(Vec2(visibleSize.width / 2 - 100, visibleSize.height / 2));
+	StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200));
+	StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200));
+	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100));
+	StarSet(Vec2(visibleSize.width / 2 , visibleSize.height / 2 ));
 
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
-	rocket->setPosition(100,100);
-	rocket->setRotation(60);
+	rocket->setPosition(visibleSize.width,0);
+	rocket->setRotation(-90);
 	this->addChild(rocket);
 	_rocket = rocket;
 
@@ -78,10 +82,11 @@ void GameScene::update(float delta){
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
 	if (_rocket->getRevolutionflg() == false){
+		Earth*karihosi = axishosi;
 		float smoleLength = NULL;
 		for (auto hosis : stars){
 			float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
-			if (length <= 100.0f && (length < smoleLength || smoleLength == NULL)){
+			if (length <= Hosikoutenn && (length < smoleLength || smoleLength == NULL)&&karihosi!=hosis){
 				axishosi = hosis;
 				smoleLength = length;
 				_rocket->setRevolutionflg(true);
@@ -94,7 +99,7 @@ void GameScene::update(float delta){
 	if (_rocket->getRevolutionflg() == true &&
 			_UILayer->touch == false&&
 				touchOK==true){
-		touchOK = true;
+		touchOK = false;
 		_rocket->setRevolutionflg(false);
 	}
 
@@ -107,10 +112,16 @@ void GameScene::update(float delta){
 
 	//もし公転フラグがtrueならば公転させて、
 	//falseならば、向いてる方向に移動させる。
-	if (_rocket->getRevolutionflg() == true)
+	if (_rocket->getRevolutionflg() == true){
 		_Cal->angle(axishosi, _rocket, power);//公転させる
-	else
-		_Cal->move(_rocket,power);//直進運動させる
+	}else{
+		_Cal->move(_rocket, power);//直進運動させる
+	}
+
+	auto hosi1 = stars.at(2);
+	auto hosi2 = stars.at(3);
+
+	_Cal->hosiangle(hosi1,hosi2,0.1f);
 }
 
 //星を出現させる
