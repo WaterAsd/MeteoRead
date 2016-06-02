@@ -20,9 +20,13 @@ private:
 	int starCount;//星の数を覚えておく
 	Vector<Earth*> stars;//星の座標一覧を取得する。
 	void StarSet(Vec2 Pos);//画面に星を入れる。
+	void selectSter(Earth* hosi);//公転するほしが近くにあるかどうか
 
-	void move();//仮で作ったので使わないでください。
-	void move2();//仮で作ったので使わないでください。
+	Earth *axishosi;//軸となる公転の星
+
+	bool touchOK;	//公転時に発射の準備を設ける。
+					//true:発射準備中
+					//false:発射もしくは直進中
 
 public:
 	static Vec2 RoPos;

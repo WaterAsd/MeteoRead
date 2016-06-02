@@ -27,10 +27,14 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+<<<<<<< ef0f9c9cbeb960089898be93315ec73cbeea3633
     <ClCompile Include="..\Classes\KBT\UILayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\asada\Earth.cpp">
+=======
+    <ClCompile Include="..\Classes\ouse\NovelScene.cpp">
+>>>>>>> 進捗なし
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\asada\Earth.cpp">
@@ -75,10 +79,14 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
+<<<<<<< ef0f9c9cbeb960089898be93315ec73cbeea3633
     <ClInclude Include="..\Classes\KBT\UILayer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\asada\Earth.h">
+=======
+    <ClInclude Include="..\Classes\ouse\NovelScene.h">
+>>>>>>> 進捗なし
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\asada\Earth.h">

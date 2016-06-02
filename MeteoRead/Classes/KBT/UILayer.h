@@ -27,9 +27,6 @@ protected:
 	//float
 	float power;//ロケットの移動量
 
-	//bool
-	bool touch;
-
 	//Point
 	Point touchPoint;				// タッチされた場所
 
@@ -56,6 +53,8 @@ public:
 	void update(float delta);
 
 	int getmeterReturn();
+
+	bool touch;
 
 	CREATE_FUNC(UILayer);
 };
