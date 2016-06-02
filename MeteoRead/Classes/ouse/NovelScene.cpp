@@ -69,13 +69,10 @@ bool NovelScene::init()
 
 	auto fileText = FileUtils::getInstance()->getStringFromFile("title.csv");
 	auto lines = split(fileText, '\n');
-	auto char1 = lines[0][1];
-
-
 
 	//for (const auto& line : lines)
 	//{
-	//	auto ls = split(line, ',');
+	//	auto ls = split(line, ',');//csv“à‚Å,‚ª—ˆ‚½‚ç‰üs
 
 	//	str[i] = StringUtils::format("%s", ls[5].c_str());  //–{•Ò
 	//	str2[i] = StringUtils::format("%s", ls[0].c_str());  //–½—ß
