@@ -11,7 +11,7 @@
 class GameScene : public cocos2d::Layer
 {
 private:
-	Rocket* _rocket;//ロケットのポインター
+	//Rocket* _rocket;//ロケットのポインター
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
 	Road* _road;
@@ -29,6 +29,7 @@ private:
 public:
 	static Vec2 RoPos;
 	static Sprite rocket;
+	static Rocket* _rocket;//ロケットのポインター
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する
