@@ -7,6 +7,7 @@
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
+Rocket* GameScene::_rocket;
 
 //ˆÚ“®—Ê
 const float PlayerSpeed = 0.1f;
