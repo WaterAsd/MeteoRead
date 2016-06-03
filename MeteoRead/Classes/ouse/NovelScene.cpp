@@ -1,4 +1,4 @@
-#pragma execution_character_set("utf-8")//“ú–{Œê‚ªg‚¦‚é‚æ‚¤‚É‚È‚é–‚–@‚ÌŒ¾—t
+ï»¿#pragma execution_character_set("utf-8")
 #include "ouse/NovelScene.h"
 #include "ui/CocosGUI.h"
 
@@ -6,20 +6,20 @@ USING_NS_CC;
 
 Scene* NovelScene::createScene()
 {
-	// scene ©“®¶¬ƒIƒuƒWƒFƒNƒg
+	// scene è‡ªå‹•ç”Ÿæˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	auto scene = Scene::create();
-	// layer ©“®¶¬ƒIƒuƒWƒFƒNƒg
+	// layer è‡ªå‹•ç”Ÿæˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	auto layer = NovelScene::create();
-	// layer scene‚Ìq‚Æ‚µ‚Ä’Ç‰Á
+	// layer sceneã®å­ã¨ã—ã¦è¿½åŠ 
 	scene->addChild(layer);
-	// scene ‚Ì’l‚ğ•Ô‚·
+	// scene ã®å€¤ã‚’è¿”ã™
 	return scene;
 }
 
-// ‰Šú‰»ƒƒ\ƒbƒh
+// åˆæœŸåŒ–ãƒ¡ã‚½ãƒƒãƒ‰
 bool NovelScene::init()
 {
-	// e‚Å‚ ‚éLayerƒNƒ‰ƒX‚Ì‰Šú‰»
+	// è¦ªã§ã‚ã‚‹Layerã‚¯ãƒ©ã‚¹ã®åˆæœŸåŒ–
 	if (!Layer::init())
 	{
 		return false;
@@ -32,25 +32,31 @@ bool NovelScene::init()
 	mojicnt = false;
 	mojiframe = false;
 
-	//‰æ–ÊƒTƒCƒYæ“¾
+	//ç”»é¢ã‚µã‚¤ã‚ºå–å¾—
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	//ƒ}ƒ‹ƒ`ƒŒƒ]ƒŠƒ…[ƒVƒ‡ƒ“
+	//ãƒãƒ«ãƒãƒ¬ã‚¾ãƒªãƒ¥ãƒ¼ã‚·ãƒ§ãƒ³
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	auto textField = ui::TextField::create("ƒ“ƒS", "", 45);
+	auto textField = ui::TextField::create("ãƒ³ã‚´", "", 45);
 	textField->setPosition(Vec2(visibleSize.width * 0.5 + origin.x, visibleSize.height * 0.7 + origin.y));
 
 	this->addChild(textField);
 
-	//‰æ‘œ‚ğ•\¦
+	//ç”»åƒã‚’è¡¨ç¤º
 	auto sprite = Sprite::create("window2.png");
-	////’†‰›‚É•\¦‚³‚ê‚é‚æ‚¤‚ÉÀ•W‚ğİ’è
+	////ä¸­å¤®ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«åº§æ¨™ã‚’è¨­å®š
 	sprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 6 + origin.y));
 	sprite->setScale(0.75);
-	////‰æ‘œ‚ğ’Ç‰Á@‘æ2ˆø”‚Í•\¦‚·‚é‡”Ôi”wŒi‚¾‚©‚çˆê”Ô‰º‚Â‚Ü‚è0j
-	this->addChild(sprite, 3);
+	////ç”»åƒã‚’è¿½åŠ ã€€ç¬¬2å¼•æ•°ã¯è¡¨ç¤ºã™ã‚‹é †ç•ªï¼ˆèƒŒæ™¯ã ã‹ã‚‰ä¸€ç•ªä¸‹ã¤ã¾ã‚Š0ï¼‰
+	this->addChild(sprite, 0);
 
-	// txtƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚İ
+	// æ–‡å­—ã®ä¸€è¦§ã‚’ç‰¹å®šã®æ¡ä»¶ã‚’æº€ãŸã—ãŸã¨ãã«å…¥ã‚Œç‰©ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+	// Vectorå‹ã®å…¥ã‚Œç‰©ã‚’ä½œæˆã™ã‚‹ã€‚
+	/*
+		@input:å…¥ã‚Œã‚‹å…ƒã¨ãªã‚‹æ–‡å­—ã®ä¸€è¦§
+		@delimiter:å…¥ã‚Œæ›¿ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®charå‹
+					ï¼ˆã“ã®æ–‡å­—ãŒæ¥ãŸã‚‰æ¬¡ã®ç®±ã«å…¥ã‚Œã¦ã„ãï¼‰
+	*/
 	auto split = [](const std::string& input, char delimiter)
 	{
 		std::istringstream stream(input);
@@ -70,28 +76,61 @@ bool NovelScene::init()
 	auto fileText = FileUtils::getInstance()->getStringFromFile("title.csv");
 	auto lines = split(fileText, '\n');
 
-	//for (const auto& line : lines)
-	//{
-	//	auto ls = split(line, ',');//csv“à‚Å,‚ª—ˆ‚½‚ç‰üs
+	for (const auto &line : lines){
+		auto ls = split(line, ',');
+		str[i] = StringUtils::format("%s", ls[0].c_str());  //æœ¬ç·¨
+		i++;
+	}
 
-	//	str[i] = StringUtils::format("%s", ls[5].c_str());  //–{•Ò
-	//	str2[i] = StringUtils::format("%s", ls[0].c_str());  //–½—ß
-	//	str3[i] = StringUtils::format("%s", ls[1].c_str());  //–½—ß
-	//	str4[i] = StringUtils::format("%s", ls[2].c_str());  //–½—ß
-	//	str5[i] = StringUtils::format("%s", ls[3].c_str());  //–½—ß
-	//	str6[i] = StringUtils::format("%s", ls[4].c_str());  //–½—ß
-	//	i++;
-	//}
-
+	//æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦ãªæƒ…å ±ã‚’è¨˜å…¥ã™ã‚‹
+	/*
+		æ–‡å­—ã‚µã‚¤ã‚ºï¼šï¼’ï¼•px
+		æ–‡å­—ã‚«ãƒ©ãƒ¼:ç™½è‰²
+		æ–‡å­—ã¯å·¦å¯„ã›ã§è¡¨ç¤º
+		ä½ç½®ã¯525Ã—135ã®ã¨ã“ã‚ã§
+		æœ€å¾Œã«ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã«å…¥ã‚Œã¦ã©ã“ã§ã‚‚ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
+	*/
 	label = Label::createWithSystemFont("", "fonts/HGRPP1.TTC", 25);
 	label->setWidth(650);
 	label->setOpacity(255);
-	label->setColor(Color3B::WHITE);
+	label->setColor(Color3B::BLACK);
 	//label->setHorizontalAlignment(TextHAlignment::LEFT);
-
-	//À•W‚ğw’è
 	label->setPosition(525, 135);
-	//ì‚Á‚½•¶š—ñ‚ğLabel‚Éİ’è
+	this->addChild(label,100);
 
+	//æ–‡å­—ã«é–¢ã™ã‚‹å¤‰æ•°ã®åˆæœŸåŒ–
+	_index = 0;
+	_chrcount = 0;
+	_speed = 0;
+	count = 0;
+
+	//updateã‚’ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
+	this->scheduleUpdate();
+	
 	return true;
+}
+
+//æ›´æ–°å‡¦ç†
+void NovelScene::update(float dt){
+	if (count >= 50){
+		count = 0;
+		_chrcount++;
+	}
+	s = str[_index].substr(0,_chrcount).c_str();
+	//ç¾åœ¨ã®è¡Œã®æ–‡å­—ã‚’è¡¨ç¤ºã•ã›ã‚‹
+	label->setString(s);
+	count += 1;
+}
+
+//ãƒ©ãƒ ãƒ€å¼ã§ã‚‚ã‚ã£ãŸã‘ã©
+//æ™®é€šã«ä½¿ã„ãŸã®ã§é–¢æ•°ä½œæˆã—ã¾ã—ãŸã€‚
+std::vector<std::string> NovelScene::split(const std::string& input, char delimiter){
+	std::istringstream stream(input);
+	std::string field;
+	std::vector<std::string> result;
+	while (std::getline(stream, field, delimiter))
+	{
+		result.push_back(field);
+	}
+	return result;
 }

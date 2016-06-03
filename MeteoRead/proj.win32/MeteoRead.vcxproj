@@ -152,13 +152,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\asada\Space.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
-<<<<<<< ef0f9c9cbeb960089898be93315ec73cbeea3633
     <ClCompile Include="..\Classes\isiwaki\SelectScene.cpp" />
     <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
     <ClCompile Include="..\Classes\oohasi\Title.cpp" />
-=======
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
->>>>>>> 進捗なし
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,13 +167,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\asada\Space.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
-<<<<<<< ef0f9c9cbeb960089898be93315ec73cbeea3633
     <ClInclude Include="..\Classes\isiwaki\SelectScene.h" />
     <ClInclude Include="..\Classes\KBT\UILayer.h" />
     <ClInclude Include="..\Classes\oohasi\Title.h" />
-=======
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
->>>>>>> 進捗なし
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
