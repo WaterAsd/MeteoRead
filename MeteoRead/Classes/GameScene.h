@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "KBT/UILayer.h"
+#include "KBT/Road.h"
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
@@ -13,6 +14,7 @@ private:
 	Rocket* _rocket;//ロケットのポインター
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
+	Road* _road;
 
 	float PlayerMoveX;
 	float PlayerMoveY;
@@ -26,6 +28,7 @@ private:
 
 public:
 	static Vec2 RoPos;
+	static Sprite rocket;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

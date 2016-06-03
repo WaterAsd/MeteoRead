@@ -56,6 +56,10 @@ bool GameScene::init(){
 	this->addChild(uiLayer);
 	_UILayer = uiLayer;
 
+	auto road = Road::create();
+	this->addChild(road);
+	_road = road;
+
 	//マイフレーム更新作業を実行させる
 	this->scheduleUpdate();
 
@@ -69,6 +73,7 @@ void GameScene::update(float delta){
 	vec2.x += 0.1f;
 	vec2hosi->setPosition(vec2);
 	_Cal->angle(vec2hosi, _rocket, _UILayer->getmeterReturn());
+	RoPos = _rocket->getPosition();
 }
 
 //星を出現させる

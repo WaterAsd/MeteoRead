@@ -20,13 +20,13 @@ private:
 	Sprite* _Rocket;//ロケット扱える様にする為のポインター
 	Booster* _booster;//ブースターを扱える様にするためのポインター
 
-	Vec2 RocketPos;//ロケットの座標
+	
 	Rect RocketRect;//ロケットの矩形
 
 	void update(float dt);
 
 public:
-
+	static Vec2 RocketPos;//ロケットの座標
 	//画像の最大サイズ
 	const int MAXSPRITEX = 40;
 	const int MAXSPRITEY = 60;

@@ -10,7 +10,8 @@ Vec2 misdir = Vec2(0,1);//ミサイルの一応の向き
 
 float PI = 3.14f;
 
-float rot = 0.0f;
+float rot=0.0f;
+float Calculation::Angle;
 
 bool Calculation::init(){
 	return true;
@@ -48,7 +49,7 @@ void Calculation::angle(const Earth* hosi,Rocket*rocket,const int power){
 							(A.y - B.y)*cos(rot) + B.y;
 
 	//向きたい角度に向かせる
-	float Angle = ccpToAngle(ccpSub(A,B));
+	Angle = ccpToAngle(ccpSub(A,B));
 	Angle = CC_RADIANS_TO_DEGREES(Angle);
 	Angle *= -1;
 	rocket->setRotation(Angle);
