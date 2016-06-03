@@ -10,6 +10,7 @@ float ROCKETMOVEY = 0.1f;
 
 //移動量に関する変数名
 const int MAXPOWER = 4;
+Vec2 Rocket::RocketPos;
 
 //初期化関数
 bool Rocket::init(){

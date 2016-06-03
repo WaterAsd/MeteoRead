@@ -1,5 +1,7 @@
 #include "UILayer.h"
 #include "GameScene.h"
+#include "asada\Rocket.h"
+#include "asada\/Calculation.h"
 
 USING_NS_CC;
 
@@ -97,11 +99,12 @@ void UILayer::MeterMove()
 void UILayer::Map()
 {
 	//ワールド座標に変換
-	Vec2 worldPosition = GameScene::RoPos;
+	Vec2 worldPosition = GameScene::RoPos; 
 
 	//アイコンをロケットに追従させる
 	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
+	myIcon->setRotation(Calculation::Angle);
 }
 
 void UILayer::Timer()
