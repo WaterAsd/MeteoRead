@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
+using namespace std;
+
 class SelectScene: public cocos2d::Layer
 {
 public:
@@ -15,7 +17,8 @@ public:
 	int StageText;
 	int SelectCount;
 	cocos2d::ui::Button *ButtnSET;
-
+	//string font; // 使用するフォント
+	//Label *SelectText;
 
 	
 
@@ -25,6 +28,7 @@ public:
 
 private:
 	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type,int i);
+	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i,string str);
 	
 };
 

@@ -35,54 +35,45 @@ bool SelectScene::init()
     
 	//リストビューの表示
 	auto liseView = ui::ListView::create();
-	liseView->setContentSize(Size(800,340));
+	liseView->setContentSize(Size(800,500));
 	liseView->setPosition((visibleSize - liseView->getContentSize()) / 2);
-	//liseView->setDirection(ui::ScrollView::Direction::VERTICAL);
+	//横に並ぶ
 	liseView->setDirection(ui::ScrollView::Direction::HORIZONTAL);
 	liseView->setBounceEnabled(true);
 	this ->addChild(liseView);
 
+	//Button20個
 	for (int i= 1; i <= 20;i++)
 	{
+		//画像の読み込み
 		auto button = ui::Button::create("botan01.png");
 		button->setScale9Enabled(true);
+		//サイズの設定
 		button->setContentSize(Size(150,150));
+		//中心
 		button->setPosition(button->getContentSize() / 2 );
+		//Buttonの中にテキスト表示
 		button->setTitleText(StringUtils::format("stage- %d",i));
+
+		button->setTitleFontSize(30);
+		//button->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent,this,i));
+		//button->addTouchEventListener(CC_CALLBACK_2(SelectScene::thochButton, this, i,BT));
 
 		auto layout = ui::Layout::create();
 		layout->setContentSize(button->getContentSize());
 		layout->addChild(button);
 		liseView->addChild(layout);
 	}
-	
-	//for (int z = 0; z <=  3; z++)//ステージボタンの表示4つ
-	//{
-	//	//cocos2d::ui::Button *ButtnSET;
-	//	ButtnSET = new ui::Button();
-	//	float BTPos[] = { 120, 360, 600, 840 };//ボタンのY軸
-	//
-	//	StageText = z + SelectCount;
-	//	std::string str = std::to_string(StageText);
-	//	Size visibleSize = Director::getInstance()->getVisibleSize();
-	//	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	//	//画像の読み込み　ボタン座標　テキストの表示・サイズ
-	//	ButtnSET = ui::Button::create("botan01.png");
-	//	ButtnSET->setPosition(Vec2(BTPos[z], visibleSize.height / 2));
-	//	ButtnSET->setTitleText(str);
-	//	ButtnSET->setTitleFontSize(25);
+	auto GOButton = ui::Button::create("GOButton.png");
+	GOButton->setScale9Enabled(true);
+	GOButton->setContentSize(Size(150, 91));
+	GOButton->setPosition(Vec2(visibleSize.width-75,45));
+	GOButton->setTitleText(StringUtils::format("GO"));
+	this->addChild(GOButton);
 
-	//}
 
-	
-	
-	/*auto RBT = ui::Button::create("RBT.png");
-	RBT->setSize(Size(75,150));
-	RBT->setPosition(Vec2(visibleSize.width-32.5f,visibleSize.height/2));
-	RBT->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent, this, 99));
-	this->addChild(RBT, 1);*/
-
-	//ButtnSET->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent, this, StageText));
+	/*SelectText->setPosition(Vec2(visibleSize.width/2,visibleSize.height/3));
+	this->addChild(SelectText);*/
 
 	//背景画像
 	auto Back = Sprite::create("BackSample.png");
@@ -105,9 +96,14 @@ void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type,int i)
 {
 	switch (type)
 	{
+		ui::Widget::TouchEventType TP2;
 	case ui::Widget::TouchEventType::BEGAN:
-		
-		
+	
+			//Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(25, 0, 0)));
+
+			break;
+		//Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(25, 0, 0)));
+
 		break;
 	case ui::Widget::TouchEventType::ENDED:
 
@@ -119,6 +115,19 @@ void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type,int i)
 	default:
 		break;
 	}
+}
+void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int i, string str)
+{
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	switch (type)
+	{
+		Label* T = Label::create(str, "Arial", 48);
+		T->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + 200));
+		this->addChild(T);
+	}
+
+
 }
 
 void SelectScene::menuCloseCallback(Ref* pSender)
