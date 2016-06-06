@@ -16,7 +16,6 @@ protected:
 	std::vector<Rect> roadRect;
 	void roadSet(Sprite* road);				// ”g¶¬‚É”g‚ğ‰Šú‰»‚·‚éŠÖ”
 
-	void roadMake();						//”g‚ğì‚éŠÖ”
 	std::vector<Sprite*> myRoad;	// ”g‚Ì•`‰æ
 private:
 

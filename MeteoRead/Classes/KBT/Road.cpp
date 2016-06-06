@@ -1,6 +1,7 @@
 #include "Road.h"
 #include "GameScene.h"
 #include "asada\Rocket.h"
+#include "asada\/Calculation.h"
 
 USING_NS_CC;
 
@@ -27,23 +28,16 @@ bool Road::init()
 
 void Road::update(float delta)
 {
-	roadMake();
+	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
+	roadSet(myRoad.back());
 }
 
-void Road::roadMake()
-{
-	double roadran;
-	roadran = sqrt((GameScene::RoPos.x - roadPos.x)*(GameScene::RoPos.x - roadPos.x) + (GameScene::RoPos.y - roadPos.y)*(GameScene::RoPos.y - roadPos.y));
-
-		myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
-		roadSet(myRoad.back());
-
-}
 void Road::roadSet(Sprite* road){
-	roadRect.push_back({ 64, 0, 64, 64 });
+	roadRect.push_back({ 8, 0, 8, 8 });
 	road->setTextureRect(roadRect.back());
 	road->setPosition(GameScene::_rocket->getPosition());
 	road->setTag(0);
-	this->addChild(myRoad.back(), -1);
-	roadPos = road->getPosition();
+	road->setRotation(Calculation::Angle);
+	this->addChild(myRoad.back());
+	//roadPos = road->getPosition();
 }
