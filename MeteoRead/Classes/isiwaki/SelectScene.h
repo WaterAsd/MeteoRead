@@ -28,7 +28,7 @@ public:
 
 private:
 	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type,int i);
-	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i,string str);
+	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i);
 	
 };
 

@@ -57,7 +57,7 @@ bool SelectScene::init()
 
 		button->setTitleFontSize(30);
 		//button->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent,this,i));
-		//button->addTouchEventListener(CC_CALLBACK_2(SelectScene::thochButton, this, i,BT));
+		button->addTouchEventListener(CC_CALLBACK_2(SelectScene::thochButton, this, i));
 
 		auto layout = ui::Layout::create();
 		layout->setContentSize(button->getContentSize());
@@ -116,15 +116,28 @@ void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type,int i)
 		break;
 	}
 }
-void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int i, string str)
+void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int i)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	string S;
+	S = StringUtils::format("stage- %d", i);
 	switch (type)
 	{
-		Label* T = Label::create(str, "Arial", 48);
-		T->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + 200));
-		this->addChild(T);
+
+	case ui::Widget::TouchEventType::BEGAN:
+		//Label* T = Label::create(S, "Arial", 48);
+
+		auto T = Label::create();
+		T->setString(S);
+		T->setBMFontSize(120);
+		T->setColor(Color3B(255,0,0));
+		T->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2+200));
+		this->removeChildByTag(5);
+		this->addChild(T,5,5);
+
+
+		break;
 	}
 
 
