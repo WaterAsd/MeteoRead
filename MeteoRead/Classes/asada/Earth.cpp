@@ -1,5 +1,14 @@
 #include "Earth.h"
 USING_NS_CC;
+
+Earth::Earth(){
+
+}
+
+Earth::~Earth(){
+
+}
+
 bool Earth::init(){
 
 	//画像が存在しない場合はfalseを返す
@@ -14,12 +23,23 @@ bool Earth::init(){
 	//表示サイズを変更する
 	this->setTextureRect(Rect(0, 0, framesize.width, framesize.height));
 
-	//盾の画面
-	for (int y = 0; y <= 1; y++){
-		//横の画面
-		for (int x = 0; x < Frame_Count - y;++x)
+	Vector<SpriteFrame *>frames;
 
+	//１コマずつアニメーションを設定する
+	for (int y = 0; y <= 1; y++){
+		for (int x = 0; x < Frame_Count; ++x){
+			auto frame = SpriteFrame::create("Earth.png", Rect(framesize.width*x,
+				framesize.height*y,
+				framesize.width,
+				framesize.height));
+			_earth.pushBack(frame);
+		}
 	}
+
+	//アニメーションを実行させる
+	auto animetion = Animation::createWithSpriteFrames(_earth);
+	animetion->setDelayPerUnit(ANIMETION);
+	this->runAction(RepeatForever::create(Animate::create(animetion)));
 
 	return true;
 }

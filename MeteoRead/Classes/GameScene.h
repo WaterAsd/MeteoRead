@@ -2,13 +2,42 @@
 #define __METEOREAD__GAME__
 
 #include "cocos2d.h"
+#include "KBT/UILayer.h"
+#include "asada/Earth.h"
+#include "asada/Rocket.h"
+#include "asada/Calculation.h"
+#include "asada/Start.h"
 
 class GameScene : public cocos2d::Layer
 {
+private:
+	Rocket* _rocket;//ロケットのポインター
+	UILayer* _UILayer;//UIのポインター
+	Calculation* _Cal;//計算機のポインター
+	Start* _start;
+
+	float PlayerMoveX;
+	float PlayerMoveY;
+
+	int starCount;//星の数を覚えておく
+	Vector<Earth*> stars;//星の座標一覧を取得する。
+	void StarSet(Vec2 Pos);//画面に星を入れる。
+	void selectSter(Earth* hosi);//公転するほしが近くにあるかどうか
+
+	Earth *axishosi;//軸となる公転の星
+
+	bool touchOK;	//公転時に発射の準備を設ける。
+					//true:発射準備中
+					//false:発射もしくは直進中
+
 public:
-	static cocos2d::Scene* createScene();
-	virtual bool init();
-	CREATE_FUNC(GameScene);
+	static Vec2 RoPos;
+	static cocos2d::Scene* createScene();//ゲームシーンの作成
+	virtual bool init();//初期化宣言
+	void update(float delta);	//毎フレーム更新する
+	CREATE_FUNC(GameScene);//クラスの宣言
+	static UILayer* uiLayer;//UILayerを使えるようにする。
+	static Earth* earth;//星クラスを使える様にする。
 };
 
 #endif //__METEOREAD__GAME__
