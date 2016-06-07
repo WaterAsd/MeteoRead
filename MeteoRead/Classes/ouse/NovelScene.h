@@ -6,27 +6,15 @@
 class NovelScene : public cocos2d::Layer
 {
 private:
-	//現在の文字番目
-	int _chrcount;
-
-	//現在の行版目
-	int _index;
-
-	//文字送りのスピード
-	float _speed;
-
-	//毎フレームのカウント数
-	int count;
-
-	//現在表示させたい行の文字一覧
-	std::string _currentString;
-
-public:
-	//シーンを作成する
-	static cocos2d::Scene* createScene();
-
-	//初期化メソッド
-	virtual bool init();
+	
+	//int
+	int
+		_chrcount,		//現在の文字番目
+		_index,			//現在の行版目
+		count;			//毎フレームのカウント数
+	
+	//float
+	float _speed;		//文字送りのスピード	
 
 	//行の一覧を作成した。文字列
 	std::string str[1024];
@@ -34,27 +22,21 @@ public:
 	std::string s;
 	//作業しやすくするためにポインターを作成する
 	cocos2d::Label *label;
+	//string
+	std::string _currentString;//現在表示させたい行の文字一覧
 
-	int autoflg;
-	int autoframe;
-	int autocnt;
-	int autospeed;
-	int mojiframe;
-	int mojicnt;
-	int mojicnt2;
-	bool mojinext;
+	void autospeedup();
+	void autospeeddown();
+	std::vector<std::string> split(const std::string& input, char delimiter);
+
+public:
+	static cocos2d::Scene* createScene();
+	virtual bool init();
 
 	void update(float dt);
 
 	//CREATE_FUNCマクロを使用して、staticなcreateメソッドを実装する
 	CREATE_FUNC(NovelScene);
-
-private:
-
-	void autospeedup();
-	void autospeeddown();
-	std::vector<std::string> split(const std::string& input, char delimiter);
-	
 };
 
 #endif // _NOVEL_SCENE_H_

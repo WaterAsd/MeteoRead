@@ -1,6 +1,7 @@
 ﻿#pragma execution_character_set("utf-8")
 #include "ouse/NovelScene.h"
 #include "ui/CocosGUI.h"
+#include "oohasi\Title.h"
 
 USING_NS_CC;
 
@@ -25,30 +26,9 @@ bool NovelScene::init()
 		return false;
 	}
 
-	autoflg = false;
-	autoframe = false;
-	autocnt = false;
-	autospeed = false;
-	mojicnt = false;
-	mojiframe = false;
-
-	//画面サイズ取得
+	//ゲームの画面サイズと画面の一番端の座標を取得する
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	//マルチレゾリューション
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	auto textField = ui::TextField::create("ンゴ", "", 45);
-	textField->setPosition(Vec2(visibleSize.width * 0.5 + origin.x, visibleSize.height * 0.7 + origin.y));
-
-	this->addChild(textField);
-
-	//画像を表示
-	auto sprite = Sprite::create("window2.png");
-	////中央に表示されるように座標を設定
-	sprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 6 + origin.y));
-	sprite->setScale(0.75);
-	////画像を追加　第2引数は表示する順番（背景だから一番下つまり0）
-	this->addChild(sprite, 0);
 
 	// 文字の一覧を特定の条件を満たしたときに入れ物を入れ替える
 	// Vector型の入れ物を作成する。
@@ -69,16 +49,14 @@ bool NovelScene::init()
 		return result;
 	};
 
+	//自分が作成したテキストファイルを特定のstring型に入れる
+	auto fileText = FileUtils::getInstance()->getStringFromFile("title2.csv");
+	auto lines = split(fileText,'P');
+
+	//先ほど作成したファイルを
 	int i = 0;
-	int x = 0;
-	int y = 0;
-
-	auto fileText = FileUtils::getInstance()->getStringFromFile("title.csv");
-	auto lines = split(fileText, '\n');
-
 	for (const auto &line : lines){
-		auto ls = split(line, ',');
-		str[i] = StringUtils::format("%s", ls[0].c_str());  //本編
+		str[i] = StringUtils::format("%s",line.c_str());  //本編
 		i++;
 	}
 
@@ -93,9 +71,9 @@ bool NovelScene::init()
 	label = Label::createWithSystemFont("", "fonts/HGRPP1.TTC", 25);
 	label->setWidth(650);
 	label->setOpacity(255);
-	label->setColor(Color3B::BLACK);
-	//label->setHorizontalAlignment(TextHAlignment::LEFT);
-	label->setPosition(525, 135);
+	label->setColor(Color3B::WHITE);
+	label->setAnchorPoint(Vec2(0.0f,1.0f));
+	label->setPosition(100,150);
 	this->addChild(label,100);
 
 	//文字に関する変数の初期化
@@ -112,18 +90,47 @@ bool NovelScene::init()
 
 //更新処理
 void NovelScene::update(float dt){
-	if (count >= 50){
+	//条件に満たしたら文字を表示させる
+	if (count >= 5){
 		count = 0;
 		_chrcount++;
 	}
-	s = str[_index].substr(0,_chrcount).c_str();
+
+	s = str[_index].substr(0, _chrcount).c_str();
 	//現在の行の文字を表示させる
 	label->setString(s);
-	count += 1;
+
+	//もし一行の文字を全部表示したら・・・
+	//改行して次の行の文字を表示させる。
+	if (str[_index] == s){
+		_chrcount = 0;
+		_index++;
+	}
+
+	//そして、全部を表示させることができたら
+	//Sceneを変更する
+	if (str->length() == _index){
+		auto Scenes = Title::createScene();
+		auto trnscene = TransitionFadeUp::create(1.0f, Scenes);
+		Director::getInstance()->replaceScene(Scenes);
+	}
+	count++;
 }
 
 //ラムダ式でもあったけど
 //普通に使いたので関数作成しました。
+// Vector型の入れ物を作成する。
+/*
+	@input:入れる元となる文字の一覧
+	@delimiter:入れ替えるタイミングのchar型
+例:
+intputの中身：あいうえお、かきくけこ、さしすせそ
+delimiterの中身:”、だった場合
+[0]あいうえお
+[1]かきくけこ
+[2]さしすせそ
+*/
+
 std::vector<std::string> NovelScene::split(const std::string& input, char delimiter){
 	std::istringstream stream(input);
 	std::string field;
