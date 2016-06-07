@@ -57,6 +57,7 @@ bool GameScene::init(){
 	this->addChild(uiLayer);
 	_UILayer = uiLayer;
 
+	//“¹‚ÌoŒ»
 	auto road = Road::create();
 	this->addChild(road);
 	_road = road;
