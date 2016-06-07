@@ -6,6 +6,7 @@
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
+#include "asada/Start.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -13,6 +14,7 @@ private:
 	Rocket* _rocket;//ロケットのポインター
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
+	Start* _start;
 
 	float PlayerMoveX;
 	float PlayerMoveY;

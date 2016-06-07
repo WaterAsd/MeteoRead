@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "asada/Rocket.h"
+#include "asada/Start.h"
 
 USING_NS_CC;
 
@@ -69,12 +70,15 @@ bool GameScene::init(){
 	//押したか胴かを判定するための処理を記入する
 	touchOK = false;
 
+	auto _st = Start::create();
+	this->addChild(_st);
+	_start = _st;
+
 	return true;
 }
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-	
 
 	//必要な素材を作成する
 	float power = _rocket->getSpeed() + _UILayer->getmeterReturn();
@@ -94,22 +98,23 @@ void GameScene::update(float delta){
 		}
 	}
 
-	/*公転フラグがtrueでUiLayerのtouchがtrueなら
-		touchOKをfalseにして発射する*/
-	if (_rocket->getRevolutionflg() == true &&
-			_UILayer->touch == false&&
-				touchOK==true){
-		touchOK = false;
-		_rocket->setRevolutionflg(false);
-	}
+	if (_start->getStart() == true){
+		/*公転フラグがtrueでUiLayerのtouchがtrueなら
+			touchOKをfalseにして発射する*/
+		if (_rocket->getRevolutionflg() == true &&
+			_UILayer->touch == false &&
+			touchOK == true){
+			touchOK = false;
+			_rocket->setRevolutionflg(false);
+		}
 
-	/*公転フラグがtrueで、UiLayerのtouchがfalseなら
-		touchOKをtrueにして発射の準備をする*/
-	if (_rocket->getRevolutionflg() == true &&
-								_UILayer->touch == true){
-		touchOK = true;
+		/*公転フラグがtrueで、UiLayerのtouchがfalseなら
+			touchOKをtrueにして発射の準備をする*/
+		if (_rocket->getRevolutionflg() == true &&
+			_UILayer->touch == true){
+			touchOK = true;
+		}
 	}
-
 	//もし公転フラグがtrueならば公転させて、
 	//falseならば、向いてる方向に移動させる。
 	if (_rocket->getRevolutionflg() == true){
@@ -121,7 +126,7 @@ void GameScene::update(float delta){
 	auto hosi1 = stars.at(2);
 	auto hosi2 = stars.at(3);
 
-	_Cal->hosiangle(hosi1,hosi2,0.1f);
+	_Cal->hosiangle(hosi1,hosi2,1.0f);
 }
 
 //星を出現させる
