@@ -74,6 +74,10 @@ bool GameScene::init(){
 	this->addChild(_st);
 	_start = _st;
 
+	auto hosi = Sprite::create("StarRoad.png");
+	hosi->setPosition(visibleSize / 2);
+	this->addChild(hosi);
+
 	return true;
 }
 
