@@ -17,6 +17,7 @@ protected:
 	void roadSet(Sprite* road);				// ”g¶¬‚É”g‚ğ‰Šú‰»‚·‚éŠÖ”
 
 	std::vector<Sprite*> myRoad;	// ”g‚Ì•`‰æ
+	static std::vector<float> roadSize;
 private:
 
 public:
