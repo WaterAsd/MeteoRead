@@ -51,7 +51,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
 	//ˆê”ÔÅ‰‚Éo‚·ƒV[ƒ“
-    auto scene = GameScene::createScene();
+    auto scene = NovelScene::createScene();
 
     director->runWithScene(scene);
 
