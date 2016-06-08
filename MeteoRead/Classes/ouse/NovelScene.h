@@ -10,6 +10,7 @@ private:
 	//int
 	int
 		_chrcount,		//現在の文字番目
+		_autocnt,       //文字表示後に次の行に変わるまで待機する時間
 		_index,			//現在の行版目
 		count;			//毎フレームのカウント数
 	
