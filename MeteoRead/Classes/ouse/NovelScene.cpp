@@ -25,6 +25,7 @@ bool NovelScene::init()
 	{
 		return false;
 	}
+	_autoflg = false;
 
 	//ゲームの画面サイズと画面の一番端の座標を取得する
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -79,7 +80,7 @@ bool NovelScene::init()
 	//文字に関する変数の初期化
 	_index = 0;
 	_chrcount = 0;
-	_autocnt = 5;
+	_autocnt = 0;
 	_speed = 0;
 	count = 0;
 
@@ -95,23 +96,29 @@ void NovelScene::update(float dt){
 	if (count >= 5){
 		count = 0;
 		_chrcount++;
+		_autoflg = true;
 	}
 
 	s = str[_index].substr(0, _chrcount).c_str();//0～chrcountの文字をsに入れる
 	//現在の行の文字を表示させる
 	label->setString(s);//sの内容をlabelに入れる
 
-	//もし一行の文字を全部表示したら・・・
-	//autocntのカウントを開始する
-	if (str[_index] == s){
-		_autocnt--;
+	//autoflgがtrueになったらcnt開始
+	if (_autoflg == true){
+		_autocnt += 1;
 	}
 
-	//autocntが0になったら、改行して次の行の文字を表示させる。
-	if (_autocnt = 0){
+	//もし一行の文字を全部表示したら・・・
+	//改行
+	if (str[_index] == s){
 		_chrcount = 0;
 		_index++;
+		_autocnt = 0;
 	}
+
+	////autocntが0になったら、改行して次の行の文字を表示させる。
+	//if (_autocnt = 0){
+	//}
 
 	//そして、全部を表示させることができたら
 	//Sceneを変更する
