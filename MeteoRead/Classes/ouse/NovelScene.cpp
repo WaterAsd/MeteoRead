@@ -50,7 +50,7 @@ bool NovelScene::init()
 	};
 
 	//自分が作成したテキストファイルを特定のstring型に入れる
-	auto fileText = FileUtils::getInstance()->getStringFromFile("title2.csv");
+	auto fileText = FileUtils::getInstance()->getStringFromFile("titlez.csv");
 	auto lines = split(fileText,'P');
 
 	//先ほど作成したファイルを
