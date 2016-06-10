@@ -15,17 +15,16 @@ bool Road::init()
 	{
 		return false;
 	}
-	roadRect.clear();
 	myRoad.clear();
-	//roadSize.clear();
-	roadImg = SpriteBatchNode::create("star2.png");
+	roadSize.clear();
+	roadImg = SpriteBatchNode::create("star3.png");
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
 	this->addChild(roadImg);
-
+	a = 0;
 	// アップデートを実行する
 	//this->scheduleUpdate();
-	this->schedule(schedule_selector(Road::update), 0.1);
+	this->schedule(schedule_selector(Road::update),0.1);
 }
 
 void Road::update(float delta)
@@ -33,11 +32,21 @@ void Road::update(float delta)
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
 
+	//for (int i = 0; i < myRoad.size(); i++)
+	//{
+	//	roadRect = myRoad[i]->boundingBox();
+	//	if (roadRect.intersectsRect(roadRect))
+	//	{
+	//		if (myRoad.size()>30)
+	//		{
+	//			myRoad[i]->removeFromParent();
+	//			myRoad.erase(myRoad.begin());
+	//		}
+	//	}
+	//}
 }
 
 void Road::roadSet(Sprite* road){
-	//roadRect.push_back({ 40, 0, 40, 40 });
-	//road->setTextureRect(roadRect.back());
 	road->setPosition(GameScene::_rocket->getPosition());
 	road->setTag(0);
 	road->setRotation(Calculation::Angle);

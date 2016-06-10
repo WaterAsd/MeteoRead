@@ -11,13 +11,15 @@ using namespace cocos2d;
 class Road : public cocos2d::Layer
 {
 protected:
-	Vec2 roadPos;							//”g‚ÌÀ•W
-	SpriteBatchNode* roadImg;				// ”g‚Ì‰æ‘œ
-	std::vector<Rect> roadRect;
-	void roadSet(Sprite* road);				// ”g¶¬‚É”g‚ğ‰Šú‰»‚·‚éŠÖ”
+	Vec2 roadPos;							//“¹‚ÌÀ•W
+	SpriteBatchNode* roadImg;				// “¹‚Ì‰æ‘œ
+	Rect roadRect;
+	int a;
+	void roadSet(Sprite* road);				// “¹‚ğ‰Šú‰»‚·‚éŠÖ”
 
-	std::vector<Sprite*> myRoad;	// ”g‚Ì•`‰æ
-	static std::vector<float> roadSize;
+	std::vector<Sprite*> myRoad;	// “¹‚Ì•`‰æ
+	std::vector<float> roadSize;
+
 private:
 
 public:
