@@ -32,6 +32,7 @@ bool UILayer::init()
 		timer[1] = 3;
 	}
 
+
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
 
