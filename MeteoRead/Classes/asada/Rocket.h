@@ -9,19 +9,21 @@ class Rocket : public cocos2d::Node{
 private:
 
 	//パワーの列挙方を作成する
-	enum Power{
+	enum Speed{
 	ONE = 1,
 	TWO,
 	THREE,
 	FOUR,
 	};
-	Power _power;
+	Speed _speed;
 
 	Sprite* _Rocket;//ロケット扱える様にする為のポインター
 	Booster* _booster;//ブースターを扱える様にするためのポインター
 
 	
 	Rect RocketRect;//ロケットの矩形
+
+	bool revolutionflg;//公転を実行させるフラグ
 
 	void update(float dt);
 
@@ -40,8 +42,11 @@ public:
 	Rect getRocketRect();
 
 	//ロケットの速さにまつわる変数
-	void setPower(int pw);
-	float getPower();
+	float getSpeed();
+
+	//ロケットが公転するためにフラグ
+	void setRevolutionflg(bool flg);
+	bool getRevolutionflg();
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame*>, _but, But);
