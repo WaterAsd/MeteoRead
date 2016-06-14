@@ -19,7 +19,7 @@ private:
 	float _speed;		//文字送りのスピード	
 
 	//行の一覧を作成した。文字列
-	std::string str[1024];
+	std::string str[8];
 	//ゲーム画面の表示させるためのstring型
 	std::string s;
 	//作業しやすくするためにポインターを作成する

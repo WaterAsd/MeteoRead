@@ -80,7 +80,7 @@ bool NovelScene::init()
 	//文字に関する変数の初期化
 	_index = 0;
 	_chrcount = 0;
-	_autocnt = 0;
+	_autocnt = 120;
 	_speed = 0;
 	count = 0;
 
@@ -96,33 +96,30 @@ void NovelScene::update(float dt){
 	if (count >= 5){
 		count = 0;
 		_chrcount++;
-		_autoflg = true;
 	}
 
 	s = str[_index].substr(0, _chrcount).c_str();//0～chrcountの文字をsに入れる
 	//現在の行の文字を表示させる
 	label->setString(s);//sの内容をlabelに入れる
 
-	//autoflgがtrueになったらcnt開始
-	if (_autoflg == true){
-		_autocnt += 1;
+	//もし一行の文字を全部表示したら・・・
+	//autocnt開始
+	if (str[_index] == s){
+		_autocnt--;
 	}
 
-	//もし一行の文字を全部表示したら・・・
-	//改行
-	if (str[_index] == s){
+	//autocntが0になったら、改行して次の行の文字を表示させる。
+	if (_autocnt == 0){
 		_chrcount = 0;
 		_index++;
-		_autocnt = 0;
+		_autocnt = 120;
 	}
 
-	////autocntが0になったら、改行して次の行の文字を表示させる。
-	//if (_autocnt = 0){
-	//}
+	auto ok = str->size();
 
 	//そして、全部を表示させることができたら
 	//Sceneを変更する
-	if (str->length() == _index){
+	if (8 == _index){
 		auto Scenes = Title::createScene();
 		auto trnscene = TransitionFadeUp::create(1.0f, Scenes);
 		Director::getInstance()->replaceScene(Scenes);
