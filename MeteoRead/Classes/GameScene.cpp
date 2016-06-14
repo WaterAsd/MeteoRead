@@ -8,6 +8,7 @@ USING_NS_CC;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
+Rocket *GameScene::_rocket;
 
 //移動量
 const float PlayerSpeed = 0.1f;
@@ -53,6 +54,11 @@ bool GameScene::init(){
 	this->addChild(rocket);
 	_rocket = rocket;
 
+	//道の出現
+	auto road = Road::create();
+	this->addChild(road);
+	_road = road;
+
 	//計算機を使えるようにする
 	auto Cal = Calculation::create();
 	_Cal = Cal;
@@ -74,6 +80,7 @@ bool GameScene::init(){
 	//ゴールする星に入れる名前の設定
 	goalmai = std::string("goal");
 	goalset = false;
+	goalflg = false;
 	GoalStarset(Vec2(200, visibleSize.height - 200),goalmai);
 
 
@@ -111,10 +118,12 @@ void GameScene::update(float delta){
 
 	//ゴールの星に公転できたらクリア画面を出す。
 	if (_rocket->getRevolutionflg() == true &&
-							axishosi->getName() == goalmai){
+							axishosi->getName() == goalmai&&
+							goalflg == false){
 		auto _st = Start::create();
 		this->addChild(_st);
 		_start = _st;
+		goalflg = true;
 	}
 
 	/*公転フラグがtrueでUiLayerのtouchがtrueなら
@@ -146,6 +155,9 @@ void GameScene::update(float delta){
 	auto hosi2 = stars.at(3);
 	
 	_Cal->hosiangle(hosi1,hosi2,1.0f);
+
+	RoPos = _rocket->getPosition();
+
 }
 
 //星を出現させる

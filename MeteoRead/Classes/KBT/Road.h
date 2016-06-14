@@ -3,7 +3,6 @@
 
 #include "cocos2d.h"
 #include "Math.h"
-#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
