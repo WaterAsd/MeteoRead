@@ -15,6 +15,7 @@
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\asada\Start.cpp" />
+    <ClCompile Include="..\Classes\asada\Goal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="..\Classes\asada\Start.h" />
+    <ClInclude Include="..\Classes\asada\Goal.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />

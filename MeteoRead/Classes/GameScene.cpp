@@ -1,8 +1,7 @@
 #include "GameScene.h"
 #include "asada/Rocket.h"
 #include "asada/Start.h"
-
-USING_NS_CC;
+#include "asada/Goal.h"
 
 //UiLayer
 UILayer *GameScene::uiLayer;
@@ -74,6 +73,7 @@ bool GameScene::init(){
 	//ゴールする星に入れる名前の設定
 	goalmai = std::string("goal");
 	goalset = false;
+	goalflg = false;
 	GoalStarset(Vec2(200, visibleSize.height - 200),goalmai);
 
 
@@ -111,10 +111,11 @@ void GameScene::update(float delta){
 
 	//ゴールの星に公転できたらクリア画面を出す。
 	if (_rocket->getRevolutionflg() == true &&
-							axishosi->getName() == goalmai){
-		auto _st = Start::create();
+				axishosi->getName() == goalmai&&
+							goalflg == false){
+		auto _st = Goal::create();
 		this->addChild(_st);
-		_start = _st;
+		goalflg = true;
 	}
 
 	/*公転フラグがtrueでUiLayerのtouchがtrueなら

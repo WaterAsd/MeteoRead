@@ -18,6 +18,7 @@ private:
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
+	bool goalflg;		//星にゴールしたかどうかを設定するフラグ
 
 	float PlayerMoveX;
 	float PlayerMoveY;

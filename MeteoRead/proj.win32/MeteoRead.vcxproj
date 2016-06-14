@@ -148,6 +148,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\asada\booster.cpp" />
     <ClCompile Include="..\Classes\asada\Calculation.cpp" />
     <ClCompile Include="..\Classes\asada\Earth.cpp" />
+    <ClCompile Include="..\Classes\asada\Goal.cpp" />
     <ClCompile Include="..\Classes\asada\Rocket.cpp" />
     <ClCompile Include="..\Classes\asada\Space.cpp" />
     <ClCompile Include="..\Classes\asada\Start.cpp" />
@@ -164,6 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\asada\booster.h" />
     <ClInclude Include="..\Classes\asada\Calculation.h" />
     <ClInclude Include="..\Classes\asada\Earth.h" />
+    <ClInclude Include="..\Classes\asada\Goal.h" />
     <ClInclude Include="..\Classes\asada\Rocket.h" />
     <ClInclude Include="..\Classes\asada\Space.h" />
     <ClInclude Include="..\Classes\asada\Start.h" />
