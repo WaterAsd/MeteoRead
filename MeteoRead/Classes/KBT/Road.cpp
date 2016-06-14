@@ -17,7 +17,7 @@ bool Road::init()
 	}
 	myRoad.clear();
 	roadSize.clear();
-	roadImg = SpriteBatchNode::create("star3.png");
+	roadImg = SpriteBatchNode::create("star2.png");
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
 	this->addChild(roadImg);
@@ -32,18 +32,18 @@ void Road::update(float delta)
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
 
-	//for (int i = 0; i < myRoad.size(); i++)
-	//{
-	//	roadRect = myRoad[i]->boundingBox();
-	//	if (roadRect.intersectsRect(roadRect))
-	//	{
-	//		if (myRoad.size()>30)
-	//		{
-	//			myRoad[i]->removeFromParent();
-	//			myRoad.erase(myRoad.begin());
-	//		}
-	//	}
-	//}
+	for (int i = 0; i < myRoad.size(); i++)
+	{
+		//roadRect = myRoad[i]->boundingBox();
+		//if (myRoad.size()>30)
+		//{
+		//	if (roadRect.intersectsRect(roadRect))
+		//	{
+		//		myRoad[i]->removeFromParent();
+		//		myRoad.erase(myRoad.begin());
+		//	}
+		//}
+	}
 }
 
 void Road::roadSet(Sprite* road){
