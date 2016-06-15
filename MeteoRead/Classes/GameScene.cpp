@@ -4,6 +4,8 @@
 
 USING_NS_CC;
 
+#define COUNT 180.0f;
+
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
