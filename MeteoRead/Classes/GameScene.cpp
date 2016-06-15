@@ -3,6 +3,8 @@
 #include "asada/Start.h"
 #include "asada/Goal.h"
 
+#define COUNT 180.0f;
+
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
