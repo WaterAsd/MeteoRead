@@ -106,6 +106,7 @@ void UILayer::Map()
 	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
 	myIcon->setRotation(Calculation::Angle);
+	
 }
 
 void UILayer::Timer()
