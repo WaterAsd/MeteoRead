@@ -8,6 +8,7 @@
 class Calculation : public cocos2d::Ref{
 public:
 	static float Angle;
+
 	virtual bool init();
 	void move(Rocket*rocket, const int power);
 	void angle(const Earth* hosi,Rocket* rocket,const int power);
