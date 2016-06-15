@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "ouse/NovelScene.h"
 #include "GameScene.h"
+#include "oohasi/Title.h"
 
 USING_NS_CC;
 
@@ -51,7 +52,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
 	//ˆê”ÔÅ‰‚Éo‚·ƒV[ƒ“
-    auto scene = GameScene::createScene();
+    auto scene = Title::createScene();
 
     director->runWithScene(scene);
 
