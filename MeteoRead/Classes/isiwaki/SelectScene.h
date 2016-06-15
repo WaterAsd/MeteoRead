@@ -18,16 +18,17 @@ public:
 	int SelectCount;
 	cocos2d::ui::Button *ButtnSET;
 	//string font; // 使用するフォント
-	//Label *SelectText;
+	float fontopacity;
 
 	
+
 
     void menuCloseCallback(cocos2d::Ref* pSender);
     CREATE_FUNC(SelectScene);
 
 
 private:
-	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type,int i);
+	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i);
 	
 };
