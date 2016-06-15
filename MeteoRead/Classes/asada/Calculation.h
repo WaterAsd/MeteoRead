@@ -7,10 +7,13 @@
 
 class Calculation : public cocos2d::Ref{
 public:
+	static float Angle;
+
 	virtual bool init();
 	void move(Rocket*rocket, const int power);
 	void angle(const Earth* hosi,Rocket* rocket,const int power);
 	void hosiangle(const Earth* hosi, Earth* hosi2, const int power);
+	//void update(Rocket*rocket);
 	double dot_product(Vec2 moto, Vec2 aite);
 	CREATE_FUNC(Calculation);
 };

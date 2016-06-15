@@ -1,7 +1,8 @@
 #include "GameScene.h"
 #include "asada/Rocket.h"
 #include "asada/Start.h"
-#include "asada/Goal.h"
+
+USING_NS_CC;
 
 #define COUNT 180.0f;
 
@@ -9,6 +10,7 @@
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
+Rocket *GameScene::_rocket;
 
 //移動量
 const float PlayerSpeed = 0.1f;
@@ -53,6 +55,11 @@ bool GameScene::init(){
 	rocket->setRotation(-90);
 	this->addChild(rocket);
 	_rocket = rocket;
+
+	//道の出現
+	auto road = Road::create();
+	this->addChild(road);
+	_road = road;
 
 	//計算機を使えるようにする
 	auto Cal = Calculation::create();
@@ -113,10 +120,11 @@ void GameScene::update(float delta){
 
 	//ゴールの星に公転できたらクリア画面を出す。
 	if (_rocket->getRevolutionflg() == true &&
-				axishosi->getName() == goalmai&&
+							axishosi->getName() == goalmai&&
 							goalflg == false){
-		auto _st = Goal::create();
+		auto _st = Start::create();
 		this->addChild(_st);
+		_start = _st;
 		goalflg = true;
 	}
 
@@ -149,6 +157,9 @@ void GameScene::update(float delta){
 	auto hosi2 = stars.at(3);
 	
 	_Cal->hosiangle(hosi1,hosi2,1.0f);
+
+	RoPos = _rocket->getPosition();
+
 }
 
 //星を出現させる

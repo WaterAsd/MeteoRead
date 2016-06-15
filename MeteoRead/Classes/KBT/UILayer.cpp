@@ -1,5 +1,7 @@
 #include "UILayer.h"
 #include "GameScene.h"
+#include "asada\Rocket.h"
+#include "asada\/Calculation.h"
 
 USING_NS_CC;
 
@@ -22,8 +24,14 @@ bool UILayer::init()
 	upCount = 1;
 	power = 0.0f;
 	touch = false;
-
 	buttonColor = Color3B(255, 255, 255);
+	//時間の初期化　スタート3分
+	for (int i = 0; i < 6; i++)
+	{
+		timer[i] = 0;
+		timer[1] = 3;
+	}
+
 
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
@@ -49,7 +57,7 @@ void UILayer::update(float delta)
 	Button();
 	MeterMove();
 	Map();
-	log("%s", power);
+	Timer();
 }
 
 void UILayer::Button()
@@ -92,11 +100,43 @@ void UILayer::MeterMove()
 void UILayer::Map()
 {
 	//ワールド座標に変換
-	Vec2 worldPosition = GameScene::RoPos;
+	Vec2 worldPosition = GameScene::RoPos; 
 
 	//アイコンをロケットに追従させる
 	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
+	myIcon->setRotation(Calculation::Angle);
+	
+}
+
+void UILayer::Timer()
+{
+	timer[5]--;
+	if (timer[5] < 0)
+	{
+		timer[5] = 9;
+		timer[4]--;
+	}
+	if (timer[4] < 0)
+	{
+		timer[4] = 5;
+		timer[3]--;
+	}
+	if (timer[3] < 0)
+	{
+		timer[3] = 9;
+		timer[2]--;
+	}
+	if (timer[2]<0)
+	{
+		timer[2] = 5;
+		timer[1]--;
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
+	}
 }
 
 void UILayer::CreateSprite()
@@ -124,6 +164,17 @@ void UILayer::CreateSprite()
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
+
+	//数字
+	for (int i = 0; i < 6; i++)
+	{
+		number[i] = Sprite::create("no2.png");
+		number[i]->setAnchorPoint(Vec2::ZERO);
+		number[i]->setPosition(100+(i*80), 450);
+		number[i]->setScale(0.6);
+		this->addChild(number[i]);
+	}
+
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)

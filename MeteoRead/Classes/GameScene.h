@@ -7,18 +7,20 @@
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
 #include "asada/Start.h"
+#include "KBT/Road.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
-	Rocket* _rocket;//ロケットのポインター
+	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
 	Start* _start;
+	Road* _road;
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
-	bool goalflg;		//星にゴールしたかどうかを設定するフラグ
+	bool goalflg;
 
 	float PlayerMoveX;
 	float PlayerMoveY;
@@ -38,6 +40,7 @@ private:
 
 public:
 	static Vec2 RoPos;
+	static Rocket* _rocket;//ロケットのポインター
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

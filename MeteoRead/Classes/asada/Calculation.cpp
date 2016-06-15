@@ -4,6 +4,7 @@ USING_NS_CC;
 const float PLAYER_SPEED = 1.0f;
 float PLAYER_MOVE_X;
 float PLAYER_MOVE_Y;
+float Calculation::Angle;
 
 double s = 0.0f;//向きたい角度
 Vec2 misdir = Vec2(0,1);//ミサイルの一応の向き
@@ -16,6 +17,9 @@ float rot1 = 0.0f;
 bool Calculation::init(){
 	return true;
 }
+//
+//void Calculation::update(Rocket*rocket)
+//{}
 
 //２点のなす角を求める関数
 /*
