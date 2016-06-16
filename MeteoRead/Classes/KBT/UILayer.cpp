@@ -101,6 +101,7 @@ void UILayer::Map()
 {
 	//ワールド座標に変換
 	Vec2 worldPosition = GameScene::RoPos; 
+	Vec2 starPosition;
 
 	//アイコンをロケットに追従させる
 	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));

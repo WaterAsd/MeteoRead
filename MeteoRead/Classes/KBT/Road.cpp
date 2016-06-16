@@ -21,7 +21,6 @@ bool Road::init()
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
 	this->addChild(roadImg);
-	a = 0;
 	// アップデートを実行する
 	//this->scheduleUpdate();
 	this->schedule(schedule_selector(Road::update),0.1);
@@ -31,19 +30,16 @@ void Road::update(float delta)
 {
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
-
 	for (int i = 0; i < myRoad.size(); i++)
 	{
-		//roadRect = myRoad[i]->boundingBox();
-		//if (myRoad.size()>30)
-		//{
-		//	if (roadRect.intersectsRect(roadRect))
-		//	{
-		//		myRoad[i]->removeFromParent();
-		//		myRoad.erase(myRoad.begin());
-		//	}
-		//}
+		roadRect = myRoad[i]->boundingBox();
+		if (roadRect.intersectsRect(roadRect))
+		{
+			//myRoad[i]->removeFromParent();
+			//myRoad.erase(myRoad.begin());
+		}
 	}
+	log("%d", myRoad.size());
 }
 
 void Road::roadSet(Sprite* road){

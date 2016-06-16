@@ -3,28 +3,15 @@
 
 #include "cocos2d.h"
 #include "KBT/UILayer.h"
+#include "KBT/Road.h"
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
 #include "asada/Start.h"
-#include "KBT/Road.h"
-#include "asada/Goal.h"
-#include "asada/Stage1.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
-
-	bool _Start;
-	bool _goal;
-	bool _touch;
-
-	Vec2 touchpoint;
-
-	Size visibleSize;
-	Vec2 origin;
-
-	Stage1 *_stage1;
 	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
@@ -33,7 +20,7 @@ private:
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
-	bool goalflg;
+	bool goalflg;		//星にゴールしたかどうかを設定するフラグ
 
 	float PlayerMoveX;
 	float PlayerMoveY;
@@ -50,19 +37,10 @@ private:
 	bool touchOK;	//公転時に発射の準備を設ける。
 					//true:発射準備中
 					//false:発射もしくは直進中
-	
-	float BGM;		//BGM
-
-	//ＵＩのミニマップに必要な情報を入れる
-	void minimapdate();
 
 public:
-	static int SelectCount;
-	void getStage(int count);
-	Stagebase craeateStage(int count);
-
-
 	static Vec2 RoPos;
+	static Rocket* _rocket;//ロケットのポインター
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する
