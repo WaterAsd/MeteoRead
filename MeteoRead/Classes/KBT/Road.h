@@ -13,7 +13,6 @@ protected:
 	Vec2 roadPos;							//“¹‚ÌÀ•W
 	SpriteBatchNode* roadImg;				// “¹‚Ì‰æ‘œ
 	Rect roadRect;
-	int a;
 	void roadSet(Sprite* road);				// “¹‚ğ‰Šú‰»‚·‚éŠÖ”
 
 	std::vector<Sprite*> myRoad;	// “¹‚Ì•`‰æ

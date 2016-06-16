@@ -53,7 +53,7 @@ void Calculation::angle(const Earth* hosi,Rocket*rocket,const int power){
 							(A.y - B.y)*cos(rot) + B.y;
 
 	//Œü‚«‚½‚¢Šp“x‚ÉŒü‚©‚¹‚é
-	float Angle = ccpToAngle(ccpSub(A,B));
+	Angle = ccpToAngle(ccpSub(A,B));
 	Angle = CC_RADIANS_TO_DEGREES(Angle);
 	Angle *= -1;
 	rocket->setRotation(Angle);

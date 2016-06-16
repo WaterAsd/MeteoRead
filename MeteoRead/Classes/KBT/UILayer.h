@@ -19,7 +19,7 @@ protected:
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
-	Sprite* starIcon;
+	Sprite* starIcon;            //星のアイコン
 	Sprite* number[6];             //数字
 
 	//int
