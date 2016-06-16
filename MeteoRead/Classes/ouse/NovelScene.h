@@ -16,7 +16,7 @@ private:
 		count;			//毎フレームのカウント数
 	
 	//float
-	float _speed;		//文字送りのスピード	
+	float _speed;		//文字送りのスピード
 
 	//行の一覧を作成した。文字列
 	std::string str[8];
