@@ -31,6 +31,16 @@ bool NovelScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+	//画像読み込み
+	//メッセージウィンドウの設定
+	auto Back = Sprite::create("window2.png");
+	//座標
+	Back->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 4.5 + origin.y));
+	//画像の大きさ
+	Back->setScale(0.75);
+	//表示　後ろの数字はレイヤーみたいなもん!
+	this->addChild(Back, 3);
+
 	// 文字の一覧を特定の条件を満たしたときに入れ物を入れ替える
 	// Vector型の入れ物を作成する。
 	/*
@@ -61,6 +71,7 @@ bool NovelScene::init()
 		i++;
 	}
 
+	//文字表示
 	//文字を表示するために必要な情報を記入する
 	/*
 		文字サイズ：２５px
@@ -74,7 +85,7 @@ bool NovelScene::init()
 	label->setOpacity(255);
 	label->setColor(Color3B::WHITE);
 	label->setAnchorPoint(Vec2(0.0f,1.0f));
-	label->setPosition(100,150);
+	label->setPosition(150,200);
 	this->addChild(label,100);
 
 	//文字に関する変数の初期化
@@ -92,8 +103,8 @@ bool NovelScene::init()
 
 //更新処理
 void NovelScene::update(float dt){
-	//条件に満たしたら文字を表示させる
-	if (count >= 5){
+	//条件に満たしたら文字を表示させる(数字は次の文字へ送るまでのカウント)
+	if (count >= 1){
 		count = 0;
 		_chrcount++;
 	}
