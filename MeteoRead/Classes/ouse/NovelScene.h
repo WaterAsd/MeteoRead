@@ -18,6 +18,12 @@ private:
 	//float
 	float _speed;		//文字送りのスピード
 
+	//背景切替用
+	bool back2; //novelback2.pngに切替
+	static int backNum;
+	static int oldbackNum;
+	std::string s2;//csvファイルのa2で反応させるために使う
+
 	//行の一覧を作成した。文字列
 	std::string str[8];
 	//ゲーム画面の表示させるためのstring型
