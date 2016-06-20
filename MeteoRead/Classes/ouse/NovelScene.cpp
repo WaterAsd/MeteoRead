@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "oohasi\Title.h"
 
+
 USING_NS_CC;
 
 
@@ -47,7 +48,7 @@ bool NovelScene::init()
 	this->addChild(background, 0);
 
 	//背景
-	auto background2 = Sprite::create("novelback2.png");
+	background2 = Sprite::create("novelback2.png");
 	//座標
 	background2->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	//画像の大きさ
@@ -55,7 +56,7 @@ bool NovelScene::init()
 	background2->setScale(1.0);
 	background2->setScaleX(1.5);
 	//表示　後ろの数字はレイヤーみたいなもん!
-	this->addChild(background2, 0);
+	this->addChild(background2, 1);
 
 	//メッセージウィンドウの設定
 	auto Back = Sprite::create("window2.png");
@@ -91,8 +92,15 @@ bool NovelScene::init()
 
 	//先ほど作成したファイルを
 	int i = 0;
+	std::string go;
 	for (const auto &line : lines){
-		str[i] = StringUtils::format("%s",line.c_str());  //本編
+		auto linego = split(line, ',');
+		auto count = linego.size();
+		for (int i = 0; i < count - 1; i++){
+			go.push_back(1 + i);
+		}
+		str2[i] = StringUtils::format("%s", linego[0].c_str());  //本編
+		str[i] = StringUtils::format("%s", go.c_str());  //本編
 		i++;
 	}
 
@@ -164,7 +172,7 @@ void NovelScene::update(float dt){
 
 	//行数を見て背景画像を変える処理
 	//今の行数に応じて、背景フラグをtrueに
-	if (s2.compare(0, 10, "a2") == 0{
+	if (s2.compare(0, 10, "@a2") == 0){
 		back2 = true;
 	}
 
@@ -188,7 +196,7 @@ delimiterの中身:”、だった場合
 [2]さしすせそ
 */
 
-std::vector<std::string> NovelScene::split(const std::string& input, char delimiter){
+std::vector<std::string> NovelScene::split2(const std::string& input, char delimiter){
 	std::istringstream stream(input);
 	std::string field;
 	std::vector<std::string> result;

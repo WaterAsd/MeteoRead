@@ -20,12 +20,11 @@ private:
 
 	//背景切替用
 	bool back2; //novelback2.pngに切替
-	static int backNum;
-	static int oldbackNum;
 	std::string s2;//csvファイルのa2で反応させるために使う
 
 	//行の一覧を作成した。文字列
 	std::string str[8];
+	std::string str2[8];//a2の判断用
 	//ゲーム画面の表示させるためのstring型
 	std::string s;
 	//作業しやすくするためにポインターを作成する
@@ -33,9 +32,11 @@ private:
 	//string
 	std::string _currentString;//現在表示させたい行の文字一覧
 
+	cocos2d::Sprite* background2;
+
 	void autospeedup();
 	void autospeeddown();
-	std::vector<std::string> split(const std::string& input, char delimiter);
+	std::vector<std::string> split2(const std::string& input, char delimiter);
 
 public:
 	static cocos2d::Scene* createScene();
