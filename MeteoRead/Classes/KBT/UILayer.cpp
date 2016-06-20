@@ -168,7 +168,7 @@ void UILayer::CreateSprite()
 	//”š
 	for (int i = 0; i < 6; i++)
 	{
-		number[i] = Sprite::create("no2.png");
+		number[i] = Sprite::create("count.png");
 		number[i]->setAnchorPoint(Vec2::ZERO);
 		number[i]->setPosition(100+(i*80), 450);
 		number[i]->setScale(0.6);

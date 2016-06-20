@@ -65,6 +65,12 @@
       <Filter>src\Game用の</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
+    <ClCompile Include="..\Classes\asada\Goal.cpp" />
+    <ClCompile Include="..\Classes\asada\Start.cpp" />
+    <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
+    <ClCompile Include="..\Classes\GameScene2.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -114,6 +120,12 @@
       <Filter>src\Game用の</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\KBT\Road.h" />
+    <ClInclude Include="..\Classes\asada\Goal.h" />
+    <ClInclude Include="..\Classes\asada\Start.h" />
+    <ClInclude Include="..\Classes\ouse\NovelScene.h" />
+    <ClInclude Include="..\Classes\GameScene2.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
