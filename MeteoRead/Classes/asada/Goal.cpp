@@ -33,6 +33,15 @@ bool Goal::init(){
 	nextimage->addTouchEventListener(CC_CALLBACK_2(Goal::nexttouchEvent, this));
 	_nextimage = nextimage;
 
+	//ƒ‚[ƒ_ƒ‹ˆ—
+	auto listrner = EventListenerTouchOneByOne::create();
+	listrner->setSwallowTouches(true);
+	listrner->onTouchBegan = [](Touch *touch, Event*event)->bool{
+		return true;
+	};
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(listrner, this);
+
 	return true;
 }
 

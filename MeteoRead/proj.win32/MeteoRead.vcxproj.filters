@@ -10,6 +10,12 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game用の">
+      <UniqueIdentifier>{ca3ea760-cb5c-47c1-bbc6-8b3379f0d609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\石脇">
+      <UniqueIdentifier>{5e8e5c17-06de-48ed-93ba-aab546b21d06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,8 +27,49 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ouse\NovelScene.cpp">
+    <ClCompile Include="..\Classes\KBT\UILayer.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Earth.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Earth.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Space.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\KBT\UILayer.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\oohasi\Title.cpp" />
+    <ClCompile Include="..\Classes\isiwaki\SelectScene.cpp">
+      <Filter>src\石脇</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Space.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\booster.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Rocket.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Calculation.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\KBT\Road.cpp" />
+    <ClCompile Include="..\Classes\asada\Goal.cpp" />
+    <ClCompile Include="..\Classes\asada\Start.cpp" />
+    <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
+    <ClCompile Include="..\Classes\GameScene2.cpp">
+      <Filter>src\Game用の</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,8 +82,49 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ouse\NovelScene.h">
+    <ClInclude Include="..\Classes\KBT\UILayer.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Earth.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Earth.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Space.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KBT\UILayer.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\oohasi\Title.h" />
+    <ClInclude Include="..\Classes\isiwaki\SelectScene.h">
+      <Filter>src\石脇</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Space.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\booster.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Rocket.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Calculation.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KBT\Road.h" />
+    <ClInclude Include="..\Classes\asada\Goal.h" />
+    <ClInclude Include="..\Classes\asada\Start.h" />
+    <ClInclude Include="..\Classes\ouse\NovelScene.h" />
+    <ClInclude Include="..\Classes\GameScene2.h">
+      <Filter>src\Game用の</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

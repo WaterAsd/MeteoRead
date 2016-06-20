@@ -2,7 +2,8 @@
 #include "ouse/NovelScene.h"
 #include "GameScene.h"
 #include "oohasi/Title.h"
-
+#include "isiwaki\SelectScene.h"
+#include "GameScene2.h"
 USING_NS_CC;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);

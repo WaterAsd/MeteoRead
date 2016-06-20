@@ -8,6 +8,7 @@
 #include "asada/Calculation.h"
 #include "asada/Start.h"
 #include "KBT/Road.h"
+#include "asada/Goal.h"
 
 class GameScene : public cocos2d::Layer
 {
