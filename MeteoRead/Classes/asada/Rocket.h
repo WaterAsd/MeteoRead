@@ -3,11 +3,11 @@
 
 #include "cocos2d.h"
 #include "asada/booster.h"
+#include "asada\Earth.h"
 using namespace cocos2d;
 
 class Rocket : public cocos2d::Node{
 private:
-
 	//パワーの列挙方を作成する
 	enum Speed{
 	ONE = 1,
@@ -16,6 +16,8 @@ private:
 	FOUR,
 	};
 	Speed _speed;
+	int speed;
+	int rot;
 
 	Sprite* _Rocket;//ロケット扱える様にする為のポインター
 	Booster* _booster;//ブースターを扱える様にするためのポインター
@@ -47,6 +49,10 @@ public:
 	//ロケットが公転するためにフラグ
 	void setRevolutionflg(bool flg);
 	bool getRevolutionflg();
+
+	//移動に関する関数処理
+	void move(const Earth *ea);
+	void Col(const Earth *ea);
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame*>, _but, But);

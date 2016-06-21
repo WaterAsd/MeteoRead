@@ -71,6 +71,12 @@
     <ClCompile Include="..\Classes\GameScene2.cpp">
       <Filter>src\Game用の</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\asada\Stage1.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Stagebase.cpp">
+      <Filter>src\Game用の</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -124,6 +130,12 @@
     <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
     <ClInclude Include="..\Classes\GameScene2.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Stage1.h">
+      <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Stagebase.h">
       <Filter>src\Game用の</Filter>
     </ClInclude>
   </ItemGroup>

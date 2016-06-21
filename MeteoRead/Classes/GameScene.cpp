@@ -57,9 +57,9 @@ bool GameScene::init(){
 	_rocket = rocket;
 
 	//道の出現
-	auto road = Road::create();
+	/*auto road = Road::create();
 	this->addChild(road);
-	_road = road;
+	_road = road;*/
 
 	//計算機を使えるようにする
 	auto Cal = Calculation::create();
@@ -89,8 +89,6 @@ bool GameScene::init(){
 	auto _st = Start::create();
 	this->addChild(_st);
 	_start = _st;;
-
-	this->runAction(Follow::create(_rocket));
 
 	return true;
 }
