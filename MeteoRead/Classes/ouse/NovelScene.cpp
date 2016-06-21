@@ -31,6 +31,7 @@ bool NovelScene::init()
 
 	//背景切替フラグ
 	back2 = false;
+	back3 = false;
 
 	//ゲームの画面サイズと画面の一番端の座標を取得する
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -38,7 +39,7 @@ bool NovelScene::init()
 
 	//画像読み込み
 	//背景
-	auto background = Sprite::create("novelback.png");
+	auto background = Sprite::create("back.jpg");
 	//座標
 	background->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	//画像の大きさ
@@ -47,8 +48,8 @@ bool NovelScene::init()
 	//表示　後ろの数字はレイヤーみたいなもん!
 	this->addChild(background, 0);
 
-	//背景
-	background2 = Sprite::create("novelback2.png");
+	//背景2
+	background2 = Sprite::create("back2.png");
 	//座標
 	background2->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 	//画像の大きさ
@@ -57,6 +58,17 @@ bool NovelScene::init()
 	background2->setScaleX(1.5);
 	//表示　後ろの数字はレイヤーみたいなもん!
 	this->addChild(background2, 1);
+
+	//背景3
+	background3 = Sprite::create("back3.png");
+	//座標
+	background3->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//画像の大きさ
+	background3->setVisible(false);
+	background3->setScale(1.0);
+	background3->setScaleX(1.5);
+	//表示　後ろの数字はレイヤーみたいなもん!
+	this->addChild(background3, 1);
 
 	//メッセージウィンドウの設定
 	auto Back = Sprite::create("window2.png");
@@ -95,12 +107,9 @@ bool NovelScene::init()
 	std::string go;
 	for (const auto &line : lines){
 		auto linego = split(line, ',');
-		auto count = linego.size();
-		for (int i = 0; i < count - 1; i++){
-			go.push_back(1 + i);
-		}
+		str[i] = StringUtils::format("%s", linego[1].c_str());  //本編
 		str2[i] = StringUtils::format("%s", linego[0].c_str());  //本編
-		str[i] = StringUtils::format("%s", go.c_str());  //本編
+		str3[i] = StringUtils::format("%s", linego[0].c_str());  //本編
 		i++;
 	}
 
@@ -172,13 +181,21 @@ void NovelScene::update(float dt){
 
 	//行数を見て背景画像を変える処理
 	//今の行数に応じて、背景フラグをtrueに
-	if (s2.compare(0, 10, "@a2") == 0){
+	if (str2[_index].compare(0, 10, "\r\n@a2") == 0){
 		back2 = true;
+	}
+
+	if (str3[_index].compare(0, 10, "\r\n@a3") == 0){
+		back3 = true;
 	}
 
 	//背景フラグがtrueになったら、その背景を表示
 	if (back2 == true){
 		background2->setVisible(true);//背景を表示させるプログラム
+	}
+
+	if (back3 == true){
+		background3->setVisible(true);//背景を表示させるプログラム
 	}
 }
 
