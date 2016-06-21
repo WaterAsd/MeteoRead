@@ -192,6 +192,11 @@ void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 	touch = false;
 }
 
+//タッチしているかどうかを確認するために関数
+bool UILayer::getTouch(){
+	return touch;
+}
+
 int UILayer::getmeterReturn()
 {
 	return power;

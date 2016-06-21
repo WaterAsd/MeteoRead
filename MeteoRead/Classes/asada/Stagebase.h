@@ -1,5 +1,5 @@
-#ifndef __MATEOREAD__STAGEbase__
-#define __METEOREAD__STAGEbase__
+#ifndef __MATEOREAD__STAGEBASE__
+#define __METEOREAD__STAGEBASE__
 
 #include "cocos2d.h"
 #include "asada/Earth.h"
@@ -8,13 +8,15 @@
 #include "KBT\Road.h"
 
 class Stagebase :public cocos2d::Layer{
+
 protected:
 
 	bool _startflg;		//スタートしたかどうかのフラグ
 	bool _goalflg;		//ゴールしてもよいかのフラグ
 	bool _buttontouch;	//ボタンをタッチしたかどうかを確認するフラグ
 
-	int _rocketpower;//ロケットのフラグ
+	int _rocketspeed;	//ロケットのもともとの数値
+	int _rocketpower;	//UiLayerで追加された数値分のpower
 
 	Rocket *_rocket;	//ロケットの情報
 	Road *_road;		//道の情報
@@ -22,7 +24,6 @@ protected:
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
-	bool goalflg;
 
 	SpriteBatchNode *_star;
 
@@ -43,10 +44,12 @@ private:
 	
 
 public:
-	void setstartflg(bool flg);			//ゲームがスタートしたかどうかのフラグ
+	void setstartflg(bool flg);			//ゲームがスタートしたかどうかを確認するのフラグ
 	void setrocketpower(int power);		//ロケットのスピードを受け取るためのフラグ
 	void setbottontouch(bool touch);		//ボタンをタッチしたかどうかを確認するためのフラグ
 
-	bool setgoalflg();					//ゴールしたかどうかを確認する関数
+	bool getgoalflg();					//ゴールしたかどうかを確認する関数
+	int getRocketPower();				//ロケットのパワー（スピード力）
 };
-#endif//__METEOREAD__STAGE1__
+
+#endif __METEOREAD__STAGEBASE__

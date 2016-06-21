@@ -59,6 +59,8 @@ public:
 	static cocos2d::Scene* scene();
 	void update(float delta);
 
+	bool getTouch();
+
 	int getmeterReturn();
 
 	bool touch;

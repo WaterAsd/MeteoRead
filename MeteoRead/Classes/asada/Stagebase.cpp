@@ -60,6 +60,11 @@ void Stagebase::setbottontouch(bool touch){
 }
 
 //ゴールしたかどうかを返すための関数
-bool Stagebase::setgoalflg(){
+bool Stagebase::getgoalflg(){
 	return _goalflg;
+}
+
+//ロケットのパワーを受け取るフラグ
+int Stagebase::getRocketPower(){
+	return _rocketpower;
 }

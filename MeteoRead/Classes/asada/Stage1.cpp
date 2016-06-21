@@ -3,16 +3,6 @@
 //公転する星との距離
 const float Hosikoutenn = 80.0f;
 
-//Sceneの作成
-/*絶対無くすので後で処理お願いします。*/
-Scene* Stage1::createScene()
-{
-	auto scene = Scene::create();
-	auto layer = Stage1::create();
-	scene->addChild(layer);
-	return scene;
-}
-
 //初期化の作成しました。
 bool Stage1::init(){
 	if (!Layer::init())return false;
@@ -20,7 +10,8 @@ bool Stage1::init(){
 	_startflg=false;		
 	_goalflg=false;		
 	_buttontouch=false;	
-	_rocketpower=false;
+	_rocketspeed = 1;
+	_rocketpower = 1;
 
 	_star = SpriteBatchNode::create("star2.png");
 	this->addChild(_star);
@@ -44,7 +35,6 @@ bool Stage1::init(){
 	//ゴールする星に入れる名前の設定
 	goalmai = std::string("goal");
 	goalset = false;
-	goalflg = false;
 	GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
 
 	//ロケットを出現させる
@@ -65,12 +55,8 @@ bool Stage1::init(){
 
 //更新処理
 void Stage1::update(float delta){
-	float power;
-	//必要な素材を作成する
-	if (_startflg == true)
-		power = _rocket->getSpeed() + _rocketpower;
-	else
-		power = _rocket->getSpeed();
+
+	auto speed = _rocketspeed + _rocketpower*0.5f;
 
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
@@ -90,8 +76,8 @@ void Stage1::update(float delta){
 	//ゴールの星に公転できたらクリア画面を出す。
 	if (_rocket->getRevolutionflg() == true &&
 		axishosi->getName() == goalmai&&
-		goalflg == false){
-		goalflg = true;
+		_goalflg == false){
+		_goalflg = true;
 	}
 
 	/*公転フラグがtrueでUiLayerのtouchがtrueなら
@@ -112,10 +98,10 @@ void Stage1::update(float delta){
 	//もし公転フラグがtrueならば公転させて、
 	//falseならば、向いてる方向に移動させる。
 	if (_rocket->getRevolutionflg() == true){
-		_Cal->angle(axishosi, _rocket, power);//公転させる
+		_Cal->angle(axishosi, _rocket, speed);//公転させる
 	}
 	else{
-		_Cal->move(_rocket, power);//直進運動させる
+		_Cal->move(_rocket,speed);//直進運動させる
 	}
 
 	//もしボタンを押しているのなら矢印を表示させる。
