@@ -18,13 +18,15 @@ private:
 	//float
 	float _speed;		//文字送りのスピード
 
-	//背景切替用
-	bool back2; //novelback2.pngに切替
-	std::string s2;//csvファイルのa2で反応させるために使う
+	//背景切替用フラグ
+	bool back2; //back2.pngに切替
+	bool back3; //back3.pngに切替
 
 	//行の一覧を作成した。文字列
 	std::string str[8];
-	std::string str2[8];//a2の判断用
+	std::string str2[8];//@a2の判断用
+	std::string str3[8];//@a3の判断用
+
 	//ゲーム画面の表示させるためのstring型
 	std::string s;
 	//作業しやすくするためにポインターを作成する
@@ -33,6 +35,7 @@ private:
 	std::string _currentString;//現在表示させたい行の文字一覧
 
 	cocos2d::Sprite* background2;
+	cocos2d::Sprite* background3;
 
 	void autospeedup();
 	void autospeeddown();
