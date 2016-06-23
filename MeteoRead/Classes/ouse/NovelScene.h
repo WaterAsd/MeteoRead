@@ -34,6 +34,7 @@ private:
 	//string
 	std::string _currentString;//Œ»İ•\¦‚³‚¹‚½‚¢s‚Ì•¶šˆê——
 
+	//”wŒi‚ğ“ü‚ê‚Ä‚¨‚­‚½‚ß‚Ì” 
 	cocos2d::Sprite* background2;
 	cocos2d::Sprite* background3;
 

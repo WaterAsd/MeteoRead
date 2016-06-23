@@ -71,11 +71,11 @@ bool NovelScene::init()
 	this->addChild(background3, 1);
 
 	//メッセージウィンドウの設定
-	auto Back = Sprite::create("window2.png");
+	auto Back = Sprite::create("box_blue.png");
 	//座標
-	Back->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 4.5 + origin.y));
+	Back->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 6 + origin.y));
 	//画像の大きさ
-	Back->setScale(0.75);
+	Back->setScale(1.3);
 	//表示　後ろの数字はレイヤーみたいなもん!
 	this->addChild(Back, 3);
 
@@ -127,7 +127,7 @@ bool NovelScene::init()
 	label->setOpacity(255);
 	label->setColor(Color3B::WHITE);
 	label->setAnchorPoint(Vec2(0.0f,1.0f));
-	label->setPosition(150,200);
+	label->setPosition(150,150);
 	this->addChild(label,100);
 
 	//文字に関する変数の初期化
