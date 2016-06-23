@@ -19,10 +19,13 @@ protected:
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
+	Sprite* starIcon;
+	Sprite* number[6];             //数字
 
 	//int
 	int up;                     //メーターの表示用の変数　0～5
 	int upCount;                //カウント
+	int timer[6];	//0,1=分　2,3=秒　4,5=コンマ
 
 	//float
 	float power;//ロケットの移動量
@@ -33,6 +36,9 @@ protected:
 	//Rect
 	Rect buttonRect;             //ボタンのレクト
 
+	//Label
+	Label *clock[3];
+
 	//Color3B
 	Color3B buttonColor;//ボタンの色
 
@@ -42,6 +48,7 @@ protected:
 	void Button();
 	void MeterMove();//メーターのクラス
 	void Map();//マップのクラス
+	void Timer();//時間のクラス
 
 	void CreateSprite();	// 画像作成クラス
 
