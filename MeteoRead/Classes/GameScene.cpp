@@ -1,5 +1,6 @@
 #include "GameScene.h"
 
+
 USING_NS_CC;
 
 #define COUNT 180.0f;
@@ -8,12 +9,16 @@ USING_NS_CC;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
+int GameScene::SelectCount;
 
 //移動量
 const float PlayerSpeed = 0.1f;
 
 //公転する星との距離
 const float Hosikoutenn = 80.0f;
+
+//セレクトシーンで選択した数字をステージに変更する
+
 
 //Sceneを使えるようにする
 Scene* GameScene::createScene()
@@ -31,8 +36,8 @@ bool GameScene::init(){
 	}
 
 	//画面サイズを獲得する
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	visibleSize = Director::getInstance()->getVisibleSize();
+	origin = Director::getInstance()->getVisibleOrigin();
 
 	//背景画像の作成
 	auto Space = Sprite::create("Space.jpg");
@@ -41,7 +46,9 @@ bool GameScene::init(){
 
 	//ゲームシーンの作成
 	auto GameLayer = Stage1::create();
-	Space->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+	GameLayer->setAnchorPoint(Vec2::ZERO);
+	GameLayer->setPosition(0,0);
+	GameLayer->stageSelect(SelectCount);
 	this->addChild(GameLayer);
 	_stage1 = GameLayer;
 
@@ -63,7 +70,33 @@ bool GameScene::init(){
 
 	auto _st = Start::create();
 	this->addChild(_st);
-	_start = _st;;
+	_start = _st;
+
+	//タッチの処理を実行する
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+		if (_UILayer->getTouch() == true)return false;
+		touchpoint = touch->getLocation();
+		_stage1->stopRocket();
+		return true;
+	};
+	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
+		auto Touch = touch->getLocation();
+		auto move = Touch - touchpoint;
+		auto getstage = _stage1->getPosition();
+		_stage1->setPosition(Vec2::ZERO);
+		touchpoint = _stage1->getPosition();
+
+	};
+	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
+		
+	};
+	listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
+		
+	};
+
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
 }
@@ -72,21 +105,26 @@ bool GameScene::init(){
 void GameScene::update(float delta){
 
 	//必要な情報を獲得する
-	bool Start = _start->getStart();
-	bool goal = _stage1->getgoalflg();
-	bool touch = _UILayer->getTouch();
+	_Start = _start->getStart();
+	_goal = _stage1->getgoalflg();
+	_touch = _UILayer->getTouch();
 
 	//ゲーム中なら
-	if (Start == true && goal == false){
+	if (_Start == true && _goal == false){
 		_stage1->setrocketpower(_UILayer->getmeterReturn());
-		_stage1->setbottontouch((int)touch);
+		_stage1->setbottontouch((int)_touch);
 	}
 	else{
 		_stage1->setrocketpower(_stage1->getRocketPower());
-		if (goal == true&&goalflg == false){
+		if (_goal == true&&goalflg == false){
 			goalflg = true;
 			auto goal = Goal::create();
 			this->addChild(goal);
 		}
 	}
+}
+
+//現在遊んでいるゲームを取得する
+void GameScene::getStage(int count){
+
 }

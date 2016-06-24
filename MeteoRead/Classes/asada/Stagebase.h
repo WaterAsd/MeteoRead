@@ -18,7 +18,6 @@ protected:
 	int _rocketspeed;	//ロケットのもともとの数値
 	int _rocketpower;	//UiLayerで追加された数値分のpower
 
-	Rocket *_rocket;	//ロケットの情報
 	Road *_road;		//道の情報
 	Calculation *_Cal;	//計算機の情報
 
@@ -44,6 +43,8 @@ private:
 	
 
 public:
+	Rocket *_rocket;	//ロケットの情報
+
 	void setstartflg(bool flg);			//ゲームがスタートしたかどうかを確認するのフラグ
 	void setrocketpower(int power);		//ロケットのスピードを受け取るためのフラグ
 	void setbottontouch(bool touch);		//ボタンをタッチしたかどうかを確認するためのフラグ

@@ -16,6 +16,9 @@
     <Filter Include="src\石脇">
       <UniqueIdentifier>{5e8e5c17-06de-48ed-93ba-aab546b21d06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ステージ">
+      <UniqueIdentifier>{cf8a1ea9-8fc5-4e58-899b-fa544b359e27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,11 +71,11 @@
     <ClCompile Include="..\Classes\asada\Goal.cpp" />
     <ClCompile Include="..\Classes\asada\Start.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
-    <ClCompile Include="..\Classes\asada\Stage1.cpp">
-      <Filter>src\Game用の</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\asada\Stagebase.cpp">
       <Filter>src\Game用の</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\Stage1.cpp">
+      <Filter>src\ステージ</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,11 +129,11 @@
     <ClInclude Include="..\Classes\asada\Goal.h" />
     <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
-    <ClInclude Include="..\Classes\asada\Stage1.h">
-      <Filter>src\Game用の</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\asada\Stagebase.h">
       <Filter>src\Game用の</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\Stage1.h">
+      <Filter>src\ステージ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

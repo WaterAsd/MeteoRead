@@ -15,7 +15,24 @@ class GameScene : public cocos2d::Layer
 {
 private:
 
+	bool _Start;
+	bool _goal;
+	bool _touch;
+
+	Vec2 touchpoint;
+
+	Size visibleSize;
+	Vec2 origin;
+
 	Stage1 *_stage1;
+	/*Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;*/
 	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
@@ -43,6 +60,11 @@ private:
 					//false:発射もしくは直進中
 
 public:
+	static int SelectCount;
+	void getStage(int count);
+	Stagebase craeateStage(int count);
+
+
 	static Vec2 RoPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言

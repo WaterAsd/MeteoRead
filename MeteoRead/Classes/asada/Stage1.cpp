@@ -17,32 +17,12 @@ bool Stage1::init(){
 	this->addChild(_star);
 
 	//画面サイズを獲得する
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	//背景画像の作成
-	auto Space = Sprite::create("Space.jpg");
-	Space->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(Space);
-
-	//星を出現させる
-	auto hosimei = std::string("Earth.png");
-	StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
-	StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
-	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
-	StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
+	visibleSize = Director::getInstance()->getVisibleSize();
+	origin = Director::getInstance()->getVisibleOrigin();
 
 	//ゴールする星に入れる名前の設定
-	goalmai = std::string("goal");
 	goalset = false;
-	GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
-
-	//ロケットを出現させる
-	auto rocket = Rocket::create();
-	rocket->setPosition(visibleSize.width, 0);
-	rocket->setRotation(-90);
-	this->addChild(rocket);
-	_rocket = rocket;
+	goalmai = std::string("goal");
 
 	//計算機を作成する
 	auto Cal = Calculation::create();
@@ -105,15 +85,74 @@ void Stage1::update(float delta){
 	}
 
 	//もしボタンを押しているのなら矢印を表示させる。
-
-	auto hosi1 = stars.at(2);
+	/*auto hosi1 = stars.at(2);
 	auto hosi2 = stars.at(3);
 
-	_Cal->hosiangle(hosi1, hosi2, 1.0f);
+	_Cal->hosiangle(hosi1, hosi2, 1.0f);*/
 }
 
 void Stage1::setRoad(){
 	auto hoge = Sprite::createWithTexture(_star->getTexture());
 	hoge->setPosition(_rocket->getPosition());
 	this->addChild(hoge,-1);
+}
+
+//ステージによって星を配置する
+void Stage1::stageSelect(int count){
+	auto hosimei = std::string("Earth.png");
+	auto rocket = Rocket::create();
+
+	switch (count)
+	{
+	case 1:
+		/*ここに星を配置するものを入力してください。*/
+		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
+		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
+		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
+
+		/*ここにロケットの配置場所を入力してください。*/
+		rocket->setPosition(visibleSize.width,0);
+		rocket->setRotation(-90);
+		follorRocket(rocket);
+		this->addChild(rocket);
+		_rocket = rocket;
+		break;
+	case 2:
+		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
+		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
+		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
+
+		rocket->setPosition(visibleSize.width, 0);
+		rocket->setRotation(-90);
+		this->addChild(rocket);
+		_rocket = rocket;
+		break;
+
+	default:
+		break;
+	}
+}
+
+void Stage1::setStageSelect(const int count){
+	_stageselect = count;
+}
+
+//rocketにカメラを追尾するための処理
+void Stage1::follorRocket(Rocket* rocket){
+	_setrocket = Follow::create(rocket);
+	_setrocket->setTag(20);
+	this->runAction(_setrocket);
+}
+
+//Rocketの自動追尾をやめるための処理
+void Stage1::stopRocket(){
+	this->stopActionByTag(20);
+}
+
+void Stage1::moveLayer(Vec2 move){
+	this->setPosition(this->getPosition() + move);
 }

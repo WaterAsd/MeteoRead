@@ -1,7 +1,6 @@
 #include "SelectScene.h"
 #include "GameScene.h"
 
-
 USING_NS_CC;
 
 Scene* SelectScene::createScene()
@@ -11,8 +10,6 @@ Scene* SelectScene::createScene()
     
     // 'layer' is an autorelease object
 	auto layer = SelectScene::create();
-
-
 
     // add layer as a child to scene
     scene->addChild(layer);
@@ -93,9 +90,6 @@ bool SelectScene::init()
 	Back->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 	////・・・・・お前が一番下だ！背景ッ!!!
 	this->addChild(Back, -1);
-
-
-	
 	
     return true;
 }
@@ -109,26 +103,26 @@ void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type)
 	switch (type)
 	{
 	case ui::Widget::TouchEventType::BEGAN:
-		if (SelectCount ==  1)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, GameScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  2)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  3)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  4)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  5)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  6)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  7)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  8)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount ==  9)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 10)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 11)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 12)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 13)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 14)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 15)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 16)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 17)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 18)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 19)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		if (SelectCount == 20)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 1)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, GameScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 2)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, GameScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 3)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 4)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 5)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 6)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 7)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 8)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 9)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 10)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 11)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 12)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 13)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 14)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 15)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 16)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 17)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 18)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 19)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
+		if (GameScene::SelectCount == 20)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
 			break;
 	case ui::Widget::TouchEventType::ENDED:
 
@@ -172,12 +166,10 @@ void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int
 
 		auto action = FadeTo::create(1, 128);
 		SelectLabel->runAction(action);
-		SelectCount = i;
+		GameScene::SelectCount = i;
 
 		break;
 	}
-
-
 }
 
 void SelectScene::menuCloseCallback(Ref* pSender)
