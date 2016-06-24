@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\isiwaki\SelectScene.cpp" />
+    <ClCompile Include="..\Classes\KBT\GameOver.cpp" />
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
     <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
     <ClCompile Include="..\Classes\oohasi\Title.cpp" />
@@ -177,6 +178,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\isiwaki\SelectScene.h" />
+    <ClInclude Include="..\Classes\KBT\GameOver.h" />
     <ClInclude Include="..\Classes\KBT\Road.h" />
     <ClInclude Include="..\Classes\KBT\UILayer.h" />
     <ClInclude Include="..\Classes\oohasi\Title.h" />
