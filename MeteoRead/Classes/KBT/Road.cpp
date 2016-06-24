@@ -23,7 +23,7 @@ bool Road::init()
 	this->addChild(roadImg);
 	// アップデートを実行する
 	//this->scheduleUpdate();
-	this->schedule(schedule_selector(Road::update),0.1);
+	this->schedule(schedule_selector(Road::update));
 }
 
 void Road::update(float delta)
@@ -38,6 +38,7 @@ void Road::update(float delta)
 			//myRoad[i]->removeFromParent();
 			//myRoad.erase(myRoad.begin());
 		}
+
 	}
 	log("%d", myRoad.size());
 }

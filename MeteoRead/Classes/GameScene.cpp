@@ -2,12 +2,19 @@
 #include "asada/Rocket.h"
 #include "asada/Start.h"
 #include "asada/Goal.h"
+#include "KBT\GameOver.h"
+#include "isiwaki\SelectScene.h"
 
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
 Rocket* GameScene::_rocket;
+
+Vec2 GameScene::starPos[4];
+Vec2 GameScene::goalPos;
+Vector<Earth*> GameScene::stars;
+bool GameScene::gameOver;
 
 //移動量
 const float PlayerSpeed = 0.1f;
@@ -31,7 +38,7 @@ bool GameScene::init(){
 	}
 
 	//画面サイズを獲得する
-	Size visibleSize = Director::getInstance()->getVisibleSize();
+	visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	//背景画像の作成
@@ -39,16 +46,21 @@ bool GameScene::init(){
 	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(Space);
 
+	starPos[0] = Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 100);
+	starPos[1] = Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200);
+	starPos[2] = Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100);
+	starPos[3] = Vec2(visibleSize.width / 2, visibleSize.height / 2);
+
 	//星を出現させる
 	auto hosimei = std::string("Earth.png");
-	StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200),hosimei);
-	StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200),hosimei);
-	StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100),hosimei);
-	StarSet(Vec2(visibleSize.width / 2 , visibleSize.height / 2 ),hosimei);
+	StarSet(starPos[0], hosimei);
+	StarSet(starPos[1], hosimei);
+	StarSet(starPos[2], hosimei);
+	StarSet(starPos[3], hosimei);
 
 	//ロケットを出現させる
 	auto rocket = Rocket::create();
-	rocket->setPosition(visibleSize.width,0);
+	rocket->setPosition(visibleSize.width-100,200);
 	rocket->setRotation(-90);
 	_rocket = rocket;
 
@@ -77,11 +89,14 @@ bool GameScene::init(){
 	touchOK = false;
 
 	//ゴールする星に入れる名前の設定
+	goalPos = Vec2(200, visibleSize.height - 200);
+
 	goalmai = std::string("goal");
 	goalset = false;
 	goalflg = false;
-	GoalStarset(Vec2(200, visibleSize.height - 200),goalmai);
+	GoalStarset(goalPos,goalmai);
 
+	gameOver = false;
 
 	auto _st = Start::create();
 	this->addChild(_st);
@@ -153,7 +168,24 @@ void GameScene::update(float delta){
 	auto hosi2 = stars.at(3);
 	
 	_Cal->hosiangle(hosi1,hosi2,1.0f);
+
+	//マップのアイコンと同期
 	RoPos = _rocket->getPosition();
+	for (int i = 0; i < 4; i++)
+	{
+		starPos[i] = stars.at(i)->getPosition();
+	}
+
+	//画面外に出たらゲームオーバー
+	if (RoPos.x < 0 || visibleSize.width < RoPos.x || RoPos.y < 0 || visibleSize.height < RoPos.y)
+	{
+		gameOver = true;
+	}
+	if (gameOver)
+	{
+		auto _st = GameOver::create();
+		this->addChild(_st);
+	}
 }
 
 //星を出現させる

@@ -12,7 +12,7 @@
 class GameScene : public cocos2d::Layer
 {
 private:
-	
+	Size visibleSize;
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
 	Start* _start;
@@ -26,7 +26,7 @@ private:
 	float PlayerMoveY;
 
 	int starCount;//星の数を覚えておく
-	Vector<Earth*> stars;//星の座標一覧を取得する。
+	
 
 	void StarSet(Vec2 Pos, std::string hosimei);//画面に星を入れる。
 	void GoalStarset(Vec2 Pos, std::string hosimei);
@@ -40,7 +40,11 @@ private:
 
 public:
 	static Vec2 RoPos;
+	static Vec2 starPos[4];
+	static Vec2 goalPos;
+	static Vector<Earth*> stars;//星の座標一覧を取得する。
 	static Rocket* _rocket;//ロケットのポインター
+	static bool gameOver;//ゲームオーバーフラグ
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

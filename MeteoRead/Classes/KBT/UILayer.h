@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "Math.h"
-#include "SimpleAudioEngine.h"
+#include "ui/CocosGUI.h"
 
 USING_NS_CC;
 
@@ -19,7 +19,8 @@ protected:
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
-	Sprite* starIcon;            //星のアイコン
+	Sprite* starIcon[4];            //星のアイコン
+	Sprite* goalIcon;            //ゴールのアイコン
 	Sprite* number[6];             //数字
 
 	//int
@@ -38,6 +39,16 @@ protected:
 
 	//Label
 	Label *clock[3];
+
+	//Vec2
+	Vec2 iconPos;
+	//アイコン用
+	Vec2 worldPosition;
+	Vec2 localPosition;
+	Vec2 starWorldPosition[4];
+	Vec2 goalWorldPosition;
+	Vec2 starLocalPosition[4];
+	Vec2 goalLocalPosition;
 
 	//Color3B
 	Color3B buttonColor;//ボタンの色
