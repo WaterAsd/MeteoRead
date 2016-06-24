@@ -14,4 +14,7 @@ public:
     CREATE_FUNC(Title);
 };
 
+//BGM
+//float BGM;
+
 #endif // __HELLOWORLD_TITLE_H__

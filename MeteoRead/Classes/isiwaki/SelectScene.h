@@ -31,6 +31,8 @@ private:
 	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i);
 	
+	//BGM
+	float BGM;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

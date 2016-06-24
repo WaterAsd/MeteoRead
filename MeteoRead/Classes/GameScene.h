@@ -37,6 +37,8 @@ private:
 	bool touchOK;	//Œö“]‚É”­Ë‚Ì€”õ‚ğİ‚¯‚éB
 					//true:”­Ë€”õ’†
 					//false:”­Ë‚à‚µ‚­‚Í’¼i’†
+	
+	float BGM;		//BGM
 
 public:
 	static Vec2 RoPos;

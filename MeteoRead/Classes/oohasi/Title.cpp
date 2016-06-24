@@ -1,6 +1,10 @@
 #include "Title.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+
+//BGM（SimpleAudioEngine）使うために必要
+using namespace CocosDenshion;
 
 Scene* Title::createScene()
 {
@@ -23,6 +27,9 @@ bool Title::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	//BGM
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMTitle.mp3");
 
 	
 	//スタートボタンを設置

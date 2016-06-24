@@ -1,8 +1,11 @@
 #include "SelectScene.h"
 #include "GameScene.h"
-
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+
+//BGM（SimpleAudioEngine）使うために必要
+using namespace CocosDenshion;
 
 Scene* SelectScene::createScene()
 {
@@ -43,6 +46,9 @@ bool SelectScene::init()
     {
         return false;
     }
+
+	//BGM
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMSelect.mp3");
     
 	//リストビューの表示
 	auto liseView = ui::ListView::create();

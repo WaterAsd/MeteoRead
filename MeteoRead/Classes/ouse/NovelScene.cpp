@@ -2,10 +2,12 @@
 #include "ouse/NovelScene.h"
 #include "ui/CocosGUI.h"
 #include "oohasi\Title.h"
-
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
+//BGM（SimpleAudioEngine）使うために必要
+using namespace CocosDenshion;
 
 Scene* NovelScene::createScene()
 {
@@ -32,6 +34,12 @@ bool NovelScene::init()
 	//背景切替フラグ
 	back2 = false;
 	back3 = false;
+
+	//BGM
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMNovel.mp3");
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic("BGM/title.mp3");
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("BGM/BGMNovel.mp3", true);
 
 	//ゲームの画面サイズと画面の一番端の座標を取得する
 	Size visibleSize = Director::getInstance()->getVisibleSize();

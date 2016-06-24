@@ -1,8 +1,12 @@
 #include "GameScene.h"
 #include "asada/Rocket.h"
 #include "asada/Start.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+
+//BGM（SimpleAudioEngine）使うために必要
+using namespace CocosDenshion;
 
 //UiLayer
 UILayer *GameScene::uiLayer;
@@ -30,6 +34,9 @@ bool GameScene::init(){
 	if (!Layer::init()){
 		return false;
 	}
+
+	//BGM
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMGame.mp3");
 
 	//画面サイズを獲得する
 	Size visibleSize = Director::getInstance()->getVisibleSize();
