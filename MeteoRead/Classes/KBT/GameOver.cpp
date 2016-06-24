@@ -11,7 +11,7 @@ bool GameOver::init(){
 	auto origin = Director::getInstance()->getVisibleOrigin();
 
 	//到着画像を出現させる
-	auto image = Sprite::create("Clear.png");
+	auto image = Sprite::create("GameOver.png");
 	image->setPosition(visiblesize.width / 2,
 		visiblesize.height / 2 + 100);
 	this->addChild(image);
@@ -25,7 +25,7 @@ bool GameOver::init(){
 	_backimage = backimage;
 
 	//リスタート
-	auto restart = ui::Button::create("button.png");
+	auto restart = ui::Button::create("retry.png");
 	restart->setPosition(Vec2(visiblesize.width / 2 + 200, visiblesize.height / 2 - 100));
 	this->addChild(restart);
 	restart->addTouchEventListener(CC_CALLBACK_2(GameOver::restarttouchEvent, this));
