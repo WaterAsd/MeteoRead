@@ -4,6 +4,8 @@
 
 USING_NS_CC;
 
+#define COUNT 180.0f;
+
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
@@ -86,7 +88,9 @@ bool GameScene::init(){
 
 	auto _st = Start::create();
 	this->addChild(_st);
-	_start = _st;
+	_start = _st;;
+
+	this->runAction(Follow::create(_rocket));
 
 	return true;
 }
@@ -120,9 +124,8 @@ void GameScene::update(float delta){
 	if (_rocket->getRevolutionflg() == true &&
 							axishosi->getName() == goalmai&&
 							goalflg == false){
-		auto _st = Start::create();
+		auto _st = Goal::create();
 		this->addChild(_st);
-		_start = _st;
 		goalflg = true;
 	}
 
@@ -201,7 +204,7 @@ void GameScene::GoalStarset(Vec2 Pos, std::string hosimei){
 
 	else{
 		auto earth = Earth::create();
-		earth->planetcreate("goalstars.png");
+		earth->planetcreate("goalstars2.png");
 		earth->setName(hosimei);
 		earth->setPosition(Pos);
 		this->addChild(earth);
