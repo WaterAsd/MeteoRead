@@ -168,7 +168,7 @@ Vec2 Stage1::getrocket(){
 }
 //¯‚ÌˆÊ’uî•ñ‚ð“n‚·
 Vec2 Stage1::getstar(int i){
-	if (stars.size > i){
+	if (stars.size() > i){
 		auto star = stars.at(i);
 		return star->getPosition();
 	}

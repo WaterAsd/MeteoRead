@@ -8,7 +8,6 @@ USING_NS_CC;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
-Rocket *GameScene::_rocket;
 int GameScene::SelectCount;
 
 //ˆÚ“®—Ê

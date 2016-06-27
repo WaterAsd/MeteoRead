@@ -11,8 +11,6 @@
 #include "asada/Goal.h"
 #include "asada/Stage1.h"
 
-
-
 class GameScene : public cocos2d::Layer
 {
 private:
@@ -53,7 +51,7 @@ private:
 					//true:発射準備中
 					//false:発射もしくは直進中
 
-	//ミニマップに必要な情報を入れる
+	//ＵＩのミニマップに必要な情報を入れる
 	void minimapdate();
 
 public:
@@ -69,9 +67,6 @@ public:
 	CREATE_FUNC(GameScene);//クラスの宣言
 	static UILayer* uiLayer;//UILayerを使えるようにする。
 	static Earth* earth;//星クラスを使える様にする。
-	static 	int SelectCount;
-
-
 };
 
 #endif //__METEOREAD__GAME__
