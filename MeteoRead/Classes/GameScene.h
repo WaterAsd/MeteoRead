@@ -3,16 +3,37 @@
 
 #include "cocos2d.h"
 #include "KBT/UILayer.h"
-#include "KBT/Road.h"
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
 #include "asada/Start.h"
+#include "KBT/Road.h"
+#include "asada/Goal.h"
+#include "asada/Stage1.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
+
+	bool _Start;
+	bool _goal;
+	bool _touch;
+
+	Vec2 touchpoint;
+
 	Size visibleSize;
+	Vec2 origin;
+
+	Stage1 *_stage1;
+	/*Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;
+	Stage1 *_stage1;*/
+	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
 	Start* _start;
@@ -20,13 +41,13 @@ private:
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
-	bool goalflg;		//星にゴールしたかどうかを設定するフラグ
+	bool goalflg;
 
 	float PlayerMoveX;
 	float PlayerMoveY;
 
 	int starCount;//星の数を覚えておく
-	
+	Vector<Earth*> stars;//星の座標一覧を取得する。
 
 	void StarSet(Vec2 Pos, std::string hosimei);//画面に星を入れる。
 	void GoalStarset(Vec2 Pos, std::string hosimei);
@@ -39,11 +60,12 @@ private:
 					//false:発射もしくは直進中
 
 public:
+	static int SelectCount;
+	void getStage(int count);
+	Stagebase craeateStage(int count);
+
+
 	static Vec2 RoPos;
-	static Vec2 starPos[4];
-	static Vec2 goalPos;
-	static Vector<Earth*> stars;//星の座標一覧を取得する。
-	static Rocket* _rocket;//ロケットのポインター
 	static bool gameOver;//ゲームオーバーフラグ
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言

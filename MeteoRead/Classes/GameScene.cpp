@@ -1,19 +1,15 @@
 #include "GameScene.h"
-#include "asada/Rocket.h"
-#include "asada/Start.h"
-#include "asada/Goal.h"
 #include "KBT\GameOver.h"
-#include "isiwaki\SelectScene.h"
+
+USING_NS_CC;
+
+#define COUNT 180.0f;
 
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
-Rocket* GameScene::_rocket;
-
-Vec2 GameScene::starPos[4];
-Vec2 GameScene::goalPos;
-Vector<Earth*> GameScene::stars;
+int GameScene::SelectCount;
 bool GameScene::gameOver;
 
 //移動量
@@ -21,6 +17,9 @@ const float PlayerSpeed = 0.1f;
 
 //公転する星との距離
 const float Hosikoutenn = 80.0f;
+
+//セレクトシーンで選択した数字をステージに変更する
+
 
 //Sceneを使えるようにする
 Scene* GameScene::createScene()
@@ -39,40 +38,20 @@ bool GameScene::init(){
 
 	//画面サイズを獲得する
 	visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	origin = Director::getInstance()->getVisibleOrigin();
 
 	//背景画像の作成
 	auto Space = Sprite::create("Space.jpg");
 	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(Space);
 
-	starPos[0] = Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 100);
-	starPos[1] = Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200);
-	starPos[2] = Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100);
-	starPos[3] = Vec2(visibleSize.width / 2, visibleSize.height / 2);
-
-	//星を出現させる
-	auto hosimei = std::string("Earth.png");
-	StarSet(starPos[0], hosimei);
-	StarSet(starPos[1], hosimei);
-	StarSet(starPos[2], hosimei);
-	StarSet(starPos[3], hosimei);
-
-	//ロケットを出現させる
-	auto rocket = Rocket::create();
-	rocket->setPosition(visibleSize.width-100,200);
-	rocket->setRotation(-90);
-	_rocket = rocket;
-
-	//道の出現
-	auto road = Road::create();
-	this->addChild(road);
-	_road = road;
-	this->addChild(rocket);
-
-	//計算機を使えるようにする
-	auto Cal = Calculation::create();
-	_Cal = Cal;
+	//ゲームシーンの作成
+	auto GameLayer = Stage1::create();
+	GameLayer->setAnchorPoint(Vec2::ZERO);
+	GameLayer->setPosition(0,0);
+	GameLayer->stageSelect(SelectCount);
+	this->addChild(GameLayer);
+	_stage1 = GameLayer;
 
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
@@ -85,22 +64,42 @@ bool GameScene::init(){
 	//回転する星をリセットする
 	axishosi = 0;
 
-	//押したか胴かを判定するための処理を記入する
-	touchOK = false;
-
 	//ゴールする星に入れる名前の設定
-	goalPos = Vec2(200, visibleSize.height - 200);
-
 	goalmai = std::string("goal");
 	goalset = false;
 	goalflg = false;
-	GoalStarset(goalPos,goalmai);
-
-	gameOver = false;
 
 	auto _st = Start::create();
 	this->addChild(_st);
 	_start = _st;
+
+	//タッチの処理を実行する
+	auto listener = EventListenerTouchOneByOne::create();
+	listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+		if (_UILayer->getTouch() == true)return false;
+		touchpoint = touch->getLocation();
+		_stage1->stopRocket();
+		return true;
+	};
+	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
+		auto Touch = touch->getLocation();
+		auto move = Touch - touchpoint;
+		auto getstage = _stage1->getPosition();
+		_stage1->setPosition(Vec2::ZERO);
+		touchpoint = _stage1->getPosition();
+
+	};
+	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
+		
+	};
+	listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
+		
+	};
+
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	gameOver = false;
 
 	return true;
 }
@@ -108,72 +107,23 @@ bool GameScene::init(){
 //マイフレーム更新関数
 void GameScene::update(float delta){
 
-	float power;
-	//必要な素材を作成する
-	if (_start->getStart() == true)
-		power = _rocket->getSpeed() + _UILayer->getmeterReturn();
-	else
-		power = _rocket->getSpeed();
+	//必要な情報を獲得する
+	_Start = _start->getStart();
+	_goal = _stage1->getgoalflg();
+	_touch = _UILayer->getTouch();
 
-	//配列に入っている星の数までfor分で処理する
-	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
-	if (_rocket->getRevolutionflg() == false){
-		Earth*karihosi = axishosi;
-		float smoleLength = NULL;
-		for (auto hosis : stars){
-			float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
-			if (length <= Hosikoutenn && (length < smoleLength || smoleLength == NULL)&&karihosi!=hosis){
-				axishosi = hosis;
-				smoleLength = length;
-				_rocket->setRevolutionflg(true);
-			}
+	//ゲーム中なら
+	if (_Start == true && _goal == false){
+		_stage1->setrocketpower(_UILayer->getmeterReturn());
+		_stage1->setbottontouch((int)_touch);
+	}
+	else{
+		_stage1->setrocketpower(_stage1->getRocketPower());
+		if (_goal == true&&goalflg == false){
+			goalflg = true;
+			auto goal = Goal::create();
+			this->addChild(goal);
 		}
-	}
-
-	//ゴールの星に公転できたらクリア画面を出す。
-	if (_rocket->getRevolutionflg() == true &&
-				axishosi->getName() == goalmai&&
-							goalflg == false){
-		auto _st = Goal::create();
-		this->addChild(_st);
-		goalflg = true;
-	}
-
-	/*公転フラグがtrueでUiLayerのtouchがtrueなら
-		touchOKをfalseにして発射する*/
-	if (_rocket->getRevolutionflg() == true &&
-		_UILayer->touch == false &&
-		touchOK == true){
-		touchOK = false;
-		_rocket->setRevolutionflg(false);
-	}
-
-	/*公転フラグがtrueで、UiLayerのtouchがfalseなら
-		touchOKをtrueにして発射の準備をする*/
-	if (_rocket->getRevolutionflg() == true &&
-		_UILayer->touch == true){
-		touchOK = true;
-	}
-	//もし公転フラグがtrueならば公転させて、
-	//falseならば、向いてる方向に移動させる。
-	if (_rocket->getRevolutionflg() == true){
-		_Cal->angle(axishosi, _rocket, power);//公転させる
-	}else{
-		_Cal->move(_rocket, power);//直進運動させる
-	}
-
-	//もしボタンを押しているのなら矢印を表示させる。
-
-	auto hosi1 = stars.at(2);
-	auto hosi2 = stars.at(3);
-	
-	_Cal->hosiangle(hosi1,hosi2,1.0f);
-
-	//マップのアイコンと同期
-	RoPos = _rocket->getPosition();
-	for (int i = 0; i < 4; i++)
-	{
-		starPos[i] = stars.at(i)->getPosition();
 	}
 
 	//画面外に出たらゲームオーバー
@@ -188,53 +138,7 @@ void GameScene::update(float delta){
 	}
 }
 
-//星を出現させる
-void GameScene::StarSet(Vec2 Pos,std::string hosimei){
-	auto earth = Earth::create();
-	earth->planetcreate(hosimei);
-	earth->setPosition(Pos);
-	this->addChild(earth);
-	starCount++;//星の数増やす。
-	stars.pushBack(earth);//星の情報を保存する。
-	//starsname.pushBack(hosimei);//星の名前を取得しておく
-}
+//現在遊んでいるゲームを取得する
+void GameScene::getStage(int count){
 
-//現在近い星があるかどうかを検出する
-/*
-@*hosi:もし存在するなら使用するので保存する
-*/
-void GameScene::selectSter(Earth*hosi){
-	float smoleLength = NULL;
-	Earth*karihosi = 0;
-	//配列に入っている星の数までfor分で処理する
-	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
-	for (auto hosis : stars){
-		float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
-		if (length <= 100.0f && (length < smoleLength || smoleLength == NULL)){
-			karihosi = hosis;
-			smoleLength = length;
-			_rocket->setRevolutionflg(true);
-		}
-	}
-	hosi = karihosi;
-}
-
-//ゴールに必要な星を作成する
-/*
-@Pos:星の場所を設定する
-＠hosimei:星に入れる（setName）の文字
-*/
-void GameScene::GoalStarset(Vec2 Pos, std::string hosimei){
-	if (goalset == true){}
-
-	else{
-		auto earth = Earth::create();
-		earth->planetcreate("goalstars.png");
-		earth->setName(hosimei);
-		earth->setPosition(Pos);
-		this->addChild(earth);
-		starCount++;//星の数増やす。
-		stars.pushBack(earth);//星の情報を保存する。
-		goalset == false;
-	}
 }
