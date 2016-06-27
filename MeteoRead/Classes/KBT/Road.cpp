@@ -1,5 +1,4 @@
 #include "Road.h"
-#include "GameScene.h"
 #include "asada\Rocket.h"
 #include "asada\/Calculation.h"
 

@@ -1,6 +1,5 @@
 ﻿#include "AppDelegate.h"
 #include "ouse/NovelScene.h"
-#include "GameScene.h"
 #include "oohasi/Title.h"
 #include "isiwaki/SelectScene.h"
 
