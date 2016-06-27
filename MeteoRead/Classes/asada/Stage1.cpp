@@ -1,5 +1,7 @@
 #include "asada/Stage1.h"
 
+Vec2 Stage1::starPos[4];
+
 //公転する星との距離
 const float Hosikoutenn = 80.0f;
 
@@ -107,10 +109,15 @@ void Stage1::stagecreate(int count){
 	{
 	case 1:
 		/*ここに星を配置するものを入力してください。*/
-		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
-		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
-		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
-		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
+		starPos[0] = Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 100);
+		starPos[1] = Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200);
+		starPos[2] = Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100);
+		starPos[3] = Vec2(visibleSize.width / 2, visibleSize.height / 2);
+
+		StarSet(starPos[0], hosimei);
+		StarSet(starPos[1], hosimei);
+		StarSet(starPos[2], hosimei);
+		StarSet(starPos[3], hosimei);
 		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
 
 		/*ここにロケットの配置場所を入力してください。*/

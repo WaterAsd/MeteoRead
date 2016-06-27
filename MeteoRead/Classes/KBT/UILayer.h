@@ -72,6 +72,8 @@ public:
 
 	bool getTouch();
 
+	void setStar(Vec2 pos,int star);
+
 	int getmeterReturn();
 
 	bool touch;

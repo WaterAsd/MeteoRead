@@ -30,17 +30,17 @@ void Road::update(float delta)
 {
 	myRoad.push_back(Sprite::createWithTexture(roadImg->getTexture()));
 	roadSet(myRoad.back());
-	for (int i = 0; i < myRoad.size(); i++)
-	{
-		roadRect = myRoad[i]->boundingBox();
-		if (roadRect.intersectsRect(roadRect))
-		{
-			//myRoad[i]->removeFromParent();
-			//myRoad.erase(myRoad.begin());
-		}
+	//for (int i = 0; i < myRoad.size(); i++)
+	//{
+	//	roadRect = myRoad[i]->boundingBox();
+	//	if (roadRect.intersectsRect(roadRect))
+	//	{
+	//		//myRoad[i]->removeFromParent();
+	//		//myRoad.erase(myRoad.begin());
+	//	}
 
-	}
-	log("%d", myRoad.size());
+	//}
+	//log("%d", myRoad.size());
 }
 
 void Road::roadSet(Sprite* road){

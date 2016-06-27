@@ -100,34 +100,34 @@ void UILayer::MeterMove()
 void UILayer::Map()
 {
 	//ワールド座標に変換
-	worldPosition = GameScene::RoPos; 
-	starWorldPosition[4];
-	goalWorldPosition=GameScene::goalPos;
-	starLocalPosition[4];
-	goalLocalPosition;
+	//worldPosition = GameScene::RoPos; 
+	//starWorldPosition[4];
+	//goalWorldPosition=GameScene::goalPos;
+	//starLocalPosition[4];
+	//goalLocalPosition;
 
-	//アイコンをロケットに追従させる
-	localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
-	this->myIcon->setPosition(localPosition);
-	myIcon->setRotation(Calculation::Angle);
+	////アイコンをロケットに追従させる
+	//localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
+	//this->myIcon->setPosition(localPosition);
+	//myIcon->setRotation(Calculation::Angle);
 
-	iconPos = myIcon->getPosition();
+	//iconPos = myIcon->getPosition();
 
-	//ミニマップ外に出たらロケット消失
-	if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	{
-		myIcon->setVisible(false);
-	}
+	////ミニマップ外に出たらロケット消失
+	//if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
+	//{
+	//	myIcon->setVisible(false);
+	//}
 
-	//星に追従
-	for (int i = 0; i < 4; i++)
-	{
-		starWorldPosition[i] = GameScene::starPos[i];
-		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-		this->starIcon[i]->setPosition(starLocalPosition[i]);
-	}
-	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
-	this->goalIcon->setPosition(goalLocalPosition);
+	////星に追従
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	starWorldPosition[i] = GameScene::starPos[i];
+	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
+	//}
+	//goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
+	//this->goalIcon->setPosition(goalLocalPosition);
 }
 
 void UILayer::Timer()
@@ -240,4 +240,15 @@ bool UILayer::getTouch(){
 int UILayer::getmeterReturn()
 {
 	return power;
+}
+
+void UILayer::setStar(Vec2 pos,int star)
+{
+	//星に追従
+	//for (int i = 0; i < star; i++)
+	//{
+	//	starWorldPosition[i] = GameScene::starPos[i];
+	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
+	//}
 }
