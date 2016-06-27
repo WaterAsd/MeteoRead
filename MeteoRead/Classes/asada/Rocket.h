@@ -19,6 +19,9 @@ private:
 	int speed;
 	int rot;
 
+	Sprite *_arrow;//矢印画像を入れておくためのポインター変数
+	bool _flgarrow;//矢印を出してもよいかを確認するbool型
+
 	Sprite* _Rocket;//ロケット扱える様にする為のポインター
 	Booster* _booster;//ブースターを扱える様にするためのポインター
 
@@ -53,6 +56,9 @@ public:
 	//移動に関する関数処理
 	void move(const Earth *ea);
 	void Col(const Earth *ea);
+
+	//矢印を出してもよいかを確認する処理
+	void setArrow(const bool flg);
 
 	//ブースターの画像を一枚ずつ保存しておくための入れ物
 	CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<cocos2d::SpriteFrame*>, _but, But);

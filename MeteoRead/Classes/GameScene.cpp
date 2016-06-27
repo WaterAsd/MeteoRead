@@ -48,7 +48,7 @@ bool GameScene::init(){
 	auto GameLayer = Stage1::create();
 	GameLayer->setAnchorPoint(Vec2::ZERO);
 	GameLayer->setPosition(0,0);
-	GameLayer->stageSelect(SelectCount);
+	GameLayer->stagecreate(SelectCount);
 	this->addChild(GameLayer);
 	_stage1 = GameLayer;
 
@@ -81,12 +81,11 @@ bool GameScene::init(){
 		return true;
 	};
 	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
-		auto Touch = touch->getLocation();
-		auto move = Touch - touchpoint;
+		auto _Touch = touch->getLocation();
+		auto move = _Touch - touchpoint;
 		auto getstage = _stage1->getPosition();
-		_stage1->setPosition(Vec2::ZERO);
-		touchpoint = _stage1->getPosition();
-
+		_stage1->setPosition(getstage - move);
+		touchpoint = _Touch;
 	};
 	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
 		
@@ -109,6 +108,10 @@ void GameScene::update(float delta){
 	_goal = _stage1->getgoalflg();
 	_touch = _UILayer->getTouch();
 
+	//UiLayerに送るために必要な情報を入れる
+	minimapdate();
+	if (_touch == true) _stage1->follorRocket(_stage1->_rocket);
+
 	//ゲーム中なら
 	if (_Start == true && _goal == false){
 		_stage1->setrocketpower(_UILayer->getmeterReturn());
@@ -127,4 +130,17 @@ void GameScene::update(float delta){
 //現在遊んでいるゲームを取得する
 void GameScene::getStage(int count){
 
+}
+
+void GameScene::minimapdate(){
+	//ゲームシーンから必要な情報を取得する
+	auto rocketpos = _stage1->getrocket();
+	auto starcount = _stage1->getstarcount();
+	Vector<Vec2> starspos;
+	for (int i = 0; i < starcount; i++){
+		auto star = _stage1->getstar(i);
+		starspos.pushBack(star);
+	}
+	auto rect = _stage1->getstagesize();
+	auto goalpos = _stage1->getgoal();
 }

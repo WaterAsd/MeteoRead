@@ -91,6 +91,7 @@ void Stage1::update(float delta){
 	_Cal->hosiangle(hosi1, hosi2, 1.0f);*/
 }
 
+//星の道を表示する
 void Stage1::setRoad(){
 	auto hoge = Sprite::createWithTexture(_star->getTexture());
 	hoge->setPosition(_rocket->getPosition());
@@ -98,7 +99,7 @@ void Stage1::setRoad(){
 }
 
 //ステージによって星を配置する
-void Stage1::stageSelect(int count){
+void Stage1::stagecreate(int count){
 	auto hosimei = std::string("Earth.png");
 	auto rocket = Rocket::create();
 
@@ -120,12 +121,14 @@ void Stage1::stageSelect(int count){
 		_rocket = rocket;
 		break;
 	case 2:
+		/*ここに星を配置するものを入力してください。*/
 		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
 		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
 		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
 
+		/*ここにロケットの配置場所を入力してください。*/
 		rocket->setPosition(visibleSize.width, 0);
 		rocket->setRotation(-90);
 		this->addChild(rocket);
@@ -137,6 +140,7 @@ void Stage1::stageSelect(int count){
 	}
 }
 
+//選択したステージを表示する。
 void Stage1::setStageSelect(const int count){
 	_stageselect = count;
 }
@@ -153,6 +157,35 @@ void Stage1::stopRocket(){
 	this->stopActionByTag(20);
 }
 
+//Layerを移動させる
 void Stage1::moveLayer(Vec2 move){
 	this->setPosition(this->getPosition() + move);
+}
+
+//ロケットの位置情報を渡す
+Vec2 Stage1::getrocket(){
+	return _rocket->getPosition();
+}
+//星の位置情報を渡す
+Vec2 Stage1::getstar(int i){
+	if (stars.size > i){
+		auto star = stars.at(i);
+		return star->getPosition();
+	}
+}
+//ゴール以外の星の数を取得する
+int Stage1::getstarcount(){
+	return stars.size();
+}
+//stageの大きさを渡す
+Rect* Stage1::getstagesize(){
+	return _stagesize;
+}
+//ゴールの場所を渡す
+Vec2 Stage1::getgoal(){
+	for (auto star:stars){
+		if (star->getName() == goalmai){
+			return star->getPosition();
+		}
+	}
 }

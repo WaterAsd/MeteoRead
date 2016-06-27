@@ -39,9 +39,15 @@ bool Rocket::init(){
 
 	//ブースターを入れる
 	auto booster = Booster::create();
-	rocket->addChild(booster);
+	rocket->addChild(booster,-1);
 	booster->setPosition(20, -20);
 	_booster = booster;
+
+	//矢印を入れる(基本的には出さない）
+	auto Arrow = Sprite::create("Arror.png");
+	Arrow->setPosition(20, 80);
+	rocket->addChild(Arrow,-2);
+	_arrow = Arrow;
 
 	this->scheduleUpdate();
 
@@ -118,4 +124,9 @@ void Rocket::Col(const Earth*ea){
 	Vec2 a = this->getPosition();
 	Vec2 AC = a + c;
 	this->setPosition(AC.x, AC.y);
+}
+
+//矢印を出してもよいかを確認する処理
+void Rocket::setArrow(const bool flg){
+	_flgarrow = flg;
 }
