@@ -11,6 +11,8 @@
 #include "asada/Goal.h"
 #include "asada/Stage1.h"
 
+
+
 class GameScene : public cocos2d::Layer
 {
 private:
@@ -67,6 +69,9 @@ public:
 	CREATE_FUNC(GameScene);//クラスの宣言
 	static UILayer* uiLayer;//UILayerを使えるようにする。
 	static Earth* earth;//星クラスを使える様にする。
+	static 	int SelectCount;
+
+
 };
 
 #endif //__METEOREAD__GAME__
