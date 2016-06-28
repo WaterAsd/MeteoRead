@@ -65,14 +65,15 @@ protected:
 
 private:
 
+
 public:
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);
 
-	bool getTouch();
+	void starset(int star);
 
-	void setStar(Vec2 pos,int star);
+	bool getTouch();
 
 	int getmeterReturn();
 
