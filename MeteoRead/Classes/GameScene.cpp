@@ -72,30 +72,30 @@ bool GameScene::init(){
 	this->addChild(_st);
 	_start = _st;
 
-	//タッチの処理を実行する
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
-		if (_UILayer->getTouch() == true)return false;
-		touchpoint = touch->getLocation();
-		_stage1->stopRocket();
-		return true;
-	};
-	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
-		auto _Touch = touch->getLocation();
-		auto move = _Touch - touchpoint;
-		auto getstage = _stage1->getPosition();
-		_stage1->setPosition(getstage - move);
-		touchpoint = _Touch;
-	};
-	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
+	////タッチの処理を実行する
+	//auto listener = EventListenerTouchOneByOne::create();
+	//listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+	//	if (_UILayer->getTouch() == true)return false;
+	//	touchpoint = touch->getLocation();
+	//	_stage1->stopRocket();
+	//	return true;
+	//};
+	//listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
+	//	auto _Touch = touch->getLocation();
+	//	auto move = _Touch - touchpoint;
+	//	auto getstage = _stage1->getPosition();
+	//	_stage1->setPosition(getstage + move);
+	//	touchpoint = _Touch;
+	//};
+	//listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
 
-	};
-	listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
+	//};
+	//listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
 
-	};
+	//};
 
-	auto dispatcher = Director::getInstance()->getEventDispatcher();
-	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	//auto dispatcher = Director::getInstance()->getEventDispatcher();
+	//dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
 }
@@ -136,10 +136,10 @@ void GameScene::minimapdate(){
 	//ゲームシーンから必要な情報を取得する
 	auto rocketpos = _stage1->getrocket();
 	auto starcount = _stage1->getstarcount();
-	Vector<Vec2> starspos;
+	vector<Vec2> starspos;
 	for (int i = 0; i < starcount; i++){
 		auto star = _stage1->getstar(i);
-		starspos.pushBack(star);
+		starspos.push_back(star);
 	}
 	auto rect = _stage1->getstagesize();
 	auto goalpos = _stage1->getgoal();

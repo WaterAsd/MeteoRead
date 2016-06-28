@@ -36,7 +36,14 @@ bool Stage1::init(){
 //更新処理
 void Stage1::update(float delta){
 
+	//移動量を求める
 	auto speed = _rocketspeed + _rocketpower*0.5f;
+	_rocket->setArrow(_buttontouch);
+
+	//rocketが画面外に行ったら
+	if (Stagesize.containsPoint(_rocket->getPosition())!=true){
+
+	}
 
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）
@@ -102,10 +109,14 @@ void Stage1::setRoad(){
 void Stage1::stagecreate(int count){
 	auto hosimei = std::string("Earth.png");
 	auto rocket = Rocket::create();
-
+	Rect *stagerect;
 	switch (count)
 	{
 	case 1:
+		/*ここにステージの大きさを設定する*/
+		stagerect->setRect(-200, -200, visibleSize.width - 200, visibleSize.height - 200);
+		_stagesize = stagerect;
+
 		/*ここに星を配置するものを入力してください。*/
 		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
@@ -131,6 +142,22 @@ void Stage1::stagecreate(int count){
 		/*ここにロケットの配置場所を入力してください。*/
 		rocket->setPosition(visibleSize.width, 0);
 		rocket->setRotation(-90);
+		follorRocket(rocket);
+		this->addChild(rocket);
+		_rocket = rocket;
+		break;
+
+	case 3:
+		/*ここに星を配置するものを入力してください。*/
+		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
+		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
+		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
+
+		/*ここにロケットの配置場所を入力してください。*/
+		rocket->setPosition(visibleSize.width, 0);
+		rocket->setRotation(-90);
 		this->addChild(rocket);
 		_rocket = rocket;
 		break;
@@ -144,24 +171,20 @@ void Stage1::stagecreate(int count){
 void Stage1::setStageSelect(const int count){
 	_stageselect = count;
 }
-
 //rocketにカメラを追尾するための処理
 void Stage1::follorRocket(Rocket* rocket){
 	_setrocket = Follow::create(rocket);
 	_setrocket->setTag(20);
 	this->runAction(_setrocket);
 }
-
 //Rocketの自動追尾をやめるための処理
 void Stage1::stopRocket(){
 	this->stopActionByTag(20);
 }
-
 //Layerを移動させる
 void Stage1::moveLayer(Vec2 move){
 	this->setPosition(this->getPosition() + move);
 }
-
 //ロケットの位置情報を渡す
 Vec2 Stage1::getrocket(){
 	return _rocket->getPosition();
