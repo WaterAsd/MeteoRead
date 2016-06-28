@@ -151,8 +151,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\asada\Goal.cpp" />
     <ClCompile Include="..\Classes\asada\Rocket.cpp" />
     <ClCompile Include="..\Classes\asada\Space.cpp" />
+    <ClCompile Include="..\Classes\asada\Stage1.cpp" />
+    <ClCompile Include="..\Classes\asada\Stagebase.cpp" />
     <ClCompile Include="..\Classes\asada\Start.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\Classes\GameScene2.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\isiwaki\SelectScene.cpp" />
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
@@ -169,8 +172,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\asada\Goal.h" />
     <ClInclude Include="..\Classes\asada\Rocket.h" />
     <ClInclude Include="..\Classes\asada\Space.h" />
+    <ClInclude Include="..\Classes\asada\Stage1.h" />
+    <ClInclude Include="..\Classes\asada\Stagebase.h" />
     <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
+    <ClInclude Include="..\Classes\GameScene2.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\isiwaki\SelectScene.h" />
     <ClInclude Include="..\Classes\KBT\Road.h" />
@@ -193,6 +199,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\botanSE1.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,6 +33,15 @@ bool Goal::init(){
 	nextimage->addTouchEventListener(CC_CALLBACK_2(Goal::nexttouchEvent, this));
 	_nextimage = nextimage;
 
+	//モーダル処理
+	auto listrner = EventListenerTouchOneByOne::create();
+	listrner->setSwallowTouches(true);
+	listrner->onTouchBegan = [](Touch *touch, Event*event)->bool{
+		return true;
+	};
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	dispatcher->addEventListenerWithSceneGraphPriority(listrner, this);
+
 	return true;
 }
 
@@ -44,6 +53,7 @@ void Goal::update(float dt){
 //次のステージに進むための関数処理
 void Goal::nexttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type){
 	auto Scenes = GameScene::createScene();
+	GameScene::SelectCount++;
 	auto trnscene = TransitionFade::create(1.0f, Scenes);
 
 	switch (type)
@@ -64,7 +74,7 @@ void Goal::nexttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type
 	}
 }
 
-//次のステージに進むための関数処理
+//ステージセレクトに戻る為の関数処理
 void Goal::backtouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type){
 	auto Scenes = SelectScene::createScene();
 	auto trnscene = TransitionFade::create(1.0f, Scenes);

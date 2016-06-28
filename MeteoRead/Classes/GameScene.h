@@ -8,10 +8,23 @@
 #include "asada/Calculation.h"
 #include "asada/Start.h"
 #include "KBT/Road.h"
+#include "asada/Goal.h"
+#include "asada/Stage1.h"
 
 class GameScene : public cocos2d::Layer
 {
 private:
+
+	bool _Start;
+	bool _goal;
+	bool _touch;
+
+	Vec2 touchpoint;
+
+	Size visibleSize;
+	Vec2 origin;
+
+	Stage1 *_stage1;
 	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
@@ -40,9 +53,16 @@ private:
 	
 	float BGM;		//BGM
 
+	//ＵＩのミニマップに必要な情報を入れる
+	void minimapdate();
+
 public:
+	static int SelectCount;
+	void getStage(int count);
+	Stagebase craeateStage(int count);
+
+
 	static Vec2 RoPos;
-	static Rocket* _rocket;//ロケットのポインター
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

@@ -8,7 +8,8 @@ protected:
 	Booster();
 	virtual ~Booster();
 	virtual bool init();
-	const int Frame_Count = 4;//‰¡‚ÉŒü‚©‚Á‚Ä‰æ‘œ‚ª‚¢‚­‚Â‚ ‚é‚©
+	const int Frame_Count = 5;//‰¡‚ÉŒü‚©‚Á‚Ä‰æ‘œ‚ª‚¢‚­‚Â‚ ‚é‚©
+	const int Frame_County = 2;//‚½‚Ä‚ÉŒü‚©‚Á‚Ä‰æ‘œ‚ª‚¢‚­‚Â‚ ‚é‚©
 	float ANIMETION = 0.1f;//Ÿ‚Ì‰æ‘œ‚Éi‚Ş‚Ü‚Å‚ÌŠÔ
 public:
 	void SetPower(int power);

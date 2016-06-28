@@ -168,7 +168,7 @@ void UILayer::CreateSprite()
 	//数字
 	for (int i = 0; i < 6; i++)
 	{
-		number[i] = Sprite::create("no2.png");
+		number[i] = Sprite::create("count.png");
 		number[i]->setAnchorPoint(Vec2::ZERO);
 		number[i]->setPosition(100+(i*80), 450);
 		number[i]->setScale(0.6);
@@ -190,6 +190,11 @@ bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 {
 	touch = false;
+}
+
+//タッチしているかどうかを確認するために関数
+bool UILayer::getTouch(){
+	return touch;
 }
 
 int UILayer::getmeterReturn()

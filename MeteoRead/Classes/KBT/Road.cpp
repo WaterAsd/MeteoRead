@@ -47,8 +47,9 @@ void Road::update(float delta)
 }
 
 void Road::roadSet(Sprite* road){
-	road->setPosition(GameScene::_rocket->getPosition());
+	/*road->setPosition(GameScene::_rocket->getPosition());
 	road->setTag(0);
 	road->setRotation(Calculation::Angle);
 	this->addChild(myRoad.back());
+	*/
 }

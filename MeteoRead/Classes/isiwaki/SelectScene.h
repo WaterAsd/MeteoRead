@@ -20,8 +20,6 @@ public:
 	//string font; // 使用するフォント
 	float fontopacity;
 
-	
-
 
     void menuCloseCallback(cocos2d::Ref* pSender);
     CREATE_FUNC(SelectScene);

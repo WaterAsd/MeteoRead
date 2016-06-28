@@ -1,21 +1,21 @@
-#include "isiwaki/SelectScene.h"
+#include "SelectScene.h"
 #include "GameScene.h"
 
 USING_NS_CC;
 
 Scene* SelectScene::createScene()
 {
-	// 'scene' is an autorelease object
-	auto scene = Scene::create();
-
-	// 'layer' is an autorelease object
+    // 'scene' is an autorelease object
+    auto scene = Scene::create();
+    
+    // 'layer' is an autorelease object
 	auto layer = SelectScene::create();
 
-	// add layer as a child to scene
-	scene->addChild(layer);
+    // add layer as a child to scene
+    scene->addChild(layer);
 
-	// return the scene
-	return scene;
+    // return the scene
+    return scene;
 }
 
 // on "init" you need to initialize your instance
@@ -34,34 +34,34 @@ bool SelectScene::init()
 
 	//int SelectCount;
 	//SelectCount = 1;
-	//////////////////////////////
-	// 1. super init first
-	if (!Layer::init())
-	{
-		return false;
-	}
-
+    //////////////////////////////
+    // 1. super init first
+    if ( !Layer::init() )
+    {
+        return false;
+    }
+    
 	//リストビューの表示
 	auto liseView = ui::ListView::create();
-	liseView->setContentSize(Size(800, 500));
+	liseView->setContentSize(Size(800,500));
 	liseView->setPosition((visibleSize - liseView->getContentSize()) / 2);
 	//横に並ぶ
 	liseView->setDirection(ui::ScrollView::Direction::HORIZONTAL);
 	liseView->setBounceEnabled(true);
-	this->addChild(liseView);
+	this ->addChild(liseView);
 
 	//Button20個
-	for (int i = 1; i <= 20; i++)
+	for (int i= 1; i <= 20;i++)
 	{
 		//画像の読み込み
 		auto button = ui::Button::create("botan01.png");
 		button->setScale9Enabled(true);
 		//サイズの設定
-		button->setContentSize(Size(150, 150));
+		button->setContentSize(Size(150,150));
 		//中心
-		button->setPosition(button->getContentSize() / 2);
+		button->setPosition(button->getContentSize() / 2 );
 		//Buttonの中にテキスト表示
-		button->setTitleText(StringUtils::format("stage- %d", i));
+		button->setTitleText(StringUtils::format("stage- %d",i)); 
 
 		button->setTitleFontSize(30);
 		//button->addTouchEventListener(CC_CALLBACK_2(NN[i]::touchEvent,this,i));
@@ -75,9 +75,9 @@ bool SelectScene::init()
 	auto GOButton = ui::Button::create("GOButton.png");
 	GOButton->setScale9Enabled(true);
 	GOButton->setContentSize(Size(150, 91));
-	GOButton->setPosition(Vec2(visibleSize.width - 75, 45));
+	GOButton->setPosition(Vec2(visibleSize.width-75,45));
 	GOButton->setTitleText(StringUtils::format("GO"));
-	GOButton->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent, this));
+	GOButton->addTouchEventListener(CC_CALLBACK_2(SelectScene::touchEvent,this));
 	this->addChild(GOButton);
 
 
@@ -87,18 +87,18 @@ bool SelectScene::init()
 	//背景画像
 	auto Back = Sprite::create("BackSample.png");
 	//背景座標
-	Back->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	Back->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 	////・・・・・お前が一番下だ！背景ッ!!!
 	this->addChild(Back, -1);
-
-	return true;
+	
+    return true;
 }
 
 void SelectScene::update(float delta)
 {
 
 }
-void SelectScene::touchEvent(Ref *pSender, ui::Widget::TouchEventType type)
+void SelectScene::touchEvent(Ref *pSender,ui::Widget::TouchEventType type)
 {
 	switch (type)
 	{
@@ -123,7 +123,7 @@ void SelectScene::touchEvent(Ref *pSender, ui::Widget::TouchEventType type)
 		if (GameScene::SelectCount == 18)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
 		if (GameScene::SelectCount == 19)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
 		if (GameScene::SelectCount == 20)Director::getInstance()->replaceScene(TransitionFade::create(1.0f, SelectScene::createScene(), ccc3(0, 0, 0)));
-		break;
+			break;
 	case ui::Widget::TouchEventType::ENDED:
 
 		break;
@@ -174,9 +174,9 @@ void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int
 
 void SelectScene::menuCloseCallback(Ref* pSender)
 {
-	Director::getInstance()->end();
+    Director::getInstance()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
+    exit(0);
 #endif
 }

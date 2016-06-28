@@ -57,6 +57,10 @@ bool Start::init(){
 	return true;
 }
 
+/*
+start‚Ìˆ—‚ªŠ®—¹‰º‚©‚Ç‚¤‚©‚ğŠm”F‚·‚éŠÖ”
+@true‚È‚çŠ®—¹‚µ‚Ä‚¨‚è
+@false‚È‚ç‚Ü‚¾Š®—¹‚µ‚Ä‚È‚¢*/
 bool Start::getStart(){
 	return OK;
 }
