@@ -37,7 +37,7 @@ bool NovelScene::init()
 
 	//BGM
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMNovel.mp3");
-	SimpleAudioEngine::getInstance()->stopBackgroundMusic("BGM/title.mp3");
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic("BGM/BGMNovel.mp3");
 	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
 	SimpleAudioEngine::getInstance()->playBackgroundMusic("BGM/BGMNovel.mp3", true);
 

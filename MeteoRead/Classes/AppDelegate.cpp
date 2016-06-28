@@ -1,7 +1,8 @@
-#include "AppDelegate.h"
+﻿#include "AppDelegate.h"
 #include "ouse/NovelScene.h"
 #include "GameScene.h"
 #include "oohasi/Title.h"
+#include "isiwaki/SelectScene.h"
 
 USING_NS_CC;
 
@@ -20,51 +21,51 @@ AppDelegate::~AppDelegate(){
 
 void AppDelegate::initGLContextAttrs()
 {
-    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+	GLContextAttrs glContextAttrs = { 8, 8, 8, 8, 24, 8 };
 
-    GLView::setGLContextAttrs(glContextAttrs);
+	GLView::setGLContextAttrs(glContextAttrs);
 }
 
 static int register_all_packages()
 {
-    return 0;
+	return 0;
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    
+
 	auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
+	auto glview = director->getOpenGLView();
+	if (!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("MeteoRead", Rect(0, 0, OKsize.width, OKsize.height));
+		glview = GLViewImpl::createWithRect("MeteoRead", Rect(0, 0, OKsize.width, OKsize.height));
 #else
-        glview = GLViewImpl::create("MeteoRead");
+		glview = GLViewImpl::create("MeteoRead");
 #endif
-        director->setOpenGLView(glview);
-    }
+		director->setOpenGLView(glview);
+	}
 
-    director->setDisplayStats(true);
+	director->setDisplayStats(true);
 
-    director->setAnimationInterval(1.0 / 60);
+	director->setAnimationInterval(1.0 / 60);
 
-    glview->setDesignResolutionSize(OKsize.width, OKsize.height, ResolutionPolicy::NO_BORDER);
-    
-    register_all_packages();
+	glview->setDesignResolutionSize(OKsize.width, OKsize.height, ResolutionPolicy::NO_BORDER);
 
-	//��ԍŏ��ɏo���V�[��
-    auto scene = Title::createScene();
+	register_all_packages();
 
-    director->runWithScene(scene);
+	//ˆê”ÔÅ‰‚Éo‚·ƒV[ƒ“
+	auto scene = Title::createScene();
 
-    return true;
+	director->runWithScene(scene);
+
+	return true;
 }
 
 void AppDelegate::applicationDidEnterBackground() {
-    Director::getInstance()->stopAnimation();
+	Director::getInstance()->stopAnimation();
 
 }
 
 void AppDelegate::applicationWillEnterForeground() {
-    Director::getInstance()->startAnimation();
+	Director::getInstance()->startAnimation();
 
 }
