@@ -100,13 +100,33 @@ void UILayer::MeterMove()
 void UILayer::Map()
 {
 	//ワールド座標に変換
-	Vec2 worldPosition = GameScene::RoPos; 
+	worldPosition = GameScene::RoPos;
+	starWorldPosition[4];
+	goalWorldPosition=GameScene::goalPos;
+	starLocalPosition[4];
+	goalLocalPosition;
 
 	//アイコンをロケットに追従させる
-	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
+	localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition / 2.6, Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
 	myIcon->setRotation(Calculation::Angle);
-	
+
+	////ミニマップ外に出たらロケット消失
+	if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
+	{
+		myIcon->setVisible(false);
+	}
+
+	//星に追従
+	for (int i = 0; i < 4; i++)
+	{
+		starWorldPosition[i] = GameScene::starPos[i];
+		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+		this->starIcon[i]->setPosition(starLocalPosition[i]);
+	}
+	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
+	this->goalIcon->setPosition(goalLocalPosition);
+
 }
 
 void UILayer::Timer()
@@ -137,6 +157,12 @@ void UILayer::Timer()
 	{
 		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
 	}
+
+	if (timer[1] == 0 && timer[2] == 0 && timer[3] == 0 &&
+		timer[4] == 0 && timer[5] == 0)
+	{
+		GameScene::gameOver = true;
+	}
 }
 
 void UILayer::CreateSprite()
@@ -164,6 +190,15 @@ void UILayer::CreateSprite()
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
+
+	for (int i = 0; i < 4; i++)
+	{
+		starIcon[i] = Sprite::create("starIcon.png");
+		this->addChild(starIcon[i]);
+	}
+
+	goalIcon = Sprite::create("goalIcon.png");
+	this->addChild(goalIcon);
 
 	//数字
 	for (int i = 0; i < 6; i++)
@@ -201,3 +236,4 @@ int UILayer::getmeterReturn()
 {
 	return power;
 }
+

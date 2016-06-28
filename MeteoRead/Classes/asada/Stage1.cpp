@@ -41,9 +41,9 @@ void Stage1::update(float delta){
 	_rocket->setArrow(_buttontouch);
 
 	//rocketが画面外に行ったら
-	if (Stagesize.containsPoint(_rocket->getPosition())!=true){
+	/*if (Stagesize.containsPoint(_rocket->getPosition())!=true){
 
-	}
+	}*/
 
 	//配列に入っている星の数までfor分で処理する
 	//内容：ロケットに近く星があるかどうか（複数個あるなら一番近い場所を選択する）

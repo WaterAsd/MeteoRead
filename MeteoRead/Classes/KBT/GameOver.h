@@ -1,29 +1,24 @@
-#ifndef __METEOREAD__GOAL__
-#define __METEOREAD__GOAL__
+#ifndef __METEOREAD__GAMEOVER__
+#define __METEOREAD__GAMEOVER__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 using namespace std;
-
-class Goal : public cocos2d::Layer{
+class GameOver : public cocos2d::Layer{
 protected:
 private:
-	/*ïœêî*/
+	//ïœêî
 	cocos2d::Sprite *_goalimage;
-	cocos2d::ui::Button *_nextimage;
 	cocos2d::ui::Button *_backimage;
 	cocos2d::ui::Button*_restart;
-	/*ïœêîèIóπ*/
 
-	/*ä÷êî*/
-	void nexttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
+	void restarttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void backtouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
-	/*ä÷êîèIóπ*/
 
 public:
 	virtual bool init();
 	void update(float dt);
-	CREATE_FUNC(Goal);
+	CREATE_FUNC(GameOver);
 };
 
-#endif//__METEOREAD__GOAL__
+#endif//__METEOREAD__GAMEOVER__

@@ -59,8 +59,11 @@ public:
 	void getStage(int count);
 	Stagebase craeateStage(int count);
 
+	static bool gameOver;
 
 	static Vec2 RoPos;
+	static Vec2 starPos[4];
+	static Vec2 goalPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

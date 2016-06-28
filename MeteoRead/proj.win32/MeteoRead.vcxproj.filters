@@ -68,6 +68,7 @@
     <ClCompile Include="..\Classes\asada\Goal.cpp" />
     <ClCompile Include="..\Classes\asada\Start.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
+    <ClCompile Include="..\Classes\KBT\GameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -120,15 +121,11 @@
     <ClInclude Include="..\Classes\asada\Goal.h" />
     <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
+    <ClInclude Include="..\Classes\KBT\GameOver.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Media Include="..\Resources\botanSE1.mp3">
-      <Filter>resource</Filter>
-    </Media>
   </ItemGroup>
 </Project>
