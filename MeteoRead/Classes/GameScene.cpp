@@ -9,6 +9,8 @@ USING_NS_CC;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
+Vec2 GameScene::starPos[4];
+Vec2 GameScene::goalPos;
 int GameScene::SelectCount;
 bool GameScene::gameOver;
 
@@ -42,14 +44,14 @@ bool GameScene::init(){
 
 	//”wŒi‰æ‘œ‚Ìì¬
 	auto Space = Sprite::create("Space.jpg");
-	Space->setPosition(visibleSize.width/2,visibleSize.height/2);
+	Space->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	this->addChild(Space);
 
 	//ƒQ[ƒ€ƒV[ƒ“‚Ìì¬
 	auto GameLayer = Stage1::create();
 	GameLayer->setAnchorPoint(Vec2::ZERO);
-	GameLayer->setPosition(0,0);
-	GameLayer->stageSelect(SelectCount);
+	GameLayer->setPosition(0, 0);
+	GameLayer->stagecreate(SelectCount);
 	this->addChild(GameLayer);
 	_stage1 = GameLayer;
 
@@ -69,6 +71,8 @@ bool GameScene::init(){
 	goalset = false;
 	goalflg = false;
 
+	gameOver = false;
+
 	auto _st = Start::create();
 	this->addChild(_st);
 	_start = _st;
@@ -82,24 +86,21 @@ bool GameScene::init(){
 		return true;
 	};
 	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
-		auto Touch = touch->getLocation();
-		auto move = Touch - touchpoint;
+		auto _Touch = touch->getLocation();
+		auto move = _Touch - touchpoint;
 		auto getstage = _stage1->getPosition();
-		_stage1->setPosition(Vec2::ZERO);
-		touchpoint = _stage1->getPosition();
-
+		_stage1->setPosition(getstage - move);
+		touchpoint = _Touch;
 	};
 	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
-		
+
 	};
 	listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
-		
+
 	};
 
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
-	gameOver = false;
 
 	return true;
 }
@@ -112,6 +113,10 @@ void GameScene::update(float delta){
 	_goal = _stage1->getgoalflg();
 	_touch = _UILayer->getTouch();
 
+	//UiLayer‚É‘—‚é‚½‚ß‚É•K—v‚Èî•ñ‚ð“ü‚ê‚é
+	minimapdate();
+	if (_touch == true) _stage1->follorRocket(_stage1->_rocket);
+
 	//ƒQ[ƒ€’†‚È‚ç
 	if (_Start == true && _goal == false){
 		_stage1->setrocketpower(_UILayer->getmeterReturn());
@@ -119,7 +124,7 @@ void GameScene::update(float delta){
 	}
 	else{
 		_stage1->setrocketpower(_stage1->getRocketPower());
-		if (_goal == true&&goalflg == false){
+		if (_goal == true && goalflg == false){
 			goalflg = true;
 			auto goal = Goal::create();
 			this->addChild(goal);
@@ -141,4 +146,22 @@ void GameScene::update(float delta){
 //Œ»Ý—V‚ñ‚Å‚¢‚éƒQ[ƒ€‚ðŽæ“¾‚·‚é
 void GameScene::getStage(int count){
 
+}
+
+void GameScene::minimapdate(){
+	//ƒQ[ƒ€ƒV[ƒ“‚©‚ç•K—v‚Èî•ñ‚ðŽæ“¾‚·‚é
+	auto starcount = _stage1->getstarcount();
+	vector<Vec2> starspos;
+	for (int i = 0; i < starcount; i++){
+		auto star = _stage1->getstar(i);
+		starspos.push_back(star);
+		starPos[i] = starspos.at(i);
+	}
+	auto rect = _stage1->getstagesize();
+
+	auto goalpos = _stage1->getgoal();
+	goalPos = goalPos;
+
+	auto rocketpos = _stage1->getrocket();
+	RoPos = rocketpos;
 }

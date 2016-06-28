@@ -25,13 +25,13 @@ bool UILayer::init()
 	power = 0.0f;
 	touch = false;
 	buttonColor = Color3B(255, 255, 255);
-
 	//時間の初期化　スタート3分
 	for (int i = 0; i < 6; i++)
 	{
 		timer[i] = 0;
-		timer[1] = 1;
+		timer[1] = 3;
 	}
+
 
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
@@ -100,73 +100,68 @@ void UILayer::MeterMove()
 void UILayer::Map()
 {
 	//ワールド座標に変換
-	//worldPosition = GameScene::RoPos; 
-	//starWorldPosition[4];
-	//goalWorldPosition=GameScene::goalPos;
-	//starLocalPosition[4];
-	//goalLocalPosition;
+	worldPosition = GameScene::RoPos;
+	starWorldPosition[4];
+	goalWorldPosition=GameScene::goalPos;
+	starLocalPosition[4];
+	goalLocalPosition;
 
-	////アイコンをロケットに追従させる
-	//localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
-	//this->myIcon->setPosition(localPosition);
-	//myIcon->setRotation(Calculation::Angle);
-
-	//iconPos = myIcon->getPosition();
+	//アイコンをロケットに追従させる
+	localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition / 2.6, Vec2(600, 340)));
+	this->myIcon->setPosition(localPosition);
+	myIcon->setRotation(Calculation::Angle);
 
 	////ミニマップ外に出たらロケット消失
-	//if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	//{
-	//	myIcon->setVisible(false);
-	//}
+	if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
+	{
+		myIcon->setVisible(false);
+	}
 
-	////星に追従
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	starWorldPosition[i] = GameScene::starPos[i];
-	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
-	//}
-	//goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
-	//this->goalIcon->setPosition(goalLocalPosition);
+	//星に追従
+	for (int i = 0; i < 4; i++)
+	{
+		starWorldPosition[i] = GameScene::starPos[i];
+		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+		this->starIcon[i]->setPosition(starLocalPosition[i]);
+	}
+	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
+	this->goalIcon->setPosition(goalLocalPosition);
+
 }
 
 void UILayer::Timer()
 {
-	if (GameScene::gameOver == false)
+	timer[5]--;
+	if (timer[5] < 0)
 	{
-		//時間のカウント
-		timer[5]--;
-		if (timer[5] < 0)
-		{
-			timer[5] = 9;
-			timer[4]--;
-		}
-		if (timer[4] < 0)
-		{
-			timer[4] = 5;
-			timer[3]--;
-		}
-		if (timer[3] < 0)
-		{
-			timer[3] = 9;
-			timer[2]--;
-		}
-		if (timer[2] < 0)
-		{
-			timer[2] = 5;
-			timer[1]--;
-		}
+		timer[5] = 9;
+		timer[4]--;
 	}
-	//全部0になったらゲームオーバー
-	if (timer[1] == 0 && timer[2] == 0 && timer[3] == 0 &&
-		timer[4] == 0 && timer[5] == 0)
+	if (timer[4] < 0)
 	{
-		GameScene::gameOver = true;
+		timer[4] = 5;
+		timer[3]--;
+	}
+	if (timer[3] < 0)
+	{
+		timer[3] = 9;
+		timer[2]--;
+	}
+	if (timer[2]<0)
+	{
+		timer[2] = 5;
+		timer[1]--;
 	}
 
 	for (int i = 0; i < 6; i++)
 	{
 		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
+	}
+
+	if (timer[1] == 0 && timer[2] == 0 && timer[3] == 0 &&
+		timer[4] == 0 && timer[5] == 0)
+	{
+		GameScene::gameOver = true;
 	}
 }
 
@@ -195,14 +190,14 @@ void UILayer::CreateSprite()
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
-	//各星のアイコン
+
 	for (int i = 0; i < 4; i++)
 	{
 		starIcon[i] = Sprite::create("starIcon.png");
 		this->addChild(starIcon[i]);
 	}
-	//ゴールのアイコン
-	goalIcon = Sprite::create("starIcon.png");
+
+	goalIcon = Sprite::create("goalIcon.png");
 	this->addChild(goalIcon);
 
 	//数字
@@ -242,13 +237,3 @@ int UILayer::getmeterReturn()
 	return power;
 }
 
-void UILayer::setStar(Vec2 pos,int star)
-{
-	//星に追従
-	//for (int i = 0; i < star; i++)
-	//{
-	//	starWorldPosition[i] = GameScene::starPos[i];
-	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
-	//}
-}
