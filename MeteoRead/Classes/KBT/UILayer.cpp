@@ -1,7 +1,6 @@
 #include "UILayer.h"
-#include "GameScene.h"
 #include "asada\Rocket.h"
-#include "asada\/Calculation.h"
+#include "asada\Calculation.h"
 
 USING_NS_CC;
 
@@ -99,13 +98,10 @@ void UILayer::MeterMove()
 
 void UILayer::Map()
 {
-	//ワールド座標に変換
-	Vec2 worldPosition = GameScene::RoPos; 
-
-	//アイコンをロケットに追従させる
-	Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
-	this->myIcon->setPosition(localPosition);
-	myIcon->setRotation(Calculation::Angle);
+	////アイコンをロケットに追従させる
+	//Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
+	//this->myIcon->setPosition(localPosition);
+	//myIcon->setRotation(Calculation::Angle);
 	
 }
 
@@ -200,4 +196,54 @@ bool UILayer::getTouch(){
 int UILayer::getmeterReturn()
 {
 	return power;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------
+----------------------------ここまでがUILayerのクラスの関数----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------*/
+
+//マップの初期化処理
+bool MapNode::init(){
+	if (!Node::init()){
+		return false;
+	}
+	//アップデートを実行させる
+	this->scheduleUpdate();
+
+	//後ろの背景を作成する
+	_map = Sprite::create();
+	_map->setTextureRect(Rect(0, 0, 360, 202.5));
+	_map->setColor(Color3B::WHITE);
+	this->addChild(_map,-1);
+
+	return true;
+}
+
+//マップの更新処理
+void MapNode::update(float dt){
+
+}
+
+//ほしい場所から取ってくる。
+void MapNode::setrocket(Vec2 rocket){ _rocketpos = rocket; }
+void MapNode::setstarpos(Vec2 pos){ _starpos.push_back(pos); }
+void MapNode::setgoalpos(Vec2 goal){ _goalpos = goal; }
+void MapNode::setStagerect(Rect stagesize){	_stagesize = stagesize;}
+
+//画像を作成するための物
+void MapNode::mapcreate(){
+	_map->setPosition(Vec2(_rocketpos.x*mapsize.x,_rocketpos.y*mapsize.x));
+	for (int i = 0; i = _starpos.size();i++){
+		auto Star = CCDrawNode::create();
+		auto starpos = _starpos.at(i);
+		Star->drawDot(Vec2((starpos.x*mapsize.x),(starpos.y*mapsize.y))
+													,5,Color4F::BLUE);
+		_star.pushBack(Star);
+	}
+}
+
+//マップの比率を一緒にする
+void MapNode::Mapsize(){
+	//画像/ステージのサイズで割って値を導き出す。
+	mapsize.x = (_map->getTextureRect().getMaxX) / (_stagesize.getMaxX - _stagesize.getMinX);
+	mapsize.y = (_map->getTextureRect().getMaxY) / (_stagesize.getMaxY - _stagesize.getMinY);
 }

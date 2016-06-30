@@ -9,6 +9,53 @@ USING_NS_CC;
 
 using namespace cocos2d;
 
+class MapNode : public cocos2d::Node{
+public:
+
+	//画面に表示させる為の素材を獲得するための関数
+	void setrocket(Vec2 rocket);
+	void setstarpos(Vec2 pos);
+	void setgoalpos(Vec2 goal);
+	void setStagerect(Rect stagesize);
+
+	//画面サイズの調整を図るための変数
+	void mapcreate();
+	void Mapsize();
+
+	//クラスを作る為に必要なもの
+	CREATE_FUNC(MapNode);
+private:
+	//簡単に必要なもの
+	virtual bool init();
+	void update(float dt);
+
+	//現在の星の座標を獲得する
+	Vec2 _rocketpos;
+	Vec2 _goalpos;
+	std::vector<Vec2>_starpos;
+	Rect _stagesize;
+
+	//ロケットの画像や必要な素材の画像の種類
+	Sprite *_rocket;
+	cocos2d::Vector<CCDrawNode*> _star;
+	Sprite *_goal;
+
+	//マップの平均的なサイズを獲得する
+	Vec2 mapsize;
+
+	//マップの背景を取得するためのもの
+	Sprite *_map;
+};
+
+/*--------------------------------------------------------------------------------------------------------------------
+
+ここからUiLayerです。
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------*/
+
 class UILayer : public cocos2d::Layer
 {
 protected:
@@ -51,6 +98,13 @@ protected:
 	void Timer();//時間のクラス
 
 	void CreateSprite();	// 画像作成クラス
+
+	//現在の星の座標を獲得する
+	Vec2 _rocket;
+	Vec2 _goal;
+	std::vector<Vec2>_starpos;
+	//マップの平均的なサイズを獲得する
+	Rect mapsize;
 
 private:
 

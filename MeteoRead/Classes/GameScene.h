@@ -2,7 +2,6 @@
 #define __METEOREAD__GAME__
 
 #include "cocos2d.h"
-#include "KBT/UILayer.h"
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
@@ -10,6 +9,7 @@
 #include "KBT/Road.h"
 #include "asada/Goal.h"
 #include "asada/Stage1.h"
+#include "KBT/UILayer.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -59,8 +59,6 @@ public:
 	void getStage(int count);
 	Stagebase craeateStage(int count);
 
-
-	static Vec2 RoPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する

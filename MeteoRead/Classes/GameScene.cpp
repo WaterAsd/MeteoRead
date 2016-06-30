@@ -1,6 +1,5 @@
 #include "GameScene.h"
 
-
 USING_NS_CC;
 
 #define COUNT 180.0f;
@@ -8,7 +7,6 @@ USING_NS_CC;
 //UiLayer
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
-Vec2 GameScene::RoPos;
 int GameScene::SelectCount;
 
 //移動量
@@ -16,9 +14,6 @@ const float PlayerSpeed = 0.1f;
 
 //公転する星との距離
 const float Hosikoutenn = 80.0f;
-
-//セレクトシーンで選択した数字をステージに変更する
-
 
 //Sceneを使えるようにする
 Scene* GameScene::createScene()
@@ -136,10 +131,8 @@ void GameScene::minimapdate(){
 	//ゲームシーンから必要な情報を取得する
 	auto rocketpos = _stage1->getrocket();
 	auto starcount = _stage1->getstarcount();
-	Vector<Vec2> starspos;
 	for (int i = 0; i < starcount; i++){
 		auto star = _stage1->getstar(i);
-		starspos.pushBack(star);
 	}
 	auto rect = _stage1->getstagesize();
 	auto goalpos = _stage1->getgoal();
