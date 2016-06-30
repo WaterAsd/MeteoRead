@@ -149,13 +149,9 @@ void UILayer::CreateSprite()
 	this->addChild(meter);
 
 	//マップ
-	map = Sprite::create();
-	map->setAnchorPoint(Vec2::ZERO);
-	map->setTextureRect(Rect(0, 0, 360, 202.5));
-	map->setColor(Color3B::WHITE);
-	map->setPosition(Vec2(winSize.width - 360, winSize.height - 202.5));
-	this->addChild(map);
-	map->setOpacity(100);
+	_minimap = MapNode::create();
+	_minimap->setPosition(Vec2(600,340));
+	this->addChild(_minimap);
 
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
@@ -206,13 +202,15 @@ bool MapNode::init(){
 	if (!Node::init()){
 		return false;
 	}
-	//アップデートを実行させる
-	this->scheduleUpdate();
+	
+	oneflg = false;
 
 	//後ろの背景を作成する
 	_map = Sprite::create();
+	_map->setAnchorPoint(Vec2::ZERO);
 	_map->setTextureRect(Rect(0, 0, 360, 202.5));
 	_map->setColor(Color3B::WHITE);
+	_map->setOpacity(128);
 	this->addChild(_map,-1);
 
 	return true;
@@ -220,30 +218,58 @@ bool MapNode::init(){
 
 //マップの更新処理
 void MapNode::update(float dt){
-
+	//マップが移動するかもしれないので一応
+	_rocket->setPosition(Vec2((_rocketpos.x*mapsize.x), (_rocketpos.y*mapsize.y)));
+	for (int i = 0; i < _starpos.size(); i++){
+		auto starpos = _starpos.at(i);
+		auto star = _star.at(i);
+		star->setPosition(Vec2((starpos.x*mapsize.x), (starpos.y*mapsize.y)));
+	}
+	_goal->setPosition(Vec2((_goalpos.x*mapsize.x), (_goalpos.y*mapsize.y)));
 }
 
 //ほしい場所から取ってくる。
 void MapNode::setrocket(Vec2 rocket){ _rocketpos = rocket; }
-void MapNode::setstarpos(Vec2 pos){ _starpos.push_back(pos); }
+void MapNode::setstarpos(std::vector<Vec2> pos){
+	_starpos=pos;
+}
 void MapNode::setgoalpos(Vec2 goal){ _goalpos = goal; }
 void MapNode::setStagerect(Rect stagesize){	_stagesize = stagesize;}
 
 //画像を作成するための物
 void MapNode::mapcreate(){
-	_map->setPosition(Vec2(_rocketpos.x*mapsize.x,_rocketpos.y*mapsize.x));
-	for (int i = 0; i = _starpos.size();i++){
-		auto Star = CCDrawNode::create();
-		auto starpos = _starpos.at(i);
-		Star->drawDot(Vec2((starpos.x*mapsize.x),(starpos.y*mapsize.y))
-													,5,Color4F::BLUE);
-		_star.pushBack(Star);
+
+	if (oneflg != true){
+		Mapsize();
+
+		_rocket = Sprite::create("icon01.png");
+		_rocket->setPosition(Vec2((_rocketpos.x*mapsize.x), (_rocketpos.y*mapsize.y)));
+		this->addChild(_rocket);
+
+		for (int i = 0; i < _starpos.size(); i++){
+			auto Star = CCDrawNode::create();
+			auto starpos = _starpos.at(i);
+			Star->drawDot(Vec2((starpos.x*mapsize.x), (starpos.y*mapsize.y))
+				, 5, Color4F::BLUE);
+			this->addChild(Star);
+			_star.pushBack(Star);
+		}
+
+		_goal = CCDrawNode::create();
+		_goal->drawDot(Vec2((_goalpos.x*mapsize.x), (_goalpos.y*mapsize.y))
+			, 5, Color4F::BLUE);
+		this->addChild(_goal);
+
+		//アップデートを実行させる
+		this->scheduleUpdate();
+
+		oneflg = true;
 	}
 }
 
 //マップの比率を一緒にする
 void MapNode::Mapsize(){
 	//画像/ステージのサイズで割って値を導き出す。
-	mapsize.x = (_map->getTextureRect().getMaxX) / (_stagesize.getMaxX - _stagesize.getMinX);
-	mapsize.y = (_map->getTextureRect().getMaxY) / (_stagesize.getMaxY - _stagesize.getMinY);
+	mapsize.x = (_map->getTextureRect().getMaxX()) / (_stagesize.getMaxX() - _stagesize.getMinX());
+	mapsize.y = (_map->getTextureRect().getMaxY()) / (_stagesize.getMaxY() - _stagesize.getMinY());
 }

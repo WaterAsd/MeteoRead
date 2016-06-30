@@ -105,6 +105,8 @@ void GameScene::update(float delta){
 
 	//UiLayerに送るために必要な情報を入れる
 	minimapdate();
+
+	//タッチしたら矢印を表示する
 	if (_touch == true) _stage1->follorRocket(_stage1->_rocket);
 
 	//ゲーム中なら
@@ -127,13 +129,18 @@ void GameScene::getStage(int count){
 
 }
 
+//マップに必要な処理を送るための　
 void GameScene::minimapdate(){
-	//ゲームシーンから必要な情報を取得する
-	auto rocketpos = _stage1->getrocket();
+	//ゲームシーンから必要な情報を取得し渡す。
+	auto uiset = _UILayer->_minimap;
+	uiset->setrocket(_stage1->getrocket());
 	auto starcount = _stage1->getstarcount();
 	for (int i = 0; i < starcount; i++){
-		auto star = _stage1->getstar(i);
+		//OK.puchBack(_stage1->getstar(i));
 	}
-	auto rect = _stage1->getstagesize();
-	auto goalpos = _stage1->getgoal();
+	uiset->setstarpos(OK);
+	uiset->setStagerect(Rect(0, 0, 960,540));
+	uiset->setgoalpos(_stage1->getgoal());
+
+	uiset->mapcreate();
 }

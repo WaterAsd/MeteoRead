@@ -11,10 +11,9 @@ using namespace cocos2d;
 
 class MapNode : public cocos2d::Node{
 public:
-
 	//画面に表示させる為の素材を獲得するための関数
 	void setrocket(Vec2 rocket);
-	void setstarpos(Vec2 pos);
+	void setstarpos(std::vector<Vec2> pos);
 	void setgoalpos(Vec2 goal);
 	void setStagerect(Rect stagesize);
 
@@ -25,6 +24,9 @@ public:
 	//クラスを作る為に必要なもの
 	CREATE_FUNC(MapNode);
 private:
+	//mapcreateを何度も作成するので制限をかける
+	bool oneflg;
+
 	//簡単に必要なもの
 	virtual bool init();
 	void update(float dt);
@@ -38,7 +40,7 @@ private:
 	//ロケットの画像や必要な素材の画像の種類
 	Sprite *_rocket;
 	cocos2d::Vector<CCDrawNode*> _star;
-	Sprite *_goal;
+	CCDrawNode *_goal;
 
 	//マップの平均的なサイズを獲得する
 	Vec2 mapsize;
@@ -64,7 +66,6 @@ protected:
 	//Sprite
 	Sprite* meter;              //メーターの画像
 	Sprite* button;             //ボタンの画像
-	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
 	Sprite* starIcon;
 	Sprite* number[6];             //数字
@@ -109,6 +110,8 @@ protected:
 private:
 
 public:
+	MapNode *_minimap;
+
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);

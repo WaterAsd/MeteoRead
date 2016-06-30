@@ -14,6 +14,8 @@
 class GameScene : public cocos2d::Layer
 {
 private:
+	//ˆêŽž“I‚Ì“à—e‚ð•Û‘¶‚µ‚Ä‚¨‚­‚à‚Ì
+	std::vector<Vec2> OK;
 
 	bool _Start;
 	bool _goal;

@@ -178,7 +178,7 @@ int Stage1::getstarcount(){
 	return stars.size();
 }
 //stage‚Ì‘å‚«‚³‚ğ“n‚·
-Rect* Stage1::getstagesize(){
+Rect Stage1::getstagesize(){
 	return _stagesize;
 }
 //ƒS[ƒ‹‚ÌêŠ‚ğ“n‚·
