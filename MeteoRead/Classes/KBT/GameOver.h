@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 using namespace std;
+
 class GameOver : public cocos2d::Layer{
 protected:
 private:

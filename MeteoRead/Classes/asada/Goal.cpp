@@ -55,43 +55,12 @@ void Goal::nexttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type
 	auto Scenes = GameScene::createScene();
 	GameScene::SelectCount++;
 	auto trnscene = TransitionFade::create(1.0f, Scenes);
-
-	switch (type)
-	{
-	case cocos2d::ui::Widget::TouchEventType::BEGAN:
-		//タップ開始時の処理
-		break;
-	case cocos2d::ui::Widget::TouchEventType::MOVED:
-		//スワイプ時の処理
-		break;
-	case cocos2d::ui::Widget::TouchEventType::ENDED:
-		//離したときの処理
-		Director::getInstance()->replaceScene(trnscene);
-		break;
-	case cocos2d::ui::Widget::TouchEventType::CANCELED:
-		//キャンセル時の処理
-		break;
-	}
+	Director::getInstance()->replaceScene(trnscene);
 }
 
 //ステージセレクトに戻る為の関数処理
 void Goal::backtouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type){
 	auto Scenes = SelectScene::createScene();
 	auto trnscene = TransitionFade::create(1.0f, Scenes);
-	switch (type)
-	{
-	case cocos2d::ui::Widget::TouchEventType::BEGAN:
-		//タップ開始時の処理
-		break;
-	case cocos2d::ui::Widget::TouchEventType::MOVED:
-		//スワイプ時の処理
-		break;
-	case cocos2d::ui::Widget::TouchEventType::ENDED:
-		//離したときの処理
-		Director::getInstance()->replaceScene(trnscene);
-		break;
-	case cocos2d::ui::Widget::TouchEventType::CANCELED:
-		//キャンセル時の処理
-		break;
-	}
+	Director::getInstance()->replaceScene(trnscene);
 }

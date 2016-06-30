@@ -181,7 +181,7 @@ void NovelScene::update(float dt){
 	//そして、全部を表示させることができたら
 	//Sceneを変更する
 	if (8 == _index){
-		auto Scenes = Title::createScene();
+		auto Scenes = TitleScene::createScene();
 		auto trnscene = TransitionFadeUp::create(1.0f, Scenes);
 		Director::getInstance()->replaceScene(Scenes);
 	}
