@@ -77,6 +77,7 @@ private:
 	//ミニマップ用のサイズに切り替える関数の作成
 	void minimapcreate();
 
+
 public:
 	//ミニマップに必要な変数を獲得するための関数を作成する
 	void getRocketPos(const Vec2 rocketpos);	//ロケットの場所
