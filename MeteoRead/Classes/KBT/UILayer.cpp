@@ -150,6 +150,7 @@ void UILayer::CreateSprite()
 
 	//ƒ}ƒbƒv
 	_minimap = MapNode::create();
+	//_minimap->setPosition(Vec2(480, 270));
 	_minimap->setPosition(Vec2(600,340));
 	this->addChild(_minimap);
 

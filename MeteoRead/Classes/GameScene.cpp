@@ -135,8 +135,9 @@ void GameScene::minimapdate(){
 	auto uiset = _UILayer->_minimap;
 	uiset->setrocket(_stage1->getrocket());
 	auto starcount = _stage1->getstarcount();
+	OK.clear();
 	for (int i = 0; i < starcount; i++){
-		//OK.puchBack(_stage1->getstar(i));
+		OK.push_back(_stage1->getstar(i));
 	}
 	uiset->setstarpos(OK);
 	uiset->setStagerect(Rect(0, 0, 960,540));
