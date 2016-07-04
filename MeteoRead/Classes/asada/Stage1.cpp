@@ -107,14 +107,14 @@ void Stage1::stagecreate(int count){
 	{
 	case 1:
 		/*ここに星を配置するものを入力してください。*/
-		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 -100), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
 		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
 		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
 
 		/*ここにロケットの配置場所を入力してください。*/
-		rocket->setPosition(visibleSize.width-50,80);
+		rocket->setPosition(visibleSize.width-190,100);
 		rocket->setRotation(-90);
 		follorRocket(rocket);
 		this->addChild(rocket);
@@ -122,14 +122,14 @@ void Stage1::stagecreate(int count){
 		break;
 	case 2:
 		/*ここに星を配置するものを入力してください。*/
-		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 200), hosimei);
+		StarSet(Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 100), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 200), hosimei);
 		StarSet(Vec2(visibleSize.width / 2 + 100, visibleSize.height / 2 + 100), hosimei);
 		StarSet(Vec2(visibleSize.width / 2, visibleSize.height / 2), hosimei);
-		GoalStarset(Vec2(200, visibleSize.height - 100), goalmai);
+		GoalStarset(Vec2(200, visibleSize.height - 200), goalmai);
 
 		/*ここにロケットの配置場所を入力してください。*/
-		rocket->setPosition(visibleSize.width - 50, 80);
+		rocket->setPosition(visibleSize.width - 50, 100);
 		rocket->setRotation(-90);
 		this->addChild(rocket);
 		_rocket = rocket;
@@ -147,9 +147,9 @@ void Stage1::setStageSelect(const int count){
 
 //rocketにカメラを追尾するための処理
 void Stage1::follorRocket(Rocket* rocket){
-	_setrocket = Follow::create(rocket);
-	_setrocket->setTag(20);
-	this->runAction(_setrocket);
+	//_setrocket = Follow::create(rocket);
+	//_setrocket->setTag(20);
+	//this->runAction(_setrocket);
 }
 
 //Rocketの自動追尾をやめるための処理

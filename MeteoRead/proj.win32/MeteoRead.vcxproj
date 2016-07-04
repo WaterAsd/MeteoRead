@@ -161,7 +161,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
     <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
     <ClCompile Include="..\Classes\oohasi\Title.cpp" />
+    <ClCompile Include="..\Classes\oohasi\TitleScene.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
+    <ClCompile Include="..\Classes\Statics.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +184,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\KBT\Road.h" />
     <ClInclude Include="..\Classes\KBT\UILayer.h" />
     <ClInclude Include="..\Classes\oohasi\Title.h" />
+    <ClInclude Include="..\Classes\oohasi\TitleScene.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
+    <ClInclude Include="..\Classes\Statics.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
+//SimpleAudioEngineが利用できるように設定する
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 using namespace std;
 
@@ -14,11 +17,13 @@ public:
     virtual bool init();
 	int sceneInit();
 	void update(float delta);
-	int StageText;
-	int SelectCount;
+	static int StageText;
+	//int SelectCount;
+	int ButtonFlashing;
 	cocos2d::ui::Button *ButtnSET;
 	//string font; // 使用するフォント
-	float fontopacity;
+	float fontopacity;;
+	
 
 
     void menuCloseCallback(cocos2d::Ref* pSender);
