@@ -1,9 +1,8 @@
-#include "AppDelegate.h"
+ï»¿#include "AppDelegate.h"
+#include "ouse/NovelScene.h"
 #include "GameScene.h"
-#include "isiwaki\SelectScene.h"
-#include "oohasi\Title.h"
-#include "oohasi\TitleScene.h"
-
+#include "oohasi/Title.h"
+#include "isiwaki/SelectScene.h"
 
 USING_NS_CC;
 
@@ -45,16 +44,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
-    //director->setDisplayStats(true);
+    director->setDisplayStats(true);
 
-    //director->setAnimationInterval(1.0 / 60);
+    director->setAnimationInterval(1.0 / 60);
 
-    //glview->setDesignResolutionSize(OKsize.width, OKsize.height, ResolutionPolicy::NO_BORDER);
-    //
-    //register_all_packages();
+    glview->setDesignResolutionSize(OKsize.width, OKsize.height, ResolutionPolicy::NO_BORDER);
+    
+    register_all_packages();
 
-	//ˆê”ÔÅ‰‚Éo‚·ƒV[ƒ“
-    auto scene = TitleScene::createScene();
+	//ï¿½ï¿½ÔÅï¿½ï¿½Éoï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½
+    auto scene = SelectScene::createScene();
 
     director->runWithScene(scene);
 

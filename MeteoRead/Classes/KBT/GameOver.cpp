@@ -2,7 +2,9 @@
 #include "ui/CocosGUI.h"
 #include "isiwaki\SelectScene.h"
 #include "GameScene.h"
+
 USING_NS_CC;
+
 bool GameOver::init(){
 	if (!Layer::init())return false;
 

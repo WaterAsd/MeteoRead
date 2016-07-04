@@ -64,9 +64,27 @@ protected:
 	void CreateSprite();	// 画像作成クラス
 
 private:
+	//ゲームシーンから送られた情報を保存しておくための変数
+	Vec2 _rocketpos;			//ロケットの場所
+	vector<Vec2> _starspos;		//星の場所
+	Rect _rect;					//stageの大きさ
+	Vec2 _goalpos;				//ゴールの場所
+
+	//ミニマップを扱うので作成しました
+	Sprite *_map;				//マップ画像の情報がほしいので作成します。
+	Vec2 _stagesize;			//マップ画面にあわせたRectの変数
+
+	//ミニマップ用のサイズに切り替える関数の作成
+	void minimapcreate();
 
 
 public:
+	//ミニマップに必要な変数を獲得するための関数を作成する
+	void getRocketPos(const Vec2 rocketpos);	//ロケットの場所
+	void getStarsPos(const Vec2 starspos);	//星の場所
+	void getStageRect(const Rect Stagerect);	//ステージの大きさ
+	void getgoalPos(const Vec2 goalpos);		//ゴールの場所
+
 	virtual bool init();
 	static cocos2d::Scene* scene();
 	void update(float delta);

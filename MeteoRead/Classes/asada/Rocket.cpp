@@ -46,6 +46,7 @@ bool Rocket::init(){
 	//矢印を入れる(基本的には出さない）
 	auto Arrow = Sprite::create("Arror.png");
 	Arrow->setPosition(20, 80);
+	Arrow->setVisible(false);
 	rocket->addChild(Arrow,-2);
 	_arrow = Arrow;
 
@@ -59,7 +60,7 @@ bool Rocket::init(){
 
 //マイフレーム処理
 void Rocket::update(float dt){
-
+	_arrow->setVisible(_flgarrow);
 }
 
 //ロケットの座標を送る

@@ -14,14 +14,16 @@ protected:
 	int _stageselect;
 
 	//ステージの大きさ
-	Rect *_stagesize;
+	Rect _stagesize;
 
 private:
 	virtual bool init();			//初期化宣言
 	void update(float delta);	//毎フレーム更新する
 	void setRoad();				//道を作成する
-public:
 
+	void setStagesize();		//現在のステージの大きさをせっていする
+
+public:
 	//layerをいどうさせる
 	void moveLayer(Vec2 move);
 
@@ -44,7 +46,7 @@ public:
 	//ゴール以外の星の数を取得する
 	int getstarcount();
 	//stageの大きさを渡す
-	Rect* getstagesize();
+	Rect getstagesize();
 	//ゴールの場所を渡す
 	Vec2 getgoal();
 

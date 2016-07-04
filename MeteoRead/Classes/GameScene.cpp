@@ -1,21 +1,13 @@
 #include "GameScene.h"
-#include "KBT\GameOver.h"
-#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
-//BGM（SimpleAudioEngine）使うために必要
-using namespace CocosDenshion;
 
 #define COUNT 180.0f;
 
 //UiLayer
-UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
-Vec2 GameScene::starPos[4];
-Vec2 GameScene::goalPos;
 int GameScene::SelectCount;
-bool GameScene::gameOver;
 
 //移動量
 const float PlayerSpeed = 0.1f;
@@ -74,42 +66,34 @@ bool GameScene::init(){
 	goalset = false;
 	goalflg = false;
 
-	gameOver = false;
-
 	auto _st = Start::create();
 	this->addChild(_st);
 	_start = _st;
 
-	//タッチの処理を実行する
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
-		if (_UILayer->getTouch() == true)return false;
-		touchpoint = touch->getLocation();
-		_stage1->stopRocket();
-		return true;
-	};
-	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
-		auto _Touch = touch->getLocation();
-		auto move = _Touch - touchpoint;
-		auto getstage = _stage1->getPosition();
-		_stage1->setPosition(getstage - move);
-		touchpoint = _Touch;
-	};
-	listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
+	////タッチの処理を実行する
+	//auto listener = EventListenerTouchOneByOne::create();
+	//listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+	//	if (_UILayer->getTouch() == true)return false;
+	//	touchpoint = touch->getLocation();
+	//	_stage1->stopRocket();
+	//	return true;
+	//};
+	//listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
+	//	auto _Touch = touch->getLocation();
+	//	auto move = _Touch - touchpoint;
+	//	auto getstage = _stage1->getPosition();
+	//	_stage1->setPosition(getstage + move);
+	//	touchpoint = _Touch;
+	//};
+	//listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
 
-	};
-	listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
+	//};
+	//listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
 
-	};
+	//};
 
-	auto dispatcher = Director::getInstance()->getEventDispatcher();
-	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
-	//BGM
-	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMGame.mp3");
-	SimpleAudioEngine::getInstance()->stopBackgroundMusic("BGM/BGMGame.mp3");
-	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
-	SimpleAudioEngine::getInstance()->playBackgroundMusic("BGM/BGMGame.mp3", true);
+	//auto dispatcher = Director::getInstance()->getEventDispatcher();
+	//dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
 }
@@ -139,17 +123,6 @@ void GameScene::update(float delta){
 			this->addChild(goal);
 		}
 	}
-
-	//画面外に出たらゲームオーバー
-	if (RoPos.x < 0 || visibleSize.width < RoPos.x || RoPos.y < 0 || visibleSize.height < RoPos.y)
-	{
-		gameOver = true;
-	}
-	if (gameOver)
-	{
-		auto _st = GameOver::create();
-		this->addChild(_st);
-	}
 }
 
 //現在遊んでいるゲームを取得する
@@ -159,18 +132,19 @@ void GameScene::getStage(int count){
 
 void GameScene::minimapdate(){
 	//ゲームシーンから必要な情報を取得する
+	auto rocketpos = _stage1->getrocket();
 	auto starcount = _stage1->getstarcount();
 	vector<Vec2> starspos;
 	for (int i = 0; i < starcount; i++){
 		auto star = _stage1->getstar(i);
 		starspos.push_back(star);
-		starPos[i] = starspos.at(i);
 	}
 	auto rect = _stage1->getstagesize();
-
 	auto goalpos = _stage1->getgoal();
-	goalPos = goalPos;
 
-	auto rocketpos = _stage1->getrocket();
-	RoPos = rocketpos;
+	//UiSceneに必要の変数の値を上げる
+	_UILayer->getRocketPos(rocketpos);
+	for (auto star : starspos){ _UILayer->getStarsPos(star);}
+	_UILayer->getStageRect(rect);
+	_UILayer->getgoalPos(goalpos);
 }
