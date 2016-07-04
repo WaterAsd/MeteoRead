@@ -29,9 +29,10 @@ bool UILayer::init()
 	for (int i = 0; i < 6; i++)
 	{
 		timer[i] = 0;
-		timer[1] = 3;
+		timer[1] = 1;
 	}
 
+	//myIcon->setVisible(true);
 
 	// イベントリスナー準備
 	auto listener = EventListenerTouchOneByOne::create();
@@ -112,10 +113,10 @@ void UILayer::Map()
 	myIcon->setRotation(Calculation::Angle);
 
 	////ミニマップ外に出たらロケット消失
-	if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	{
-		myIcon->setVisible(false);
-	}
+	//if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
+	//{
+	//	myIcon->setVisible(false);
+	//}
 
 	//星に追従
 	for (int i = 0; i < 4; i++)
@@ -124,33 +125,36 @@ void UILayer::Map()
 		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
 		this->starIcon[i]->setPosition(starLocalPosition[i]);
 	}
-	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));
-	this->goalIcon->setPosition(goalLocalPosition);
+	//goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition/2.6, Vec2(600, 340)));
+	//this->goalIcon->setPosition(goalLocalPosition);
 
 }
 
 void UILayer::Timer()
 {
-	timer[5]--;
-	if (timer[5] < 0)
+	if (GameScene::gameOver == false)
 	{
-		timer[5] = 9;
-		timer[4]--;
-	}
-	if (timer[4] < 0)
-	{
-		timer[4] = 5;
-		timer[3]--;
-	}
-	if (timer[3] < 0)
-	{
-		timer[3] = 9;
-		timer[2]--;
-	}
-	if (timer[2]<0)
-	{
-		timer[2] = 5;
-		timer[1]--;
+		timer[5]--;
+		if (timer[5] < 0)
+		{
+			timer[5] = 9;
+			timer[4]--;
+		}
+		if (timer[4] < 0)
+		{
+			timer[4] = 5;
+			timer[3]--;
+		}
+		if (timer[3] < 0)
+		{
+			timer[3] = 9;
+			timer[2]--;
+		}
+		if (timer[2] < 0)
+		{
+			timer[2] = 5;
+			timer[1]--;
+		}
 	}
 
 	for (int i = 0; i < 6; i++)
@@ -198,6 +202,7 @@ void UILayer::CreateSprite()
 	}
 
 	goalIcon = Sprite::create("goalIcon.png");
+	goalIcon->setPosition(Vec2(200*3.4, winSize.height - 50));
 	this->addChild(goalIcon);
 
 	//数字

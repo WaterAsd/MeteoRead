@@ -1,7 +1,10 @@
 #include "GameScene.h"
 #include "KBT\GameOver.h"
+#include "SimpleAudioEngine.h"
 
 USING_NS_CC;
+//BGM（SimpleAudioEngine）使うために必要
+using namespace CocosDenshion;
 
 #define COUNT 180.0f;
 
@@ -101,6 +104,12 @@ bool GameScene::init(){
 
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	//BGM
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("BGM/BGMGame.mp3");
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic("BGM/BGMGame.mp3");
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("BGM/BGMGame.mp3", true);
 
 	return true;
 }

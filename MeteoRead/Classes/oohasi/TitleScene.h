@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
+//float BGM;
+
 class TitleScene : public cocos2d::Layer
 {
 protected:
