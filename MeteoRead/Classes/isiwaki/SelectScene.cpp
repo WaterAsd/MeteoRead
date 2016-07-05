@@ -162,9 +162,6 @@ void SelectScene::thochButton(Ref *pSender, ui::Widget::TouchEventType type, int
 	SelectText = StringUtils::format("ÉGÉäÉA-%d", i);
 	GameScene::SelectCount = i; ButtonFlashing = 1;
 
-
-
-
 	switch (type)
 	{
 

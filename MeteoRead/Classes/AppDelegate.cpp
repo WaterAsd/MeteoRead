@@ -54,7 +54,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //register_all_packages();
 
 	//ˆê”ÔÅ‰‚Éo‚·ƒV[ƒ“
-    auto scene = TitleScene::createScene();
+    auto scene = SelectScene::createScene();
 
     director->runWithScene(scene);
 
