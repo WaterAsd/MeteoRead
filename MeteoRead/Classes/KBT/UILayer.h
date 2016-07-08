@@ -45,9 +45,9 @@ protected:
 	//アイコン用
 	Vec2 worldPosition;
 	Vec2 localPosition;
-	Vec2 starWorldPosition[4];
+	std::vector<Vec2>starWorldPosition;
 	Vec2 goalWorldPosition;
-	Vec2 starLocalPosition[4];
+	std::vector<Vec2>starLocalPosition;
 	Vec2 goalLocalPosition;
 
 	//Color3B

@@ -7,6 +7,7 @@ using namespace std;
 
 Vec2 Statics::myPos;
 int Statics::myRot;
+int Statics::myPower;
 std::vector<Vec2> Statics::starPos;
 Vec2 Statics::goalPos;
 Vec2 Statics::gimmickPos;

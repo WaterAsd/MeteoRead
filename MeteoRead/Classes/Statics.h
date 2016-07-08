@@ -13,6 +13,7 @@ class Statics : public cocos2d::Ref
 public:
 	static Vec2 myPos;  //プレイヤーの位置
 	static int myRot;  //プレイヤーの回転量
+	static int myPower;//プレイヤーの移動量
 	static std::vector<Vec2> starPos;  //星の位置
 	static Vec2 goalPos;  //ゴールの位置
 	static Vec2 gimmickPos;  //ギミックの位置

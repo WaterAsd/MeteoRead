@@ -113,19 +113,19 @@ void UILayer::Map()
 		myIcon->setVisible(false);
 	}
 
+
 	//星に追従
-	for (int i = 0; i < 4; i++)
-	{
-		starWorldPosition[i] = GameScene::starPos[i];
-		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-		this->starIcon[i]->setPosition(starLocalPosition[i]);
-	}
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	starWorldPosition[i] = GameScene::starPos[i];
+	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
+	//}
 
 	//ゴールの位置にアイコン表示
 	goalWorldPosition = Statics::goalPos;
 	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition/2.6, Vec2(600, 340)));
 	this->goalIcon->setPosition(goalLocalPosition);
-
 }
 
 void UILayer::Timer()
