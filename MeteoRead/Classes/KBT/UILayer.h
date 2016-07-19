@@ -19,7 +19,7 @@ protected:
 	Sprite* button;             //ボタンの画像
 	Sprite* map;                //マップ画像
 	Sprite* myIcon;             //ロケットのアイコン
-	Sprite* starIcon[4];            //星のアイコン
+	Sprite* starIcon[10];            //星のアイコン
 	Sprite* goalIcon;            //ゴールのアイコン
 	Sprite* number[6];             //数字
 
@@ -49,6 +49,8 @@ protected:
 	Vec2 goalWorldPosition;
 	std::vector<Vec2>starLocalPosition;
 	Vec2 goalLocalPosition;
+	Vec2 pos[4];
+	Vec2 pos2[4];
 
 	//Color3B
 	Color3B buttonColor;//ボタンの色

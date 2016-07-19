@@ -10,6 +10,7 @@
 #include "KBT/Road.h"
 #include "asada/Goal.h"
 #include "asada/Stage1.h"
+#include "asada/Stage.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -24,7 +25,7 @@ private:
 	Size visibleSize;
 	Vec2 origin;
 
-	Stage1 *_stage1;
+	Stage *_stage1;
 	
 	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
@@ -51,9 +52,6 @@ private:
 					//true:発射準備中
 					//false:発射もしくは直進中
 
-	//ＵＩのミニマップに必要な情報を入れる
-	void minimapdate();
-
 public:
 	static int SelectCount;
 	void getStage(int count);
@@ -62,7 +60,7 @@ public:
 	static bool gameOver;
 
 	static Vec2 RoPos;
-	static Vec2 starPos[4];
+	//static Vec2 starPos[4];
 	static Vec2 goalPos;
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言

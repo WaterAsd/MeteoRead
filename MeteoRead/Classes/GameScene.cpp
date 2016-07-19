@@ -12,7 +12,6 @@ using namespace CocosDenshion;
 UILayer *GameScene::uiLayer;
 Earth *GameScene::earth;
 Vec2 GameScene::RoPos;
-Vec2 GameScene::starPos[4];
 Vec2 GameScene::goalPos;
 int GameScene::SelectCount;
 bool GameScene::gameOver;
@@ -48,19 +47,19 @@ bool GameScene::init(){
 	//背景画像の作成
 	auto Space = Sprite::create("Space.jpg");
 	Space->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-	this->addChild(Space);
+	this->addChild(Space,0);
 
 	//ゲームシーンの作成
-	auto GameLayer = Stage1::create();
+	auto GameLayer = Stage::create();
 	GameLayer->setAnchorPoint(Vec2::ZERO);
 	GameLayer->setPosition(0, 0);
-	GameLayer->stagecreate(SelectCount);
-	this->addChild(GameLayer);
+	GameLayer->StageCreate(SelectCount);
+	this->addChild(GameLayer, 1);
 	_stage1 = GameLayer;
 
 	//UiLayerを宣言する。
 	uiLayer = UILayer::create();
-	this->addChild(uiLayer);
+	this->addChild(uiLayer,2);
 	_UILayer = uiLayer;
 
 	//マイフレーム更新作業を実行させる
@@ -71,13 +70,12 @@ bool GameScene::init(){
 
 	//ゴールする星に入れる名前の設定
 	goalmai = std::string("goal");
-	goalset = false;
-	goalflg = false;
+	Statics::clearFlg = false;
 
-	gameOver = false;
+	Statics::gameOverFlg = false;
 
 	auto _st = Start::create();
-	this->addChild(_st);
+	this->addChild(_st,3);
 	_start = _st;
 
 	//タッチの処理を実行する
@@ -85,7 +83,6 @@ bool GameScene::init(){
 	listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
 		if (_UILayer->getTouch() == true)return false;
 		touchpoint = touch->getLocation();
-		_stage1->stopRocket();
 		return true;
 	};
 	listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
@@ -119,26 +116,9 @@ void GameScene::update(float delta){
 
 	//必要な情報を獲得する
 	_Start = _start->getStart();
-	_goal = _stage1->getgoalflg();
-	_touch = _UILayer->getTouch();
+	_goal = Statics::clearFlg;
+	_touch = Statics::touchFlg;
 
-	//UiLayerに送るために必要な情報を入れる
-	minimapdate();
-	if (_touch == true) _stage1->follorRocket(_stage1->_rocket);
-
-	//ゲーム中なら
-	if (_Start == true && _goal == false){
-		_stage1->setrocketpower(_UILayer->getmeterReturn());
-		_stage1->setbottontouch((int)_touch);
-	}
-	else{
-		_stage1->setrocketpower(_stage1->getRocketPower());
-		if (_goal == true && goalflg == false){
-			goalflg = true;
-			auto goal = Goal::create();
-			this->addChild(goal);
-		}
-	}
 
 	//画面外に出たらゲームオーバー
 	if (RoPos.x < 0 || visibleSize.width < RoPos.x || RoPos.y < 0 || visibleSize.height < RoPos.y)
@@ -155,22 +135,4 @@ void GameScene::update(float delta){
 //現在遊んでいるゲームを取得する
 void GameScene::getStage(int count){
 
-}
-
-void GameScene::minimapdate(){
-	//ゲームシーンから必要な情報を取得する
-	auto starcount = _stage1->getstarcount();
-	vector<Vec2> starspos;
-	for (int i = 0; i < starcount; i++){
-		auto star = _stage1->getstar(i);
-		starspos.push_back(star);
-		starPos[i] = starspos.at(i);
-	}
-	auto rect = _stage1->getstagesize();
-
-	auto goalpos = _stage1->getgoal();
-	goalPos = goalPos;
-
-	auto rocketpos = _stage1->getrocket();
-	RoPos = rocketpos;
 }

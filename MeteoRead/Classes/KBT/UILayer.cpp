@@ -62,7 +62,7 @@ void UILayer::update(float delta)
 
 void UILayer::Button()
 {
-	if (touch)
+	if (Statics::touchFlg)
 	{
 		//カウントを上げる
 		upCount++;
@@ -99,28 +99,25 @@ void UILayer::MeterMove()
 
 void UILayer::Map()
 {
-	goalLocalPosition;
-
 	//アイコンをロケットに追従させる
 	worldPosition = Statics::myPos;
 	localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition / 2.6, Vec2(600, 340)));
 	this->myIcon->setPosition(localPosition);
-	myIcon->setRotation(Calculation::Angle);
+	myIcon->setRotation(Statics::myRot);
+
 
 	//ミニマップ外に出たらロケット消失
-	if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	{
-		myIcon->setVisible(false);
-	}
-
-
-	//星に追従
-	//for (int i = 0; i < 4; i++)
+	//if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
 	//{
-	//	starWorldPosition[i] = GameScene::starPos[i];
-	//	starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-	//	this->starIcon[i]->setPosition(starLocalPosition[i]);
+	//	myIcon->setVisible(false);
 	//}
+
+	for (int i = 0; i < Statics::starPos.size(); i++)
+	{
+		pos[i] = Statics::starPos.at(i);
+		pos2[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(pos[i] / 2.6, Vec2(600, 340)));
+		this->starIcon[i]->setPosition(pos2[i]);
+	}
 
 	//ゴールの位置にアイコン表示
 	goalWorldPosition = Statics::goalPos;
@@ -193,7 +190,7 @@ void UILayer::CreateSprite()
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < Statics::starPos.size(); i++)
 	{
 		starIcon[i] = Sprite::create("starIcon.png");
 		this->addChild(starIcon[i]);
@@ -208,7 +205,7 @@ void UILayer::CreateSprite()
 		number[i] = Sprite::create("count.png");
 		number[i]->setAnchorPoint(Vec2::ZERO);
 		number[i]->setPosition(100+(i*80), 450);
-		number[i]->setScale(0.6);
+		number[i]->setScale(0.4);
 		this->addChild(number[i]);
 	}
 
@@ -219,14 +216,14 @@ bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 	touchPoint = ptouch->getLocation();
 	if (buttonRect.containsPoint(touchPoint))
 	{
-		touch = true;
+		Statics::touchFlg = true;
 	}
 	return true;
 }
 
 void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 {
-	touch = false;
+	Statics::touchFlg = false;
 }
 
 //タッチしているかどうかを確認するために関数

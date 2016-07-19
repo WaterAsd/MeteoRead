@@ -6,6 +6,13 @@
 #include "asada\Earth.h"
 using namespace cocos2d;
 
+enum rocketstate{
+	FLY = 0,	//飛んでいる
+	Prelaunch,	//発射前
+	revolution,	//公転している
+	MAX = 3
+};
+
 class Rocket : public cocos2d::Node{
 private:
 	//パワーの列挙方を作成する
@@ -17,7 +24,7 @@ private:
 	};
 	Speed _speed;
 	int speed;
-	int rot;
+	float rot;
 
 	Sprite *_arrow;//矢印画像を入れておくためのポインター変数
 	bool _flgarrow;//矢印を出してもよいかを確認するbool型
@@ -33,6 +40,9 @@ private:
 	void update(float dt);
 
 public:
+	//ロケットの状態を表している変数
+	CC_SYNTHESIZE(rocketstate, _rockcetstate, RocketState);
+
 	static Vec2 RocketPos;//ロケットの座標
 	//画像の最大サイズ
 	const int MAXSPRITEX = 40;
@@ -54,8 +64,8 @@ public:
 	bool getRevolutionflg();
 
 	//移動に関する関数処理
-	void move(const Earth *ea);
-	void Col(const Earth *ea);
+	void move(float speed);
+	void Col(const Earth*,int speed);
 
 	//矢印を出してもよいかを確認する処理
 	void setArrow(const bool flg);

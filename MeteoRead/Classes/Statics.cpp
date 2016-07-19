@@ -19,3 +19,4 @@ bool Statics::touchFlg;
 bool Statics::flyFlg;
 
 int Statics::stageSelect;
+int Statics::touchCount;

@@ -10,7 +10,7 @@ float ROCKETMOVEX = 0.0f;
 float ROCKETMOVEY = 0.1f;
 
 //円周率に関する変数の作成
-float PI2 = 3.14f;
+float pi = 3.14f;
 
 //移動量に関する変数名
 const int MAXPOWER = 4;
@@ -27,6 +27,10 @@ bool Rocket::init(){
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	speed = 10;
+	rot = 0;
+
+	//変数を与えている。
+	_rockcetstate = rocketstate::FLY;
 
 	//パワーの初期設定
 	_speed = Speed::ONE;
@@ -46,6 +50,7 @@ bool Rocket::init(){
 	//矢印を入れる(基本的には出さない）
 	auto Arrow = Sprite::create("Arror.png");
 	Arrow->setPosition(20, 80);
+	Arrow->setVisible(false);
 	rocket->addChild(Arrow,-2);
 	_arrow = Arrow;
 
@@ -59,7 +64,7 @@ bool Rocket::init(){
 
 //マイフレーム処理
 void Rocket::update(float dt){
-
+	_arrow->setVisible(_flgarrow);
 }
 
 //ロケットの座標を送る
@@ -86,33 +91,7 @@ void Rocket::setRevolutionflg(bool flg){ revolutionflg = flg; }
 bool Rocket::getRevolutionflg(){ return revolutionflg; }
 
 //向いてる方向に移動する
-void Rocket::move(const Earth*ea){
-	//必要な情報を作成する
-	Vec2 A, B, C, AB, AC;
-	A = this->getPosition();
-	B = ea->getPosition();
-
-	//公転に必要な新しい座標を作成する
-	if (speed != 0)rot = speed*0.01;
-	if (rot >= 2.0f*PI2)rot -= 2.0f*PI2;
-	C.x = (A.x - B.x)*cos(rot) -
-		(A.y - B.y)*sin(rot) + B.x;
-
-	C.y = (A.x - B.x)*sin(rot) +
-		(A.y - B.y)*cos(rot) + B.y;
-
-	//向きたい角度に向かせる
-	float Angle = ccpToAngle(ccpSub(A, B));
-	Angle = CC_RADIANS_TO_DEGREES(Angle);
-	Angle *= -1;
-	this->setRotation(Angle);
-
-	//座標を更新する
-	this->setPosition(C.x, C.y);
-}
-
-//星に対して公転する
-void Rocket::Col(const Earth*ea){
+void Rocket::move(float speed){
 	double del = this->getRotation();
 	del *= -1;
 	del += 90;
@@ -124,6 +103,32 @@ void Rocket::Col(const Earth*ea){
 	Vec2 a = this->getPosition();
 	Vec2 AC = a + c;
 	this->setPosition(AC.x, AC.y);
+}
+
+//星に対して公転する
+void Rocket::Col(const Earth *ea, int speed){
+	//必要な情報を作成する
+	Vec2 A, B, C, AB, AC;
+	A = this->getPosition();
+	B = ea->getPosition();
+
+	//公転に必要な新しい座標を作成する
+	if (speed != 0)rot = speed*0.01;
+	if (rot >= 2.0f*pi)rot -= 2.0f*pi;
+	C.x= (A.x - B.x)*cos(rot) -
+							(A.y - B.y)*sin(rot) + B.x;
+
+	C.y= (A.x- B.x)*sin(rot) +
+							(A.y - B.y)*cos(rot) + B.y;
+
+	//向きたい角度に向かせる
+	float Angle = ccpToAngle(ccpSub(A, B));
+	Angle = CC_RADIANS_TO_DEGREES(Angle);
+	Angle *= -1;
+	this->setRotation(Angle);
+
+	//座標を更新する
+	this->setPosition(Vec2(C.x, C.y));
 }
 
 //矢印を出してもよいかを確認する処理

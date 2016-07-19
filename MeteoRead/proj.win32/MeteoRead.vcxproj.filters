@@ -75,6 +75,7 @@
       <Filter>src\Game用の</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Statics.cpp" />
+    <ClCompile Include="..\Classes\asada\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -134,6 +135,7 @@
       <Filter>src\Game用の</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Statics.h" />
+    <ClInclude Include="..\Classes\asada\Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
