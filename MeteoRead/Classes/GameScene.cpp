@@ -121,11 +121,11 @@ void GameScene::update(float delta){
 
 
 	//画面外に出たらゲームオーバー
-	if (RoPos.x < 0 || visibleSize.width < RoPos.x || RoPos.y < 0 || visibleSize.height < RoPos.y)
+	if (Statics::myPos.x < 0 || visibleSize.width < Statics::myPos.x || Statics::myPos.y < 0 || visibleSize.height < Statics::myPos.y)
 	{
-		gameOver = true;
+		Statics::gameOverFlg = true;
 	}
-	if (gameOver)
+	if (Statics::gameOverFlg)
 	{
 		auto _st = GameOver::create();
 		this->addChild(_st);

@@ -45,12 +45,10 @@ protected:
 	//アイコン用
 	Vec2 worldPosition;
 	Vec2 localPosition;
-	std::vector<Vec2>starWorldPosition;
 	Vec2 goalWorldPosition;
-	std::vector<Vec2>starLocalPosition;
 	Vec2 goalLocalPosition;
-	Vec2 pos[4];
-	Vec2 pos2[4];
+	Vec2 starWorldPosition[10];
+	Vec2 starLocalPosition[10];
 
 	//Color3B
 	Color3B buttonColor;//ボタンの色

@@ -107,16 +107,16 @@ void UILayer::Map()
 
 
 	//ミニマップ外に出たらロケット消失
-	//if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	//{
-	//	myIcon->setVisible(false);
-	//}
+	if (localPosition.x < winSize.width - 360 || localPosition.y < winSize.height - 202.5)
+	{
+		myIcon->setVisible(false);
+	}
 
 	for (int i = 0; i < Statics::starPos.size(); i++)
 	{
-		pos[i] = Statics::starPos.at(i);
-		pos2[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(pos[i] / 2.6, Vec2(600, 340)));
-		this->starIcon[i]->setPosition(pos2[i]);
+		starWorldPosition[i] = Statics::starPos.at(i);
+		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
+		this->starIcon[i]->setPosition(starLocalPosition[i]);
 	}
 
 	//ゴールの位置にアイコン表示
@@ -127,7 +127,7 @@ void UILayer::Map()
 
 void UILayer::Timer()
 {
-	if (Statics::gameOverFlg == false)
+	if (Statics::gameOverFlg != true)
 	{
 		timer[5]--;
 		if (timer[5] < 0)
@@ -204,11 +204,11 @@ void UILayer::CreateSprite()
 	{
 		number[i] = Sprite::create("count.png");
 		number[i]->setAnchorPoint(Vec2::ZERO);
-		number[i]->setPosition(100+(i*80), 450);
+		if (i == 0 || i == 2 || i == 4)number[i]->setPosition(50 + (i * 50), 450);
+		if (i == 1 || i == 3 || i == 5)number[i]->setPosition(90 + ((i-1) * 50), 450);
 		number[i]->setScale(0.4);
 		this->addChild(number[i]);
 	}
-
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)

@@ -138,14 +138,14 @@ void Stage::StageCreate(int count){
 		_stagerect = stagerect;
 
 		/*ここに星を配置するものを入力してください。*/
-		SetStar(Vec2(_gamewindou.width / 2 + 300, _gamewindou.height / 2 - 200), hosimei);
+		SetStar(Vec2(_gamewindou.width / 2 + 300, _gamewindou.height / 2 - 100), hosimei);
 		SetStar(Vec2(_gamewindou.width / 2 - 300, _gamewindou.height / 2 - 200), hosimei);
 		SetStar(Vec2(_gamewindou.width / 2 + 100, _gamewindou.height / 2 + 100), hosimei);
 		SetStar(Vec2(_gamewindou.width / 2, _gamewindou.height / 2), hosimei);
 		Setgoalstar(Vec2(200, _gamewindou.height - 200), goalmai);
 
 		/*ここにロケットの配置場所を入力してください。*/
-		rocket->setPosition(Vec2(_gamewindou.width, 1.0f));
+		rocket->setPosition(Vec2(_gamewindou.width-50, 100.0f));
 		rocket->setRotation(-90);
 		this->addChild(rocket);
 		_rocket = rocket;
