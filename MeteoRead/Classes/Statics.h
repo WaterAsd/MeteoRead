@@ -27,7 +27,6 @@ public:
 	static bool flyFlg;  //飛んでるかどうか
 
 	static int stageSelect;  //ステージの番号
-	static int touchCount;
 };
 
 

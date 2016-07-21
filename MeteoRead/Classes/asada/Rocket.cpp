@@ -129,8 +129,8 @@ void Rocket::Col(const Earth *ea, int speed){
 	//向きたい角度に向かせる
 	switch (_rocketcolstate)
 	{
-	case rocketcolState::LEFT:Angle = ccpToAngle(ccpSub(B,A)); break;
-	case rocketcolState::RIGHT:Angle = ccpToAngle(ccpSub(A, B)); break;
+		case rocketcolState::LEFT:Angle = ccpToAngle(ccpSub(B,A)); break;
+		case rocketcolState::RIGHT:Angle = ccpToAngle(ccpSub(A, B)); break;
 	}
 	Angle = CC_RADIANS_TO_DEGREES(Angle);
 	Angle *= -1;

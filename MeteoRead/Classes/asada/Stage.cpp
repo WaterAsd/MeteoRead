@@ -46,6 +46,7 @@ void Stage::update(float dt){
 		for (auto hosis : _stars){
 			float length = ccpDistance(hosis->getPosition(), _rocket->getPosition());
 			if (length <= hosikouten && (length < smoleLength || smoleLength == NULL) && karihosi != hosis){
+				_rocket->LRCol(hosis, speed);
 				_axishosi = hosis;
 				smoleLength = length;
 				Statics::flyFlg = false;

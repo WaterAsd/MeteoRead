@@ -45,7 +45,6 @@
     <ClCompile Include="..\Classes\KBT\UILayer.cpp">
       <Filter>src\Game用の</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\oohasi\Title.cpp" />
     <ClCompile Include="..\Classes\isiwaki\SelectScene.cpp">
       <Filter>src\石脇</Filter>
     </ClCompile>
@@ -66,7 +65,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
     <ClCompile Include="..\Classes\asada\Goal.cpp" />
-    <ClCompile Include="..\Classes\asada\Start.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
     <ClCompile Include="..\Classes\KBT\GameOver.cpp" />
     <ClCompile Include="..\Classes\asada\Stage1.cpp" />
@@ -76,6 +74,10 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Statics.cpp" />
     <ClCompile Include="..\Classes\asada\Stage.cpp" />
+    <ClCompile Include="..\Classes\GameScene2.cpp" />
+    <ClCompile Include="..\Classes\asada\StartScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -105,7 +107,6 @@
     <ClInclude Include="..\Classes\KBT\UILayer.h">
       <Filter>src\Game用の</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\oohasi\Title.h" />
     <ClInclude Include="..\Classes\isiwaki\SelectScene.h">
       <Filter>src\石脇</Filter>
     </ClInclude>
@@ -126,7 +127,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\KBT\Road.h" />
     <ClInclude Include="..\Classes\asada\Goal.h" />
-    <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
     <ClInclude Include="..\Classes\KBT\GameOver.h" />
     <ClInclude Include="..\Classes\asada\Stage1.h" />
@@ -136,10 +136,17 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Statics.h" />
     <ClInclude Include="..\Classes\asada\Stage.h" />
+    <ClInclude Include="..\Classes\GameScene2.h" />
+    <ClInclude Include="..\Classes\asada\StartScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\botanSE1.mp3" />
   </ItemGroup>
 </Project>
