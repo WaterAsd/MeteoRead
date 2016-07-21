@@ -27,6 +27,7 @@ private:
 
 	Stage *_stage1;
 	
+	UILayer* _UILayer;//UIのポインター
 	Calculation* _Cal;//計算機のポインター
 	Start* _start;
 	Road* _road;
@@ -34,8 +35,6 @@ private:
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
 	bool goalset;		//星のゴールは一つなのでフラグを作成
 	bool goalflg;
-
-	UILayer* _UILayer;
 
 	float PlayerMoveX;
 	float PlayerMoveY;
@@ -63,7 +62,6 @@ public:
 	static Vec2 RoPos;
 	//static Vec2 starPos[4];
 	static Vec2 goalPos;
-
 	static cocos2d::Scene* createScene();//ゲームシーンの作成
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する
