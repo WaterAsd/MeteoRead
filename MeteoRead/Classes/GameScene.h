@@ -9,6 +9,7 @@
 #include "asada/StartScene.h"
 #include "KBT/Road.h"
 #include "asada/Goal.h"
+#include "KBT\GameOver.h"
 #include "asada/Stage1.h"
 #include "Stage.h"
 

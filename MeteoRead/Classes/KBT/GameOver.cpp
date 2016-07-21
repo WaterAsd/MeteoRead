@@ -65,6 +65,7 @@ void GameOver::restarttouchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventTy
 	case cocos2d::ui::Widget::TouchEventType::ENDED:
 		//—£‚µ‚½‚Æ‚«‚Ìˆ—
 		Director::getInstance()->replaceScene(trnscene);
+		Statics::gameOverFlg = false;
 		break;
 	case cocos2d::ui::Widget::TouchEventType::CANCELED:
 		//ƒLƒƒƒ“ƒZƒ‹‚Ìˆ—

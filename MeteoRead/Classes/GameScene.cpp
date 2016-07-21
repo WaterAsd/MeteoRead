@@ -36,6 +36,9 @@ bool GameScene::init(){
 	//ゲーム開始時の処理
 	_gamestate = GameState::START;
 
+	Statics::gameOverFlg = false;
+	Statics::clearFlg = false;
+
 	//画面サイズを獲得する
 	visibleSize = Director::getInstance()->getVisibleSize();
 	origin = Director::getInstance()->getVisibleOrigin();
@@ -64,31 +67,6 @@ bool GameScene::init(){
 	//回転する星をリセットする
 	axishosi = 0;
 
-	////タッチの処理を実行する
-	//auto listener = EventListenerTouchOneByOne::create();
-	//listener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
-	//	if (_UILayer->getTouch() == true)return false;
-	//	touchpoint = touch->getLocation();
-	//	_stage1->stopRocket();
-	//	return true;
-	//};
-	//listener->onTouchMoved = [=](Touch* touch, Event* event) -> void {
-	//	auto _Touch = touch->getLocation();
-	//	auto move = _Touch - touchpoint;
-	//	auto getstage = _stage1->getPosition();
-	//	_stage1->setPosition(getstage + move);
-	//	touchpoint = _Touch;
-	//};
-	//listener->onTouchEnded = [=](Touch* touch, Event* event) -> void {
-
-	//};
-	//listener->onTouchCancelled = [=](Touch* touch, Event* event) -> void {
-
-	//};
-
-	//auto dispatcher = Director::getInstance()->getEventDispatcher();
-	//dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
 	return true;
 }
 
@@ -101,6 +79,7 @@ void GameScene::update(float delta){
 		if (_start->getStart()==true){
 			this->removeChildByTag(1);
 			_gamestate = GameState::GAME;
+			Statics::gameOverFlg = false;
 		}
 		break;
 	case GAME:
@@ -145,7 +124,7 @@ void GameScene::Start(){
 }
 
 void GameScene::GameOver(){
-	auto clear = Goal::create();
+	auto clear = GameOver::create();
 	clear->setAnchorPoint(Vec2::ZERO);
 	clear->setPosition(Vec2::ZERO);
 	this->addChild(clear);

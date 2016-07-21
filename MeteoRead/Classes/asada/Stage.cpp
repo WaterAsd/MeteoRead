@@ -39,6 +39,10 @@ void Stage::update(float dt){
 	//ロケットの矢印どうするか・・・
 	_rocket->setArrow(Statics::touchFlg);
 
+	if (_stagerect.containsPoint(_rocket->getPosition())==false){
+		Statics::gameOverFlg = true;
+	}
+
 	//配列に入ってくる星の数までfor分で処理
 	if (Statics::flyFlg == true){
 		Earth*karihosi = _axishosi;
@@ -122,8 +126,7 @@ void Stage::staticset(){
 	}
 	Statics::goalPos = _goal->getPosition();
 	Statics::stageRect = _stagerect;
-	Statics::clearFlg = _gameclear;
-	Statics::gameOverFlg = _gameover;
+
 }
 
 //ステージを生成するために入れるクラス
@@ -135,7 +138,7 @@ void Stage::StageCreate(int count){
 	{
 	case 1:
 		/*ここにステージの大きさを設定する*/
-		stagerect.setRect(-200, -200, _gamewindou.width - 200, _gamewindou.height - 200);
+		stagerect.setRect(-200, -200, _gamewindou.width + 200, _gamewindou.height + 200);
 		_stagerect = stagerect;
 
 		/*ここに星を配置するものを入力してください。*/
