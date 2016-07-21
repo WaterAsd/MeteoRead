@@ -153,7 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\asada\Space.cpp" />
     <ClCompile Include="..\Classes\asada\Stage1.cpp" />
     <ClCompile Include="..\Classes\asada\Stagebase.cpp" />
-    <ClCompile Include="..\Classes\asada\Start.cpp" />
+    <ClCompile Include="..\Classes\asada\StartScene.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\GameScene2.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
@@ -163,6 +163,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\KBT\UILayer.cpp" />
     <ClCompile Include="..\Classes\oohasi\Title.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
+    <ClCompile Include="..\Classes\Stage.cpp" />
+    <ClCompile Include="..\Classes\Statics.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\asada\Space.h" />
     <ClInclude Include="..\Classes\asada\Stage1.h" />
     <ClInclude Include="..\Classes\asada\Stagebase.h" />
-    <ClInclude Include="..\Classes\asada\Start.h" />
+    <ClInclude Include="..\Classes\asada\StartScene.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\GameScene2.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
@@ -185,6 +187,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\KBT\UILayer.h" />
     <ClInclude Include="..\Classes\oohasi\Title.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
+    <ClInclude Include="..\Classes\Stage.h" />
+    <ClInclude Include="..\Classes\Statics.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

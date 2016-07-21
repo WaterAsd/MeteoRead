@@ -33,6 +33,9 @@ bool GameScene::init(){
 		return false;
 	}
 
+	//ゲーム開始時の処理
+	_gamestate = GameState::START;
+
 	//画面サイズを獲得する
 	visibleSize = Director::getInstance()->getVisibleSize();
 	origin = Director::getInstance()->getVisibleOrigin();
@@ -43,10 +46,10 @@ bool GameScene::init(){
 	this->addChild(Space);
 
 	//ゲームシーンの作成
-	auto GameLayer = Stage1::create();
+	auto GameLayer = Stage::create();
 	GameLayer->setAnchorPoint(Vec2::ZERO);
 	GameLayer->setPosition(0, 0);
-	GameLayer->stagecreate(SelectCount);
+	GameLayer->StageCreate(SelectCount);
 	this->addChild(GameLayer);
 	_stage1 = GameLayer;
 
@@ -60,15 +63,6 @@ bool GameScene::init(){
 
 	//回転する星をリセットする
 	axishosi = 0;
-
-	//ゴールする星に入れる名前の設定
-	goalmai = std::string("goal");
-	goalset = false;
-	goalflg = false;
-
-	auto _st = Start::create();
-	this->addChild(_st);
-	_start = _st;
 
 	////タッチの処理を実行する
 	//auto listener = EventListenerTouchOneByOne::create();
@@ -100,28 +94,31 @@ bool GameScene::init(){
 
 //マイフレーム更新関数
 void GameScene::update(float delta){
-
-	//必要な情報を獲得する
-	_Start = _start->getStart();
-	_goal = _stage1->getgoalflg();
-	_touch = _UILayer->getTouch();
-
-	//UiLayerに送るために必要な情報を入れる
-	minimapdate();
-	if (_touch == true) _stage1->follorRocket(_stage1->_rocket);
-
-	//ゲーム中なら
-	if (_Start == true && _goal == false){
-		_stage1->setrocketpower(_UILayer->getmeterReturn());
-		_stage1->setbottontouch((int)_touch);
-	}
-	else{
-		_stage1->setrocketpower(_stage1->getRocketPower());
-		if (_goal == true && goalflg == false){
-			goalflg = true;
-			auto goal = Goal::create();
-			this->addChild(goal);
+	switch (_gamestate)
+	{
+	case START:
+		Start();
+		if (_start->getStart()==true){
+			this->removeChildByTag(1);
+			_gamestate = GameState::GAME;
 		}
+		break;
+	case GAME:
+		if (Statics::clearFlg == true){
+			_gamestate = GameState::CLEAR;
+		}
+		else if (Statics::gameOverFlg == true){
+			_gamestate = GameState::GAMEOVER;
+		}
+		break;
+	case CLEAR:
+		GameClear();
+		break;
+	case GAMEOVER:
+		GameOver();
+		break;
+	case GAMEEND:
+		break;
 	}
 }
 
@@ -131,20 +128,33 @@ void GameScene::getStage(int count){
 }
 
 void GameScene::minimapdate(){
-	//ゲームシーンから必要な情報を取得する
-	auto rocketpos = _stage1->getrocket();
-	auto starcount = _stage1->getstarcount();
-	vector<Vec2> starspos;
-	for (int i = 0; i < starcount; i++){
-		auto star = _stage1->getstar(i);
-		starspos.push_back(star);
-	}
-	auto rect = _stage1->getstagesize();
-	auto goalpos = _stage1->getgoal();
+	
+}
 
-	//UiSceneに必要の変数の値を上げる
-	_UILayer->getRocketPos(rocketpos);
-	for (auto star : starspos){ _UILayer->getStarsPos(star);}
-	_UILayer->getStageRect(rect);
-	_UILayer->getgoalPos(goalpos);
+//スタートシーンを作成する
+void GameScene::Start(){
+
+	if (_startflg != true){
+		_start = StartScene::create();
+		_start->setTag(1);
+		_start->setAnchorPoint(Vec2::ZERO);
+		_start->setPosition(Vec2(0, 0));
+		this->addChild(_start);
+		_startflg = true;
+	}
+}
+
+void GameScene::GameOver(){
+	auto clear = Goal::create();
+	clear->setAnchorPoint(Vec2::ZERO);
+	clear->setPosition(Vec2::ZERO);
+	this->addChild(clear);
+	_gamestate = GameState::GAMEEND;
+}
+void GameScene::GameClear(){
+	auto gameover = Goal::create();
+	gameover->setAnchorPoint(Vec2::ZERO);
+	gameover->setPosition(Vec2::ZERO);
+	this->addChild(gameover);
+	_gamestate = GameState::GAMEEND;
 }

@@ -7,12 +7,14 @@ const float Hosikoutenn = 80.0f;
 bool Stage1::init(){
 	if (!Layer::init())return false;
 
+	//•Ï”‚Ì‰Šú‰»
 	_startflg=false;		
 	_goalflg=false;		
 	_buttontouch=false;	
 	_rocketspeed = 1;
 	_rocketpower = 1;
 
+	//¯‚Ì“¹‚ğì¬‚µ‚Ä‚¨‚­
 	_star = SpriteBatchNode::create("star2.png");
 	this->addChild(_star);
 

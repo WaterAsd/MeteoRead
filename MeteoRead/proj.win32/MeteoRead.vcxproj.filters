@@ -66,9 +66,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\KBT\Road.cpp" />
     <ClCompile Include="..\Classes\asada\Goal.cpp" />
-    <ClCompile Include="..\Classes\asada\Start.cpp" />
     <ClCompile Include="..\Classes\ouse\NovelScene.cpp" />
     <ClCompile Include="..\Classes\KBT\GameOver.cpp" />
+    <ClCompile Include="..\Classes\asada\Stage1.cpp" />
+    <ClCompile Include="..\Classes\asada\Stagebase.cpp" />
+    <ClCompile Include="..\Classes\GameScene2.cpp" />
+    <ClCompile Include="..\Classes\Statics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Stage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\asada\StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -119,13 +128,25 @@
     </ClInclude>
     <ClInclude Include="..\Classes\KBT\Road.h" />
     <ClInclude Include="..\Classes\asada\Goal.h" />
-    <ClInclude Include="..\Classes\asada\Start.h" />
     <ClInclude Include="..\Classes\ouse\NovelScene.h" />
     <ClInclude Include="..\Classes\KBT\GameOver.h" />
+    <ClInclude Include="..\Classes\asada\Stage1.h" />
+    <ClInclude Include="..\Classes\asada\Stagebase.h" />
+    <ClInclude Include="..\Classes\GameScene2.h" />
+    <ClInclude Include="..\Classes\Statics.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Stage.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\asada\StartScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\botanSE1.mp3" />
   </ItemGroup>
 </Project>

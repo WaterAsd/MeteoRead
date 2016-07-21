@@ -23,8 +23,6 @@ public:
 
     void menuCloseCallback(cocos2d::Ref* pSender);
     CREATE_FUNC(SelectScene);
-
-
 private:
 	void touchEvent(Ref *pSender, cocos2d::ui::Widget::TouchEventType type);
 	void thochButton(Ref *pSender, cocos2d::ui::Widget::TouchEventType type, int i);

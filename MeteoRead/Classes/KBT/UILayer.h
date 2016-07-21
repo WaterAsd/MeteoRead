@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Math.h"
 #include "ui/CocosGUI.h"
+#include "Statics.h"
 
 USING_NS_CC;
 
@@ -64,9 +65,11 @@ protected:
 	void CreateSprite();	// 画像作成クラス
 
 private:
+	
+
 	//ゲームシーンから送られた情報を保存しておくための変数
 	Vec2 _rocketpos;			//ロケットの場所
-	vector<Vec2> _starspos;		//星の場所
+	std::vector<Vec2> _starspos;		//星の場所
 	Rect _rect;					//stageの大きさ
 	Vec2 _goalpos;				//ゴールの場所
 

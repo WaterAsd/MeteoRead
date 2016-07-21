@@ -6,28 +6,41 @@
 #include "asada/Earth.h"
 #include "asada/Rocket.h"
 #include "asada/Calculation.h"
-#include "asada/Start.h"
+#include "asada/StartScene.h"
 #include "KBT/Road.h"
 #include "asada/Goal.h"
 #include "asada/Stage1.h"
+#include "Stage.h"
+
+//ゲームの状態を表している列挙形
+enum GameState{
+	START = 0,
+	GAME,
+	CLEAR,
+	GAMEOVER,
+	GAMEEND,
+	MAXGAMESTATE
+};
 
 class GameScene : public cocos2d::Layer
 {
 private:
+	//ゲーム状態を表している変数
+	GameState _gamestate;
 
-	bool _Start;
-	bool _goal;
-	bool _touch;
+	UILayer* uiLayer;
+
+	bool _startflg;
 
 	Vec2 touchpoint;
 
 	Size visibleSize;
 	Vec2 origin;
 
-	Stage1 *_stage1;
+	Stage *_stage1;
 	
 	Calculation* _Cal;//計算機のポインター
-	Start* _start;
+	StartScene* _start;
 	Road* _road;
 
 	std::string goalmai;//星に入れる名前（ゴールフラグ？）
@@ -56,6 +69,10 @@ private:
 	void minimapdate();
 
 public:
+	void Start();
+	void GameOver();
+	void GameClear();
+
 	static int SelectCount;
 	void getStage(int count);
 	Stagebase craeateStage(int count);
@@ -70,7 +87,6 @@ public:
 	virtual bool init();//初期化宣言
 	void update(float delta);	//毎フレーム更新する
 	CREATE_FUNC(GameScene);//クラスの宣言
-	static UILayer* uiLayer;//UILayerを使えるようにする。
 	static Earth* earth;//星クラスを使える様にする。
 };
 

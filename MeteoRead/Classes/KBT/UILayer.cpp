@@ -1,7 +1,6 @@
 #include "UILayer.h"
-#include "GameScene.h"
 #include "asada\Rocket.h"
-#include "asada\/Calculation.h"
+#include "asada\Calculation.h"
 
 USING_NS_CC;
 
@@ -62,7 +61,7 @@ void UILayer::update(float delta)
 
 void UILayer::Button()
 {
-	if (touch)
+	if (Statics::touchFlg)
 	{
 		//カウントを上げる
 		upCount++;
@@ -99,76 +98,42 @@ void UILayer::MeterMove()
 
 void UILayer::Map()
 {
-	//ミニマップに必要なサイズを確定する
-	minimapcreate();
-
-	//アイコンをロケットに追従させる
-	/*localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition / 2.6, Vec2(600, 340)));
-	this->myIcon->setPosition(localPosition);
-	myIcon->setRotation(Calculation::Angle);*/
-
-	myIcon->setPosition(_rocketpos.x*_stagesize.x,
-							_rocketpos.x*_stagesize.x);
-	for (int i = 0; i < 4; i++)
-	{
-		auto star = _starspos.at(i);
-		this->starIcon[i]->setPosition(star.x*_stagesize.x,
-											star.x*_stagesize.x);
-	}
-	goalIcon->setPosition(_goalpos.x*_stagesize.x,
-								_goalpos.x*_stagesize.x);
-
-	////ミニマップ外に出たらロケット消失
-	/*if (iconPos.x < winSize.width - 360 || iconPos.y < winSize.height - 202.5)
-	{
-		myIcon->setVisible(false);
-	}*/
-
-	//星に追従
-	/*for (int i = 0; i < 4; i++)
-	{
-		starWorldPosition[i] = GameScene::starPos[i];
-		starLocalPosition[i] = starIcon[i]->getParent()->convertToNodeSpace(ccpAdd(starWorldPosition[i] / 2.6, Vec2(600, 340)));
-		this->starIcon[i]->setPosition(starLocalPosition[i]);
-	}
-	goalLocalPosition = goalIcon->getParent()->convertToNodeSpace(ccpAdd(goalWorldPosition / 2.6, Vec2(600, 340)));*/
-
-	this->goalIcon->setPosition(goalLocalPosition);
+	////アイコンをロケットに追従させる
+	//Vec2 localPosition = myIcon->getParent()->convertToNodeSpace(ccpAdd(worldPosition/2.6 , Vec2(600, 340)));
+	//this->myIcon->setPosition(localPosition);
+	//myIcon->setRotation(Calculation::Angle);
+	
 }
 
 void UILayer::Timer()
 {
-	timer[5]--;
-	if (timer[5] < 0)
-	{
-		timer[5] = 9;
-		timer[4]--;
-	}
-	if (timer[4] < 0)
-	{
-		timer[4] = 5;
-		timer[3]--;
-	}
-	if (timer[3] < 0)
-	{
-		timer[3] = 9;
-		timer[2]--;
-	}
-	if (timer[2]<0)
-	{
-		timer[2] = 5;
-		timer[1]--;
-	}
+	if (Statics::gameOverFlg != true){
+		timer[5]--;
+		if (timer[5] < 0)
+		{
+			timer[5] = 9;
+			timer[4]--;
+		}
+		if (timer[4] < 0)
+		{
+			timer[4] = 5;
+			timer[3]--;
+		}
+		if (timer[3] < 0)
+		{
+			timer[3] = 9;
+			timer[2]--;
+		}
+		if (timer[2] < 0)
+		{
+			timer[2] = 5;
+			timer[1]--;
+		}
 
-	for (int i = 0; i < 6; i++)
-	{
-		number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
-	}
-
-	if (timer[1] == 0 && timer[2] == 0 && timer[3] == 0 &&
-		timer[4] == 0 && timer[5] == 0)
-	{
-		GameScene::gameOver = true;
+		for (int i = 0; i < 6; i++)
+		{
+			number[i]->setTextureRect(Rect(62 * timer[i], 0, 62, 102));
+		}
 	}
 }
 
@@ -185,28 +150,9 @@ void UILayer::CreateSprite()
 	meter->setPosition(Vec2(220, 91));
 	this->addChild(meter);
 
-	//マップ
-	map = Sprite::create();
-	map->setAnchorPoint(Vec2::ZERO);
-	map->setTextureRect(Rect(0, 0, 360, 202.5));
-	map->setColor(Color3B::WHITE);
-	map->setPosition(Vec2(winSize.width - 360, winSize.height - 202.5));
-	this->addChild(map);
-	_map = map;
-	map->setOpacity(100);
-
 	//ロケットのアイコン
 	myIcon = Sprite::create("icon01.png");
 	this->addChild(myIcon);
-
-	for (int i = 0; i < 4; i++)
-	{
-		starIcon[i] = Sprite::create("starIcon.png");
-		this->addChild(starIcon[i]);
-	}
-
-	goalIcon = Sprite::create("goalIcon.png");
-	this->addChild(goalIcon);
 
 	//数字
 	for (int i = 0; i < 6; i++)
@@ -225,14 +171,14 @@ bool UILayer::onTouchBegan(cocos2d::Touch* ptouch, cocos2d::Event* pEvent)
 	touchPoint = ptouch->getLocation();
 	if (buttonRect.containsPoint(touchPoint))
 	{
-		touch = true;
+		Statics::touchFlg = true;
 	}
 	return true;
 }
 
 void UILayer::onTouchEnded(cocos2d::Touch *ptouch, cocos2d::Event *pEvent)
 {
-	touch = false;
+	Statics::touchFlg = false;
 }
 
 //タッチしているかどうかを確認するために関数
@@ -243,16 +189,4 @@ bool UILayer::getTouch(){
 int UILayer::getmeterReturn()
 {
 	return power;
-}
-
-/*ゲームシーンから必要な素材を獲得するために使用する関数*/
-void UILayer::getRocketPos(const Vec2 pos){ _rocketpos = pos; }				//ロケットの場所
-void UILayer::getStarsPos(const Vec2 pos){ _starspos.push_back(pos);}		//星の場所
-void UILayer::getStageRect(const Rect stage){ _rect = stage;}				//ステージの大きさ
-void UILayer::getgoalPos(const Vec2 goal){ _goalpos = goal;}					//ゴールの場所
-
-/*ミニマップのサイズを確定するための関数*/
-void UILayer::minimapcreate(){
-	_stagesize.x = _map->getContentSize().width / _rect.getMaxX() - _rect.getMinX();
-	_stagesize.y = _map->getContentSize().height / _rect.getMaxY() - _rect.getMinY();
 }

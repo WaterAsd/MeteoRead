@@ -33,6 +33,15 @@ bool GameOver::init(){
 	restart->addTouchEventListener(CC_CALLBACK_2(GameOver::restarttouchEvent, this));
 	_restart = restart;
 
+	//ゲームオーバー
+	auto lister = EventListenerTouchOneByOne::create();
+	lister->setSwallowTouches(true);
+	lister->onTouchBegan = [](Touch*touch, Event*event)->bool{
+		return true;
+	};
+	auto dis = Director::getInstance()->getEventDispatcher();
+	dis->addEventListenerWithSceneGraphPriority(lister, this);
+
 	return true;
 }
 

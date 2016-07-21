@@ -53,4 +53,4 @@ public:
 	int getRocketPower();				//ロケットのパワー（スピード力）
 };
 
-#endif __METEOREAD__STAGEBASE__
+#endif //__METEOREAD__STAGEBASE__

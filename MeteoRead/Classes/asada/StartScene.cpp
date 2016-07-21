@@ -1,7 +1,9 @@
-#include "asada/Start.h"
+#include "asada/StartScene.h"
+
 USING_NS_CC;
-bool Start::init(){
-	if (!Node::init()){return false;}
+
+bool StartScene::init(){
+	if (!Layer::init()){return false;}
 
 	OK = false;
 
@@ -54,6 +56,14 @@ bool Start::init(){
 		nullptr
 		));
 
+	auto lister = EventListenerTouchOneByOne::create();
+	lister->setSwallowTouches(true);
+	lister->onTouchBegan = [](Touch*touch, Event*event)->bool{
+		return true;
+	};
+	auto dis = Director::getInstance()->getEventDispatcher();
+	dis->addEventListenerWithSceneGraphPriority(lister, this);
+		
 	return true;
 }
 
@@ -61,6 +71,6 @@ bool Start::init(){
 start‚Ìˆ—‚ªŠ®—¹‰º‚©‚Ç‚¤‚©‚ğŠm”F‚·‚éŠÖ”
 @true‚È‚çŠ®—¹‚µ‚Ä‚¨‚è
 @false‚È‚ç‚Ü‚¾Š®—¹‚µ‚Ä‚È‚¢*/
-bool Start::getStart(){
+bool StartScene::getStart(){
 	return OK;
 }
