@@ -23,7 +23,6 @@ public:
 	static bool gameOverFlg;  //ゲームオーバーのフラグ
 
 	static bool touchFlg;  //タッチしたかどうか
-	static int  touchCount;//タッチしている時間の長さ
 	static bool flyFlg;  //飛んでるかどうか
 
 	static int stageSelect;  //ステージの番号
