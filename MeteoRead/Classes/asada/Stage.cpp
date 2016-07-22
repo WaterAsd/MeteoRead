@@ -11,15 +11,6 @@ bool Stage::init(){
 	this->addChild(rocket);
 	_rocket = rocket;
 
-	auto black = Sprite::create("new black hole sample.png");
-	black->setPosition(Vec2(_gamewindou.width / 2, _gamewindou.height / 2-100));
-	this->addChild(black);
-
-	auto action = RotateTo::create(1, 45);
-	auto repeatForever = Repeat::create(action,-1);
-	//アニメーション開始
-	black->runAction(repeatForever);
-
 	hosikouten = 80;
 	goalmai = "goal";
 	touchOK = true;
@@ -122,7 +113,9 @@ void Stage::staticset(){
 	Statics::myRot = _rocket->getRotation();
 	Statics::starPos.clear();
 	for (auto star:_stars){
-		Statics::starPos.push_back(star->getPosition());
+		if (star->getName() != goalmai){
+			Statics::starPos.push_back(star->getPosition());
+		}
 	}
 	Statics::goalPos = _goal->getPosition();
 	Statics::stageRect = _stagerect;
